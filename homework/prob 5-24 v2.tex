@@ -1,0 +1,55 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb}
+\graphicspath{{/Users/telliott_admin/Dropbox/Tex/png/}}
+\usepackage{parskip}
+
+\title{General proof}
+%\author{The Author}
+\date{}							% Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+%\section{}
+%\subsection{}
+\noindent
+\large
+\[ \int_0^{\pi/4} \sin^4 x \cos^2 x \ dx \]
+Forget the bounds for now.  Convert to all sine:
+\[ = \int \sin^4 x \ dx - \int \sin^6 x \ dx \]
+To do this problem, I will derive the general formula for
+\[ \int \sin^n x \ dx \]
+Use integration by parts:
+\[ u = \sin^{n-1} x \]
+\[ dv = \sin x \ dx \]
+\[ du = (n-1) \sin^{n-2} x \cos x \ dx \]
+\[ v = - \cos x \ dx \]
+So the integral is
+\[ \int \sin^n x \ dx = - \sin^{n-1} x \cos x + (n-1) \int  \sin^{n-2} x \cos^2 x \ dx   \]
+Now
+\[ \sin^{n-2} x \cos^2 x =  \sin^{n-2} x (1 - \sin^2 x) = \sin^{n-2} x - \sin^n x \   \]
+Plug into the integral
+\[ \int \sin^n x \ dx = - \sin^{n-1} x \cos x + (n-1) \int ( \sin^{n-2} x - \sin^n x ) \ dx   \]
+\[ n \int \sin^n x \ dx = - \sin^{n-1} x \cos x + (n-1) \int \sin^{n-2} x \ dx   \]
+\[ \int \sin^n x \ dx = - \frac{1}{n} \sin^{n-1} x \cos x + \frac{n-1}{n} \int \sin^{n-2} x \ dx   \]
+
+\[ \int \sin^6 x \ dx = - \frac{1}{6} \sin^5 x \cos x + \frac{5}{6} \int \sin^4 x \ dx \]
+\[ \int \sin^4 x \ dx = - \frac{1}{4} \sin^3 x \cos x + \frac{3}{4} \int \sin^2 x \ dx \]
+\[ \int \sin^2 x \ dx = - \frac{1}{2} \sin x \cos x + \frac{1}{2} x \]
+\subsection*{back to our problem}
+\[ \int \sin^4 x \ dx - \int \sin^6 x \ dx \]
+\[ = \int \sin^4 x \ dx + \frac{1}{6} \sin^5 x \cos x - \frac{5}{6} \int \sin^4 x \ dx \]
+\[ = \frac{1}{6} \sin^5 x \cos x + \frac{1}{6} \int \sin^4 x \ dx \]
+\[ = \frac{1}{6} \sin^5 x \cos x + \frac{1}{6} \ [ \ - \frac{1}{4} \sin^3 x \cos x + \frac{3}{4} \int \sin^2 x \ dx \ ]  \]
+\[ = \frac{1}{6} \sin^5 x \cos x + \frac{1}{6} \ [ \ - \frac{1}{4} \sin^3 x \cos x + \frac{3}{4} (- \frac{1}{2} \sin x \cos x + \frac{1}{2} x ) \ ]  \]
+Now we just have to multiply out
+\[ = \frac{1}{6} \sin^5 x \cos x - \frac{1}{24} \sin^3 x \cos x - \frac{1}{16} \sin x \cos x + \frac{1}{16} x  \]
+Now evaluate from $x = 0 \Rightarrow x = \pi/4$.  Recall that $\sin n \pi = 0$ for integer $n$ so at the lower bound all terms are zero.  At the upper bound we have that $\sin \pi/4 = \cos \pi/4 = 1/ \sqrt{2}$.
+\[ = \frac{1}{6} \ \frac{1}{8} - \frac{1}{24} \ \frac{1}{4} - \frac{1}{16} \ \frac{1}{2} + \frac{1}{16} \ \frac{\pi}{4} \]
+\[ = \frac{1}{48} - \frac{1}{96} - \frac{1}{32} + \frac{\pi}{64} = \frac{3 \pi - 4}{192} \]
+\end{document}  

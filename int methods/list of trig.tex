@@ -1,0 +1,43 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{parskip}
+\usepackage{hyperref}
+\usepackage[english]{babel}
+
+\title{List of trig integrals}
+%\author{The Author}
+%\section{}
+% \subsection*{R code}
+\date{}							% Activate to display a given date or no date
+
+\graphicspath{{/Users/telliott_admin/Dropbox/Tex/png/}}
+
+\begin{document}
+\maketitle
+\large
+\noindent
+
+For each pair, we list $F(x)$ first and then $\int f(x) \ dx$---since it feels more natural to reconstruct each one by taking the derivative of $F(x)$.  Don't forget the constant:
+\[ F(x) + C = \int f(x) \ dx \]
+\[ \sin x \Longleftrightarrow \cos x \]
+\[ \cos x \Longleftrightarrow -\sin x  \]
+\[ \tan x \Longleftrightarrow \sec^2 x \]
+\[ \sec x \Longleftrightarrow \sec x \tan x \]
+The derivatives of cosecant and cotangent can be reconstructed by noticing the pattern of substituting the corresponding "co" functions and changing sign:
+\[ \csc x \Longleftrightarrow - \csc x \cot x \]
+\[ \cot x \Longleftrightarrow -\csc^2 x \]
+We are missing tangent and secant from the list of derivatives .  The tangent is obtained by $u$-substitution (sine is \emph{minus} the derivative of cosine).  The secant is obtained by a trick, multiplying on top and bottom by $(\sec x + \tan x)$ giving $\int du/u$:
+\[ -\ln |\cos x| \Longleftrightarrow \tan x \]
+\[ \ln |\sec x + \tan x| \Longleftrightarrow \sec x \]
+Again, the integrals of cosecant and cotangent can be constructed by substituting "co" functions and flipping signs (it is easy to check it for cotangent).
+\[ \ln |\sin x| \Longleftrightarrow \cot x \]
+\[ -\ln |\csc x + \cot x| \Longleftrightarrow \csc x \]
+I suggest memorizing all 10 of these, and writing them out quickly at the beginning of an exam.  It provides a resource so you don't have to remember them (especially the co versions), under pressure.
+\end{document}  

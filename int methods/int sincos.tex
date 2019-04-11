@@ -1,0 +1,100 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{parskip}
+
+\title{Integration of $\sin x \cos x$}
+%\author{The Author}
+%\section{}
+% \subsection*{R code}
+\date{}							% Activate to display a given date or no date
+
+\graphicspath{{/Users/telliott_admin/Dropbox/Tex/png/}}
+
+\begin{document}
+\maketitle
+\Large
+%\noindent
+
+Integrals involving the double-angle formula can be tricky because there may be two different answers which \emph{are both right} but can be seen to be equivalent only after some manipulation.  Consider
+
+\[ \int \sin x \cos x \ dx \]
+
+A simple answer is to substitute $u = \sin x$, then obviously we have $\int u \ du$ so the answer is
+
+\[ = \frac{1}{2} \sin^2 x + C \]
+
+which is easily checked by differentiation.  However, on an exam they may try some trickery like this with the double-angle formula:
+
+\[ \sin x \cos x = \frac{1}{2} \sin (2x) \]
+
+So the integral is
+\[ = \int  \frac{1}{2} \sin (2x) \ dx \]
+\[ = - \frac{1}{4} \cos (2x) + C \]
+
+Is it really true that
+
+\[ \frac{1}{2} \sin^2 x \overset{?}{=} - \frac{1}{4} \cos (2x) \]
+
+We can show that these are equal.  The double-angle formula for cosine is:
+
+\[ \cos (2x) = \cos^2 x - \sin^2 x \]
+\[ = 1 - 2\sin^2 x \]
+
+substituting 
+\[ - \frac{1}{4} \cos (2x) + C = - \frac{1}{4}(1 - 2\sin^2 x) + C \]
+\[ = -\frac{1}{4} + \frac{1}{2} \sin^2 x + C \]
+
+And now we see that they are the same, we just have to remember that the $C$ in the first answer \emph{is not the same} as the $C$ in the second answer.
+
+Try checking the second answer by differentiation:
+
+\[ \frac{d}{dx} \ - \frac{1}{4} \cos (2x) \]
+\[ = \frac{1}{2} \ \sin (2x) \]
+\[ = \sin x \cos x \]
+
+\subsection*{cosine squared}
+
+We've solved this before, I thought I'd just repeat it here:
+
+\[ \int \cos^2 x \ dx \]
+
+Start with
+
+\[ \cos (2x) = \cos^2 x - \sin^2 x \]
+\[ = 2 \cos^2 x - 1 \]
+Thus
+\[ \cos^2 x = \frac{1}{2} (\cos (2x) + 1) \]
+
+so the integral is
+\[ = \frac{1}{2} \int (\cos (2x) + 1) \]
+\[ = \frac{1}{2}\ (\ \frac{1}{2} \ \sin (2x) + x) + C \]
+
+But this also has a second version.  The simplest way is just to see what happens when we differentiate
+
+\[ \frac{d}{dx} \sin x \cos x = -\sin^2 x + \cos^2 x \]
+\[ = 2 \cos^2 x - 1 \]
+
+Hence
+\[ \sin x \cos x = -x + 2 \int cos^2 x \ dx \]
+\[ \int cos^2 x \ dx = \frac{1}{2} (x + \sin x \cos x) + C \]
+(writing the constant now). 
+
+Our two answers must be the same, somehow, within a constant:
+
+\[ \frac{1}{2}\ (\ \frac{1}{2} \ \sin (2x) + x) \overset{?}{=} \frac{1}{2} (x + \sin x \cos x) \]
+\[ \ \frac{1}{2} \ \sin (2x) + x \overset{?}{=} (x + \sin x \cos x) \]
+\[ \frac{1}{2} \ \sin (2x) = \sin x \cos x  \]
+
+The double-angle formula, again.
+
+
+
+
+\end{document}  

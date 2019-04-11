@@ -1,0 +1,182 @@
+\documentclass[11pt, oneside]{article} 
+\usepackage{geometry}
+\geometry{letterpaper} 
+\usepackage{graphicx}
+	
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{parskip}
+\usepackage{color}
+\usepackage{hyperref}
+
+\graphicspath{{/Users/telliott_admin/Tex/png/}}
+% \begin{center} \includegraphics [scale=0.4] {gauss3.png} \end{center}
+
+\title{Differentiate}
+\date{}
+
+\begin{document}
+\maketitle
+\Large
+
+This section contains a general discussion of differentiation of complex functions.  A complex function takes as input a complex number, and emits as output another complex number.  
+
+More concretely, a complex function is really a pair of functions defined on the real numbers:
+
+\[ f(z) = f(x + iy) = u(x,y) + i \cdot v(x,y) \]
+
+$u$ and $v$ each take two real numbers and emit one real number.  The output of $v$ is multiplied by $i$.  Here is an example:
+\[ z = x + iy \]
+\[ z^2 = (x + iy)(x + iy) \]
+\[ = x^2 - y^2 + 2ixy \]
+So $u(x,y) = x^2 - y^2$ and $v(x,y) = 2xy$.
+
+Another one is:
+\[ \frac{1}{z} = \frac{z*}{zz*} \]
+\[ = \frac{x - iy}{(x + iy)(x - iy)} \]
+\[ = \frac{x}{x^2 + y^2} + i \frac{-y}{x^2 + y^2} \]
+
+Often a simplified notation is employed:
+
+\[ f(z) = u + i \cdot v \]
+
+Since the inputs cover the entire complex plane, we cannot plot graphs as with real functions.  Instead, one version of the complex plane is mapped by the function into a different version of the complex plane.
+
+This chapter gives us a first glimpse of the important Cauchy-Riemann conditions and justifies one of the formulas for calculating the derivative
+
+\[ f'(z) = u_x + i v_x \]
+
+As an example of its use, consider the complex exponential
+\[ f(z) = e^z \]
+If we write $z = x + iy$ then
+\[ f(z) = e^{x + iy} \]
+\[ = e^x e^{iy} \]
+and (from Euler):
+\[ e^{iy} = \cos y + i \sin y \]
+so
+\[ f(z) = e^x \cos y + i e^x \sin y \]
+
+Using the formula, it can be shown easily that the derivative is the same as the function itself, just as for the case of real numbers.
+\[ u(x,y) = e^x \cos y \]
+\[ u_x = e^x \cos y = u \]
+\[ v(x,y) = e^x \sin y \]
+\[ v_x = e^x \sin y = v \]
+Hence
+\[f'(z) = u_x + iv_x = z \]
+
+\subsection*{definition}
+We define the derivative $f'(z)$ of a complex function $f(z)$ similarly to the derivative of a real function:
+\[ f'(z) = \lim_{w \rightarrow z} \ \frac{f(w) - f(z)}{w-z} \]
+if the limit exists.
+
+Alternatively, with $\Delta$ notation, we might write:
+\[ f'(z) = \lim_{\Delta z \rightarrow 0} \ \frac{f(z + \Delta z) - f(z)}{\Delta z} \]
+
+A crucial difference from real functions is that there are only two directions from which to approach a given real number $x$, while there is an infinite number of ways of approaching $z$ in the Argand plane.  The limit is over \emph{all} possible ways of approaching $z$.  
+
+If the limit exists, the function $f$ is called differentiable and $f'(z)$ is the derivative.
+Consider
+\[ f(z) = u(x,y) + i v(x,y) \]
+Then
+\[ f'(z) = \frac{f(z + \Delta z) - f(z)}{\Delta z} \]
+\[ = \frac{u(x + \Delta x, y + \Delta y) + i v (x + \Delta x, y + \Delta y) - u(x,y) - i v(x,y)}{\Delta x + i \Delta y} \]
+
+\subsection*{fixed y}
+We tame this beast by looking at two specific paths.
+
+Looking at the special path along the $x$-axis where $\Delta y = 0$ we obtain
+\[ f'(z) = \frac{u(x + \Delta x, y) + i v (x + \Delta x, y) - u(x,y) - i v(x,y)}{\Delta x} \]
+Rearrange the numerator
+\[ = \frac{u(x + \Delta x, y) - u(x,y)}{\Delta x} + \frac{i v (x + \Delta x, y) - i v(x,y)}{\Delta x} \]
+The first term is
+\[ u_x = \frac{\partial u}{\partial x} \]
+and the second term is 
+\[ i v_x \]
+Hence we conclude that
+\[ f'(z) = u_x + i v_x \]
+
+\subsection*{fixed x}
+Now look at the special path along the $y$-axis where $\Delta x = 0$:
+\[ f'(z) = \frac{u(x, y + \Delta y) + i v (x, y + \Delta y) - u(x,y) - i v(x,y)}{i \Delta y} \]
+Rearrange the numerator
+\[ = \frac{u(x, y + \Delta y) - u(x,y)}{i \Delta y} + \frac{i v (x, y + \Delta y) - i v(x,y)}{i \Delta y} \]
+\[ = \frac{1}{i} u_y + v_y \]
+Recall that $1/i = -i$
+\[ f'(z) = v_y - i u_y \]
+
+\subsection*{Putting it together}
+We require that the limit be the same regardless of the direction of approach to $z$, so these two expressions for the difference quotient must be equal:
+\[ f'(z) = u_x + i v_x = - i u_y + v_y \]
+
+Both the real and the imaginary parts must be equal so
+\[ u_x  = v_y \]
+\[ u_y = - v_x \]
+
+Once differentiability is established, we can use whichever path we want to evaluate the derivative.
+
+As we said at the beginning, in looking at various complex functions we can use this fact:
+\[ f'(z) = u_x + i v_x \]
+
+One consequence is that
+\[ \frac{df}{dz} = \frac{\partial f}{\partial x} \]
+and since
+\[ = u_x + i v_x = v_y - i v_x \]
+\[ = - i v_x + v_y \]
+\[ = -i (v_x + i v_y) \]
+\[ = -i \frac{\partial f}{\partial y} \]
+
+We conclude that 
+\[ \frac{df}{dz} = -i \frac{\partial f}{\partial y} \]
+
+\subsection*{more}
+When we get to integration in a later section we will find that we integrate complex functions as line integrals along a specified curve (perhaps a circle centered either on the origin or on a point $z_0$).  This curve relates the values of $x$ and $y$ and allows us to parametrize either $y$ in terms of $x$ or more generally, both $x$ and $y$ in terms of a single real variable or parameter $t$.
+
+When we have a function of such a variable like
+\[ f(t) = u(t) + i v(t) \]
+then the derivative is defined to be
+\[ f'(t) = u'(t) + i v'(t) \]
+where $u$ and $v$ are real-valued functions of a single real variable and so follow the standard rules from introductory calculus.  In particular if
+\[ w(t) = z_0 f(t) \]
+then
+\[ w'(t) = z_0 f'(t) \]
+We can show this by using a little algebra:
+\[ \frac{d}{dt} \ z_0 f(t) = \ [ \ (x_0 + i y_0) (u + iv) \ ]' \]
+\[ = \ [ \ (x_0 u - y_0 v) + i (y_0 u + x_0 v) \ ]' \]
+\[ = (x_0 u - y_0 v)' + i (y_0 u + x_0 v)' \]
+\[ = (x_0 u' - y_0 v') + i (y_0 u' + x_0 v') \]
+\[ = (x_0 + i y_0)(u' + iv') \]
+\[ = z_0 \frac{d}{dt} \ f(t) \]
+Thus
+\[ \frac{d}{dt} \ z_0 f(t) = z_0 \frac{d}{dt} \ f(t) \]
+
+Another expected result is
+\[ \frac{d}{dt} \ e^{z_0 t} = z_0 e^{z_0 t} \]
+where $z_0$ is a complex constant and $t$ is a real variable.
+
+To do this one, refer to the definition
+\[ f'(t) = u'(t) + i v'(t) \]
+and now we need to break up the exponential into its real and imaginary parts.  
+
+We write as we did above
+\[ e^z = e^{x + iy} \]
+\[ = e^x \ e^{iy} \]
+by Euler's equation
+\[ = e^x \ (\cos y + i \sin y) \]
+\[ = e^x \cos y + i e^x \sin y \]
+
+For the exponential with a constant we have
+\[ e^{z_0 t} = e^{(x_0 + iy_0) t} \]
+\[ = e^{x_0t} \ e^{i y_0 t} \]
+\[ = e^{x_0t} \ (\cos y_0 t + i \sin y_0 t) \]
+\[ = e^{x_0t} \cos y_0 t + i e^{x_0t} \ \sin y_0 t \]
+
+Using the definition above we get that the derivative is
+\[ \frac{d}{dt} \ e^{z_0 t} = x_0 e^{x_0t} \cos y_0 t  - y_0 e^{x_0t} \sin y_0 t + i(x_0 e^{x_0t} \sin y_0 t + y_0 e^{x_0t} \cos y_0 t) \]
+\[ = x_0(e^{x_0t} \cos y_0 t + i e^{x_0 t} \sin y_0 t) + i y_0(e^{x_0t} \cos y_0 t + i e^{x_0 t} \sin y_0 t) \]
+\[ = x_0 e^{z_0 t} + i y_0 e^{z_0 t} \]
+\[ = (x_0 + iy_0) e^{z_0 t} \]
+\[ = z_0 e^{z_0 t} \]
+$\square$
+
+
+\end{document}  

@@ -1,0 +1,59 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\title{Conservation of Energy}
+%\author{The Author}
+\date{}							% Activate to display a given date or no date
+
+\graphicspath{{/Users/telliott_admin/Dropbox/Tex/png/}}
+
+\begin{document}
+
+\maketitle
+
+\Large
+\noindent
+We're going to compute the time-derivative of the energy E, where E is the sum of kinetic and potential energy.  We start with this basic identity
+\[ \mathbf{v} = \dot{\mathbf{r}} \]
+Here $\dot{\mathbf{r}}$ is the derivative of the position vector 
+$\mathbf{r}$ with respect to time.  It is equal to the velocity, and its magnitude is equal to the speed.  Now we write an expression for the kinetic energy ($1/2 \ \times$ mass $\times$ velocity squared).
+\[ K = \frac{1}{2}m \ \lVert \mathbf{v} \rVert{}^2 = \frac{1}{2}m \ \lVert \dot{\mathbf{r}} \rVert {}^2 \]
+Note that for any vector, its magnitude squared is equal to the dot product with itself
+\[ \lVert \dot{\mathbf{r}} \rVert {}^2 = \lVert \dot{\mathbf{r}} \rVert \lVert \dot{\mathbf{r}} \rVert = \dot{\mathbf{r}} \cdot\dot{\mathbf{r}} \]
+\[ K = \frac{1}{2}m \ \dot{\mathbf{r}} \cdot\dot{\mathbf{r}} \]
+Taking the time-derivative of the kinetic energy
+\[ \frac{d}{dt} K = \frac{1}{2}m \ \frac{d}{dt}(\dot{\mathbf{r}} \cdot\dot{\mathbf{r}}) = m \ \dot{\mathbf{r}}\cdot \ddot{\mathbf{r}} \]
+The last part comes from the product rule.  We have two identical terms of $\dot{\mathbf{r}}\cdot \ddot{\mathbf{r}}$, so we cancel a factor of $2$ to obtain the result above.
+
+We recall Newton's second law
+\[ \mathbf{F} = m \mathbf{a} = m\frac{d^2}{dt^2}\mathbf{r} = m \ddot{\mathbf{r}} \]
+\begin{equation}
+\boxed{ \frac{d}{dt} K = \dot{\mathbf{r}} \cdot \mathbf{F}}
+\end{equation}
+In the next part, we look at the potential energy.  Recall that $V$ is a function of $\mathbf{r}$  
+\[ V = V(\mathbf{r}) \]
+and so the gradient of V is
+\[ \nabla V(\mathbf{r}) = \ < \frac{\partial V}{\partial x},\frac{\partial V}{\partial y},\frac{\partial V}{\partial z} > \]
+while $\dot{\mathbf{r}}$ is just
+\[ \dot{\mathbf{r}} = \ < \frac{dx}{dt}, \frac{dy}{dt}, \frac{dz}{dt} > \]
+We work backward from the result to the time-derivative of the potential energy. 
+\[ \nabla V \cdot \dot{\mathbf{r}} = \ < \frac{\partial V}{\partial x}\frac{dx}{dt},\frac{\partial V}{\partial y}\frac{dy}{dt},\frac{\partial V}{\partial z}\frac{dz}{dt} = \frac{d}{dt} V \]
+\begin{equation}
+\boxed{ \nabla V \cdot \dot{\mathbf{r}} = \frac{d}{dt} V }
+\end{equation}
+Now we just combine our results 
+\[ \frac{d}{dt} E = \frac{d}{dt} K + \frac{d}{dt} V = \dot{\mathbf{r}} \cdot \mathbf{F} + \nabla V \cdot \dot{\mathbf{r}} \]
+But 
+\begin{equation}
+\boxed{ \mathbf{F} = -\nabla V(\mathbf{r})}
+\end{equation}
+so
+\[ \frac{d}{dt} E = \dot{\mathbf{r}}\cdot-(\nabla V) + \nabla V \cdot \dot{\mathbf{r}} = 0\]
+\end{document}  

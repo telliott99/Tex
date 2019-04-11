@@ -1,0 +1,84 @@
+# simplified version of vector projection, using R
+
+In our write-ups we had one on projections
+the projection p of vector b on vector a is:
+
+p = (a • b)/(a • a) a
+
+if a is a unit vector this simplifies to
+
+p = (a • b) a
+
+the amount of b 
+going in the a direction is just b • a
+just as in the standard basis for R3
+
+=================================================
+
+# normalize u
+my.length <- function(v) {
+  return (sqrt(sum(v**2))) }
+
+my.norm <- function(v) {
+  return (v/my.length(v)) }
+
+my.dot <- function(u,v) {
+  return (sum (u * v)) }
+
+# pick two random vectors in R3
+u = c(1,1,0)
+v = c(5,-1,1)
+u = my.norm(u)
+u
+my.length(u)
+
+# the projection of v on u is:
+p = my.dot(u,v) * u
+p
+# what remains
+v = v - p
+
+v = my.norm(v)
+my.length(v)
+round(my.dot(u,v),2)
+
+=================================================
+
+# Now we pick some other random vector in R3
+w = c(1,-1,3)
+
+# projection in R3 is
+# p = A x = A (A^T A)^{−1} A^T b
+
+A = cbind(u,v)
+A
+round(t(A) %*% A, 2)
+
+# since A^T A = I, we have
+# p = A A^T b
+P = A %*% t(A)
+P
+
+# the projection is:
+p = P %*% w
+
+# the "error" is w - p
+e = w - p
+e
+
+# e is perp. to both u and v
+my.dot(e,u)
+my.dot(e,v)
+
+=================================================
+
+eig = eigen(P)
+round(eig$vectors,2)
+round(P %*% eig$vectors,2)
+round(eig$values,2)
+
+# 0??
+
+
+
+

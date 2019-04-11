@@ -1,0 +1,91 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb}
+\graphicspath{{/Users/telliott_admin/Dropbox/Tex/png/}}
+\usepackage{parskip}
+
+\title{Crazy problem}
+%\author{The Author}
+\date{}							% Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+%\section{}
+%\subsection{}
+\noindent
+\large
+\[ \int_0^{\pi/4} \sin^4 x \cos^2 x \ dx \]
+We convert either sine to cosine or vice-versa and then use the double-angle formula.  Normally, I prefer the cosine, but here switching to sine gives fewer terms:
+\[ \sin^4 x \cos^2 x = \sin^4 x (1 - \sin^2 x) \]
+So the integral is
+\[ \int_0^{\pi/4} \sin^4 x \ dx - \int_0^{\pi/4} \sin^6 x \ dx \]
+Recall the double-angle formula:
+\[ \sin^2 x = \frac{1}{2} (1 - \cos 2x) \]
+
+\subsection*{first term}
+\[ \sin^4 x = (\sin^2 x)^2 = \frac{1}{4} (1 - \cos 2x)^2 \]
+\[ = \frac{1}{4} (1 - 2 \cos 2x + \cos^2 2x) \]
+Recall the other part of the double-angle:
+\[ \cos^2 x = \frac{1}{2} (1 + \cos 2x) \]
+\[ \cos^2 2x = \frac{1}{2} (1 + \cos 4x) \]
+So
+\[ \int \sin^4 x \ dx = \frac{1}{4} \int 1 - 2 \cos 2x + \frac{1}{2} (1 + \cos 4x) \ dx \]
+\[ = \frac{1}{4}(x - \sin 2x + \frac{1}{2}x + \frac{1}{8} \sin 4x) \]
+\[ = \frac{3}{4}x - \frac{1}{4} \sin 2x + \frac{1}{32} \sin 4x \]
+
+Check the formula from the table (Strang's \emph{Calculus}):
+\[ \int \sin^n x \ dx = - \frac{\sin^{n-1} x \cos x}{n} + \frac{n-1}{n} \int \sin^{n-2} x \ dx \]
+For $n=4$ we have:
+\[ -\frac{1}{4} \sin^3 x \cos x + \frac{3}{4} \int \sin^2 x \ dx \]
+\[ = -\frac{1}{4} \sin^3 x \cos x + \frac{3}{4} (- \frac{1}{2} \sin x \cos x + \frac{1}{2}x) \]
+It seems too hard to check, we are getting weirdness from the double-angle formula.
+
+\subsection*{second term}
+\[ \int \sin^6 x \ dx \]
+Let's try integration by parts:  
+\[ u = \sin^5 x; \ \ dv = \sin x \ dx \]
+\[ du = 5 \sin^4 x \cos x \ dx; \ \ v = - \cos x \]
+So
+\[ \int u \ dv = uv - \int v \ du \]
+\[ \int \sin^6 x \ dx = -\sin^5 x \cos x + 5 \int \cos^2 x \sin^4 x \ dx  \]
+\[ = -\sin^5 x \cos x + 5 \int \sin^4 x - \sin^6 x \ dx  \]
+\[ 6 \int \sin^6 x \ dx = - \sin^5 x \cos x + 5 \int \sin^4 x \ dx \]
+\[ \int \sin^6 x \ dx = - \frac{1}{6} \sin^5 x \cos x + \frac{5}{6} \int \sin^4 x \ dx \]
+Note this matches Strang's formula.
+Recall that original problem is:
+\[ \int \sin^4 x \ dx - \int \sin^6 x \ dx \]
+Plug in from above for $\sin^6 x$, watching the minus sign:
+\[ = \int \sin^4 x \ dx + \frac{1}{6} \sin^5 x \cos x - \frac{5}{6} \int \sin^4 x \ dx \]
+combine the $\sin^4 x$ terms
+\[ =  \frac{1}{6} \sin^5 x \cos x + \frac{1}{6} \int \sin^4 x \ dx \]
+substitute answer from above for $\sin^4 x$ (double-angle method):
+\[ =  \frac{1}{6} \sin^5 x \cos x + \frac{1}{6} (\frac{3}{4}x - \frac{1}{4} \sin 2x + \frac{1}{32} \sin 4x) \]
+\[ =  \frac{1}{6} \sin^5 x \cos x + \frac{3}{24}x - \frac{1}{24} \sin 2x + \frac{1}{192} \sin 4x \]
+The upper bound is $x = \pi/4$ where $\sin x = \cos x = 1/\sqrt{2}$, and $\sqrt{2}^6 = 8$.  Also, $\sin n \pi = 0$ for integer $n$ so the value is:
+\[ \frac{1}{6} \ \frac{1}{8} +  \frac{3}{24} \ \frac{\pi}{4} \]
+At the lower bound, all terms are zero, so this is our answer.  Convert to a common denominator:
+\[ \frac{1}{48} + \frac{3 \pi}{96} = \frac{3 \pi + 2}{96} \]
+
+We can check with Strang again:
+\[ \int \sin^n x \ dx = - \frac{\sin^{n-1} x \cos x}{n} + \frac{n-1}{n} \int \sin^{n-2} x \ dx \]
+For $n=6$:
+\[ = - \frac{\sin^{5} x \cos x}{6} + \frac{5}{6} \int \sin^{4} x \ dx \]
+Change signs (we had $\int \sin^4 \ dx - \int \sin^6 \ dx$):
+\[ = \frac{\sin^{5} x \cos x}{6} - \frac{5}{6} \int \sin^{4} x \ dx \]
+Add one $\int \sin^4 x \ dx$:
+\[ = \frac{\sin^{5} x \cos x}{6} + \frac{1}{6} \int \sin^{4} x \ dx \]
+Plug in the result for $n=4$ from above:
+\[ = \frac{\sin^{5} x \cos x}{6} + \frac{1}{6} \ [ \ -\frac{1}{4} \sin^3 x \cos x - \frac{3}{8} \sin x \cos x + \frac{3}{8}x \ ]  \]
+\[ = \frac{\sin^{5} x \cos x}{6} -\frac{1}{24} \sin^3 x \cos x - \frac{3}{48} \sin x \cos x + \frac{3}{48}x \]
+As before, at the lower bound all terms are zero.  At the upper bound we have
+\[ = \frac{1}{6} \ \frac{1}{8} - 0 - 0 + \frac{3}{48} \ \frac{\pi}{4} \]
+\[ = \frac{3 \pi + 4}{192} \]
+
+So we don't quite check.  The answer given in Stewart is $(3 \pi - 4)/192$.
+
+\end{document}  

@@ -1,0 +1,92 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{parskip}
+\usepackage{color}
+\usepackage{hyperref}
+
+\title{Inductive proof of the binomial formula}
+%\author{The Author}
+\date{}							% Activate to display a given date or no date
+
+\graphicspath{{/Users/telliott_admin/Dropbox/Tex/png/}}
+\usepackage{hyperref}
+
+\begin{document}
+
+\maketitle
+%\section{}
+%\subsection{}
+\Large
+A concise statement of the binomial formula is that the general term is of the form
+\[ {{n}\choose{k}} \ a^{n-k} \ b^k  \]
+and the whole sum is
+\[ \sum_{k=0}^{n} {{n}\choose{k}} \ a^{n-k} \ b^k  \]
+
+where (from the theory of combinations):
+\[  {{n}\choose{k}} = \frac{n!}{(n-k)! \ k!} \]
+To do an actual calculation, we would first cancel the factor of $(n-k)!$ on top and bottom yielding
+\[  {{n}\choose{k}} = \frac{n \times (n-1) \dots \times (n-k+1)}{k!} \]
+
+\subsection*{Pascal's Lemma}
+In order to prove the theorem (using induction) we will need the following result:
+
+\[  {{n}\choose{k}} = {{n-1}\choose{k}} + {{n-1}\choose{k-1}} \]
+
+Here is a simple proof from the theory of combinations.  Imagine that we are considering how many ways there are of forming a committee of $k$ members from a total of $n$ people.
+
+We know that the number of ways of doing this is of course just
+\[  {{n}\choose{k}} \]
+
+Now, suppose that among these $n$ people we focus on one particular person, call her Alice.  Then there are two types of committees in our collection of combinations:  those in which Alice is a member, and those in which she is not.
+
+For all committees of the first type, in addition to Alice, the other $k-1$ members must be drawn from $n-1$ people. The number of ways of doing this is
+\[  {{n-1}\choose{k-1}} \]
+
+For the second case, where Alice is not a member, we must recruit all $k$ members from $n-1$ people, since we are leaving Alice out.  The number of ways of doing this is
+\[  {{n-1}\choose{k}} \]
+
+But putting them together, these must be equal to the total number obtained by the standard analysis, and hence we have that
+\[  {{n}\choose{k}} = {{n-1}\choose{k}} + {{n-1}\choose{k-1}} \]
+
+This is effectively what we said near the beginning of the introduction to the binomial theorem:  in computing the $k$th coefficient in the $n$th row, we add the $k$ and $k-1$ values from the preceding row.
+
+This preliminary result is called Pascal's Lemma and it is really the heart of the proof.
+
+In using it below, we will alter its form slightly by substituting $n+1$ for $n$.  Thus:
+\[  {{n+1}\choose{k}} = {{n}\choose{k}} + {{n}\choose{k-1}} \]
+
+\subsection*{inductive proof}
+
+If we look at one more term in the expansion for $(a+b)^n$, writing the term preceding the one given above, we have
+\[ (a+b)^n = \dots + {{n}\choose{k-1}} \ a^{n-k+1} \ b^{k-1} + {{n}\choose{k}} \ a^{n-k} \ b^k + \dots  \]
+Notice that the exponent increases by one for $a$ as we move to the left, while it decreases by one for $b$.
+
+When we form the new general term in the expansion for $(a+b)^{n+1}$, as we said before, we multiply the first term by $b$ and the second one by $a$, obtaining
+\[ \dots + b {{n}\choose{k-1}} \ a^{n-k+1} \ b^{k-1} + a {{n}\choose{k}} \ a^{n-k} \ b^k + \dots  \]
+\[ = \dots +  {{n}\choose{k-1}} \ a^{n-k+1} \ b^{k} + {{n}\choose{k}} \ a^{n-k + 1} \ b^k + \dots  \]
+But these two powers are the same, and since
+\[ n-k+1 = (n + 1) - k \]
+their sum is the general term in the expansion for $(a+b)^{n+1}$
+\[ = \dots + C \ a^{(n+1)-k} \ b^k + \dots  \]
+
+
+In adding them, we add their coefficients:
+\[ (a+b)^{n+1} = \dots +  \ [ \ {{n}\choose{k-1}} + {{n}\choose{k}} \ ] \  a^{(n+1)-k} \ b^{k} + \dots  \]
+
+Referring back to Pascal's Lemma, we substitute that result
+\[  {{n+1}\choose{k}} = {{n}\choose{k}} + {{n}\choose{k-1}} \]
+yielding
+\[ (a+b)^{n+1} = \dots +  \ {{n+1}\choose{k}} + a^{(n+1)-k} \ b^{k} + \dots  \]
+
+We obtain the general formula for the $n+1$ expansion.  This completes the inductive part of the proof.  It remains to check the binomial formula for a base case like $n=1$ or $n=2$, which I invite you to do.
+$\blacksquare$
+
+
+\end{document}  

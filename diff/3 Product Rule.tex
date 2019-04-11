@@ -1,0 +1,61 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb}
+
+\title{Product, Chain and Quotient Rules}
+%\author{The Author}
+\date{}							% Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+%\section{}
+%\subsection{}
+\large
+In previous work, we found out how to differentiate (find the derivative of) polynomial functions of x.  The power rule is:
+\[ f(x) = x^n, \ \ \ \  f'(x) = nx^{n-1} \]
+We also saw that constants just come along with the result 
+\[ f(x) = ax^n, \ \ \ \  f'(x) = anx^{n-1} \]
+We didn't bother to show it, but you already know that
+\[ f(x) = a, \ \ \ \  f'(x) = 0  \]
+The slope of $y = constant$ is just 0.
+And we saw that the power rule extends to negative and rational exponents.
+\[ f(x) = \frac{1}{x}, \ \ \ \  f'(x) = -\frac{1}{x^2} \]
+\[ f(x) = \sqrt{x}, \ \ \ \  f'(x) = \frac{1}{2\sqrt{x}}  \]
+Finally, we saw that for a sum of two functions
+\[ f(x) + g(x), \ \ \ \  (f(x) + g(x))' = f'(x) + g'(x)  \]
+This leads naturally to the  question, what about a product of functions?
+\[ f(x) \ g(x), \ \ \ \  (f(x) \ g(x))' = ?  \]
+I won't go through a proof of this, but the product rule is
+\[ (f(x) \ g(x))' = f(x) \ g'(x) + f'(x) \ g(x)  \]
+Written with differentials and different letters $u$ and $v$ this is the same as
+\[ u = f(x), v = g(x) \]
+\[ \frac{d}{dx}(uv) = u \frac{dv}{dx} + v \frac{du}{dx} \]
+which is frequently abbreviated as
+\[ (uv)' = u v' + v u'  \]
+I find this form particularly easy to remember, but don't forget what $v'$ means.  It means $\frac{dv}{dx}$ (or some other variable).
+Sometimes the product rule is given as "this times the derivative of that plus that times the derivative of this", where "this" is $u$ and "that" is $v$.
+
+Let's do some examples
+\[ f(x) = x^2 = x \ x, \ \ \ \  (x \ x)' = x (1) + (1) x = 2x  \]
+The answer must match what we already know to be true!
+\[ f(x) = \sqrt{x} \sqrt{x}, \ \ \ \ (\sqrt{x} \sqrt{x})' = \frac{1}{2\sqrt{x}} \sqrt{x} + \sqrt{x} \frac{1}{2\sqrt{x}} = 1\]
+\[ f(x) = ax, \ \ \ \ (ax)' = a \ (1) + (0) x = a \]
+A last one that we already know.  Suppose 
+\[ f(x) = (x+3)(2x-2) = 2x^2 + 4x - 6 \]
+by the power rule:
+\[ f'(x) = \frac{d}{dx} 2x^2 + 4x - 6 = 4x + 4\]
+by the product rule:
+\[ f'(x) = \frac{d}{dx} (x+3)(2x-2) = (x+3)(2) + (2x-2)(1) = 4x + 4 \]
+
+
+It is worth while to play around with some examples, once we know the trig function derivatives, and add the exponentials when we get there.
+\[ f(x) = x \ sin \ x, \ \ \ \  f'(x) = x \ cos \ x + sin \ x \]
+\[ f(x) = sin x \ cos \ x, \ \ \ \  f'(x) = -sin^2x + cos^2x = 2 cos^2x - 1 \]
+Later, when we want to go backward from the derivative $cos^2x$ to the original function (i.e. integration), this second result will become very useful.
+
+\end{document}  

@@ -1,0 +1,100 @@
+\documentclass[11pt, oneside]{article} 
+\usepackage{geometry}
+\geometry{letterpaper} 
+\usepackage{graphicx}
+	
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{parskip}
+\usepackage{color}
+\usepackage{hyperref}
+
+\graphicspath{{/Users/telliott_admin/Tex/png/}}
+% \begin{center} \includegraphics [scale=0.4] {gauss3.png} \end{center}
+
+\title{Cauchy's Integral Theorem}
+\date{}
+
+\begin{document}
+\maketitle
+\Large
+
+Cauchy's first theorem says that the integral of an analytic function over a closed path is equal to zero, when the enclosed region does not contain a singularity.
+\[ \oint_C f(z) \ dz = 0 \]
+This will turn out to be a consequence of Green's Theorem, which you should remember from multivariable calculus.  Let
+\[ z = x + i y \]
+\[ dz = dx + i dy \]
+\[ z = f(x,y) = u(x,y) + iv(x,y) \]
+Our integral is
+\[ \oint z \ dz = \oint (u(x,y) + iv(x,y)) \ (dx + i dy) \]
+\[ =  \oint u(x,y) \ dx - \oint v(x,y) \ dy + i \oint v(x,y) \ dx + i \oint u(x,y) \ dy \]
+As before, because we are moving along a curve there is a relationship between $x$ and $y$, so we can either express that relationship (for say, $y$ in terms of $x$), or parametrize the curve in terms of $t$ or $\theta$.  In either case, these become integrals in a single variable.  We suppress the $(x,y)$ notation and the extra integral signs:
+\[ =  \oint u \ dx - v \ dy + i v \ dx + i u \ dy \]
+
+\subsection*{proof of Cauchy 1}
+Back in vector calculus we proved Green's theorem, which says that for two real functions of $x$ and $y$:  $M(x,y)$ and $N(x,y)$:
+\[ \oint_C M dx + N dy = \iint_R (\frac{\partial N}{\partial x} - \frac{\partial M}{\partial y}) \ dx \ dy \]
+Back then, $M$ and $N$ were components of a vector field $\mathbf{F}$ and we wrote the shorthand for curl:
+\[ = \iint_R \nabla \times \mathbf{F} \ dA\]
+but the important thing is that they are real-valued functions of two real variables $f: \mathbb{R}^2 \rightarrow \mathbb{R}^1$.
+
+In terms of $u$ and $v$ we have for the real part of Cauchy's Theorem that $M=u$ and $N = -v$ (notice the minus sign!).  
+
+So:
+\[ \oint u \ dx - v \ dy = \iint_R (-\frac{\partial v}{\partial x} -  \frac{\partial u}{\partial y}) \ dx \ dy \]
+\[ = - \iint_R (v_x + u_y) \ dx \ dy \]
+But, according to the CRE
+\[ u_y = -v_x \]
+Hence, this integral is zero.
+
+For the imaginary part we use Green's Theorem again with $N=u$ and $M = v$ (no minus sign here):
+\[ \oint v \ dx + u \ dy =  \iint_R (\frac{\partial u}{\partial x} - \frac{\partial v}{\partial y}) \ dx \ dy \]
+\[ =  \iint_R (u_x - v_y) \ dx \ dy \]
+But, again, according to the CRE
+\[ u_x = v_y \]
+So the integral for the imaginary part is also zero, and thus the whole thing is zero as well:
+\[ \oint u \ dx - \oint v \ dy + i \oint v \ dx + i \oint u \ dy = 0 \]
+
+Remember how important it was (for Green's theorem) that the function being integrated be defined everywhere in the region.  Well, it's true here as well.
+
+\[ \oint_C \frac{1}{z} \ dz \stackrel{?}{=} 0 \]
+
+We've already seen by direct calculation that this integral is \emph{not} zero when the curve $C$ includes the origin, but it \emph{is} zero otherwise.
+
+To repeat the demonstration for the former case we use the unit circle centered at the origin.  Write
+\[ z = r e^{i\theta} \]
+\[  \frac{dz}{d\theta} = r i e^{i\theta} = iz \]
+Hence
+\[ \oint_C \frac{1}{z} \ dz = \oint_C \frac{1}{z} \ iz \ d \theta \]
+\[ = i   \oint_C  d \theta = 2 \pi i \]
+
+\subsection*{Path independence}
+The theorem that says the integral of an analytic function over a closed path (over a region without a singularity), is equal to zero.
+\[ \oint_C f(z) \ dz = 0 \]
+
+This result means, in turn, that the integral of an analytic function between two points $z_1$ and $z_2$ is independent of the path taken.  Call the two paths $C1$ and $C2$.  
+
+Form the closed path by going from $z_1$ to $z_2$ over $C1$ and then return to $z_1$ by going backward over $C2$.  The total integral is equal to zero by Cauchy's Theorem.
+\[ \int_{C1} f(z) \ dz + \int_{-C2} f(z) \ dz = 0 \]
+But the integral over the path $C_2$ in the forward direction is just minus the integral over the reverse path $-C2$.
+\[ \int_{-C2} f(z) \ dz = - \int_{C2} f(z) \ dz \]
+Thus
+\[ \int_{C1} f(z) \ dz - \int_{C2} f(z) \ dz = 0 \]
+and
+\[ \int_{C1} f(z) \ dz = \int_{C2} f(z) \ dz \]
+
+\subsection*{example}
+
+We will integrate the function $f(z) = z$ over a rectangle ($R = [0,a] \times [b,0]$.  Write
+\[ z = x + i y \]
+\[ dz = dx + i dy \]
+\[ f(x,y) = u(x,y) + iv(x,y) \]
+Our integral is
+\[ \int z \ dz = \int (u + iv) \ (dx + i dy) \]
+\[ = \int u \ dx - \int v \ dy + i \int v \ dx + i \int u \ dy \]
+Since the whole thing is equal to zero over our closed path, both parts are equal to zero:
+\[ \int u \ dx - \int v \ dy = 0 \]
+\[ \int v \ dx + \int u \ dy = 0 \]
+Does this look familiar?
+
+\end{document}  

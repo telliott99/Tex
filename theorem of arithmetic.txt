@@ -1,0 +1,27 @@
+Euclid's lemma:
+
+Every natural number n is either prime or it is the product of two natural numbers a and b, and so on.  
+
+Thus every number is the product of the prime factors of a times the prime factors of b.  If a given prime p divides n then either p divides a or p divides b (or both).
+
+The proof is by induction.  
+
+Assume the lemma is true for all numbers between 1 and n (e.g. it is certainly true for n < 13).  If n is prime there is nothing to prove and we move to n + 1.  If n is not prime, then there exist integers a and b (with $1 < a \le b < n$) such that n = ab.
+
+By the induction hypothesis, since a < n and b < n, a has prime factors $p_1 p_2 \dots$ and b has prime factors $q_1 q_2 \dots$ so
+
+n = ab = p_1 p_2 \dots q_1 q_2 \dots
+
+This shows that there exists a prime factorization of n.
+
+To show that the prime factorization is unique suppose that there exist two factorizations:
+
+n = \Pi p_i = \Pi q_j
+
+Pick the first factor $p_1$ and find the prime factor in the set $q_j$ to which it is equal (which must exist by Euclid's lemma).  Renumber the list $q_j$ so the given factor q is the first.  
+
+Now, continue the same process with all the factors $p_i$.
+
+As wikipedia says now:
+
+This can be done for each of the m p_i's, showing that m ≤ n and every p_i is a q_j. Applying the same argument with the p's and q's reversed shows n ≤ m (hence m = n) and every q_j is a p_i.

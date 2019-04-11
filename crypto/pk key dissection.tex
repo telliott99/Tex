@@ -1,0 +1,189 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{parskip}
+\usepackage{url}
+
+\title{Public Key Cryptography: key formats}
+%\author{The Author}
+\date{}							% Activate to display a given date or no date
+\graphicspath{{/Users/telliott_admin/Dropbox/Tex/png/}}
+
+\begin{document}
+\maketitle
+%\section{}
+%\subsection{}
+\Large
+In this short write-up we will take a quick look at the insides of a public key cryptography key pair.  I will use the Python \texttt{rsa} module to generate very short keys to make it easier to see what's what.  These are what we previously called type C \texttt{pkcs1} keys.
+
+Start with the following values
+
+\texttt{e = 17 \\
+p = 151 \\
+q = 211 \\
+n = p*q  \# 31861 \\
+phi = (p-1)*(q-1)  \# 31500 \\
+d = modinv.modinv(e,phi)  \# 1853 \\
+d*e \% phi  \# 1 }
+
+I found the value of $d$ as described in a previous write-up of this series.
+
+In Python:
+
+\texttt{>>> import rsa \\
+>>> pbk = rsa.PublicKey(n=31861,e=17) \\
+>>> pbk \\
+PublicKey(31861, 17) \\
+>>> data = pbk.save\_pkcs1() \\
+>>> b64 = data.split(NL)[1] \\
+>>>}
+
+Here I have defined \texttt{NL} to be the standard Unix newline, which I'm having trouble representing in this document.  Now we decode the base64
+
+\texttt{>>> b64 \\
+u'MAcCAnx1AgER' \\
+>>> import base64 \\
+>>> h = base64.b64decode(b64) }
+
+I can't show you the original hex either.  But I can do this:
+
+\begin{minipage}{4in}\tt
+\begin{tabbing}
+xxxx\=xxxx\=xxxx\=xxxx\=xxxx\=\kill
+>>> import struct \\
+>>> for c in h: \\
+...\> print hex(ord(c)), \\
+...  \\
+0x30 0x7 0x2 0x2 0x7c 0x75 0x2 0x1 0x11 \\
+\end{tabbing}
+\end{minipage}
+
+An alternative, equivalent way would be:
+
+\texttt{
+>>> t = (struct.unpack("B",c)[0] for c in h) }
+
+The advantage of \texttt{struct.unpack} is it allows you to do multibyte representations like \texttt{int64}.
+
+The value of $t$ is \texttt{48, 7, 2, 2, 124, 117, 2, 1, 17}.
+
+The way the layout works is that each region consists of a byte describing the type of value, then the size of the value, then the value itself.  For example, \texttt{2,2,124,117} is a value of type integer of length 2 bytes, and the value is \texttt{124*256 + 117} which is equal to
+
+\texttt{>>> 124*256 + 117 \\
+31861}
+
+This is just $n$.  Similarly, \texttt{2,1,17} is $e$.  The leading terms \texttt{48,7}  obviously describe the format.
+
+If we generate a private key
+
+\texttt{pk = rsa.PrivateKey(n=31861,e=17,p=151,q=211,d=1853)}
+
+and export the data in the same way, the base64 is
+
+\texttt{>>> b64
+u'MCACAQACAnx1AgERAgIHPQICAJcCAgDTAgE1AgIArQIBSQ=='}
+
+And the decoded ints are
+
+\texttt{48 32} header
+
+\texttt{2 1 0}  value \text{0} ??
+
+\texttt{2 2 124 117} $n$, as before
+
+\texttt{2 1 17} $e$, as before
+
+\texttt{2 2 7 61} This is \texttt{1853}, that is, $d$.
+
+\texttt{2 2 0 151} $p$
+
+\texttt{2 2 0 211} $q$
+
+\texttt{2 1 53}
+
+\texttt{2 2 0 173}
+
+\text{2 1 73}
+
+The last three values are 53, 173 and 73.  I believe from looking at the XML format that these are DP, DQ and InverseQ, but I am not sure yet what they are or how they are used.
+
+\subsection{}
+
+As long as we're at it, let's look at what we called type A \texttt{ssh-rsa} keys.  This is the type that I analyzed in my blog posts.
+
+\url{telliott99.blogspot.com/2011/08/dissecting-rsa-keys-in-python-2.html}
+
+I split off the first and the last part (separated by spaces) by hand.
+
+In Python:
+
+\texttt{>>> import utils \\
+>>> data = utils.load\_data("kf.pub") \\
+>>> data \\
+'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC8u8w9.. \\
+>>> data = data.split(" ")[1] \\
+>>> data \\
+'AAAAB3NzaC1yc2EAAAADAQABAAABAQC8u8w9K4aRPglzdPj.. \\
+>>> import base64 \\
+>>> s = base64.b64decode(data) \\
+>>> fn = "out.txt" \\
+>>> FH = open(fn,"wb") \\
+>>> FH.write(s) \\
+>>> FH.close()}
+
+\large
+\texttt{\$ hexdump -C out.txt \\
+00000000  00 00 00 07 73 73 68 2d  72 73 61 00 00 00 03 01  |....ssh-rsa.....|
+.. }
+\Large
+
+ssh-rsa again!
+
+\texttt{00 00 00 03 is a size, 3 bytes \\
+01 00 01 is an integer = 1 * 16**4 + 1 = 65537 \\
+00 00 01 01 is a size, 257 bytes}
+
+that's how many there are starting from 00 bc
+
+In Python, again:
+
+\texttt{>>> data = load\_data('out.txt') \\
+>>> data = data[22:] \\
+>>> len(data) \\
+257 \\
+>>> L = list(data) \\
+>>> L.reverse() \\
+>>> import struct \\
+>>> L2 = [struct.unpack("B",c)[0] for c in L] \\
+>>>}
+
+\texttt{>>> b = 256 \\
+>>> n = 0 \\
+>>> for i,x in enumerate(L2): \\
+...     x *= b**i \\
+...     n += x \\
+...  \\
+>>> n \\
+23825407884424843043892774272494727..}
+
+check it with rsa
+
+\texttt{>>> import rsa \\
+>>> k = utils.load\_data('kf') \\
+>>> pk = rsa.PrivateKey.load\_pkcs1(k) \\
+>>> pk.n \\
+23825407884424843043892774272494727.. \\
+>>> n == pk.n
+True \\
+>>> }
+
+It matches!
+
+
+\end{document}  

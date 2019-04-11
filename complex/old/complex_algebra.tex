@@ -1,0 +1,180 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex	
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{parskip}
+\usepackage{color}
+
+\title{Basic algebra of complex numbers}
+%\author{The Author}
+\date{}							% Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+%\section{}
+%\subsection{}
+\Large
+\noindent
+An example of a \emph{purely} imaginary number is something like $\sqrt{-4}$, which we cannot really work with using only the real numbers.  However, if $i = \sqrt{-1}$ by definition, then
+\[ \sqrt{-4} = \sqrt{4(-1)} = 2i \]
+It's worth pointing out that even if we can't understand $\sqrt{-4}$, we can still \emph{compute} with it (see the write-up on cubic roots).
+
+For example, consider the equation
+\[ x^2 + 1 = 0 \]
+\[ x = \sqrt{-1} = i \]
+Note that we could just as well say that $-i$ is our solution.  So we should write
+\[ x = \pm i \]
+Our two solutions have the property that they are complex conjugates of each other (see below).
+
+A complex number is some combination of a real part plus a imaginary part, in the general form $a + bi$.  Then, addition and subtraction are defined as you would expect:
+\[ z_1 \pm z_2 = (a + bi) \pm (c + di) \]
+\[ = (a \pm c) + (b \pm d)i \]
+Simple enough.  Real combines with real, and imaginary with imaginary.  
+
+It is worth pointing out something powerful here:  if two complex numbers are equal, then \emph{both} the real and the imaginary parts are equal.  This is really useful.
+
+Multiplication also works as you'd expect:
+\[ z_1 \times z_2 = (a + bi) \times (c + di) \]
+\[ = (ac + bdi^2) + (ad + bc)i \]
+\[ = (ac - bd) + (ad + bc)i \]
+The complex conjugate for a given $z = a + bi$ is
+\[  z^* = a - bi \]
+and it has the following property, that when we do $z z^*$
+\[ (a + bi) \times (a - bi) = ac + bd \]
+The result is a purely real number.  So if you want the real part of a complex number, multiply by its conjugate and take the square root.
+\subsection*{division}
+We will see two ways of doing division (and multiplication).  The first way uses the complex conjugate, and the second uses radial coordinates.
+
+For the first method, make the denominator purely real by multiplying top and bottom by the complex conjugate of the denominator
+\[
+\frac{(a + bi)}{(c + di)} \ \frac{(c - di)}{(c - di)} = \frac{(a + bi)(c - di)}{c^2 + d^2} \]
+\[ =  \frac{1}{c^2 + d^2} \ [ \ (ac + bd) + (bc-ad)i \ ] \]
+
+To say the same thing write more compactly write:
+\[ \frac{1}{z} = \frac{z*}{z z*} \]
+
+(by just rearranging an identity).  So now
+\[ \frac{z_1}{z_2} = z_1 \frac{1}{z_2} =  z_1 \ \frac{z_2*}{z_2 z_2*} \]
+\[ = \frac{z_1 z_2*}{x_2^2 + y_2^2} \]
+
+In both cases we convert the problem into division by a \emph{real} number, which we know how to do.
+
+\subsection*{radial coordinates}
+Instead of $x,y$ ccordinates, a different way to represent complex numbers uses the notion of an angle $\theta$ and radius $r$ in the complex plane.  This idea has in the past been credited to a guy named Argand (the Argand plane).  However, another mathematician named Wessel wrote about it earlier, but his paper was apparently not noticed.
+\[ a + bi = r \cos \theta + r i \sin \theta \]
+We use Euler's famous identity
+\[ e^{i\theta} = \cos \theta + i \sin \theta \]
+\[ a + bi = r e^{i\theta} \]
+The $x$-coordinate is $a$ and the $y$-coordinate is $b$ and so the length of the hypotenuse is 
+\[ r = \sqrt{x^2 + y^2} \]
+Compute $\theta$ by finding the angle whose tangent is what we need:
+\[ \theta = tan^{-1} (\frac{y}{x}) \]
+
+\subsection*{computations}
+With polar coordinates, to multiply two numbers together we multiply their respective $r$ values and \emph{add} the angles.\[
+z_1 z_2 = r_1 r_2 e^{i(\theta_1 + \theta_2)} \]
+Conversely, for division, we divide the $r$ values and subtract the angles.
+\[ \frac{z_1}{z_2} =\frac{r_1}{r_2} e^{i(\theta_1 - \theta_2)} \]
+If it's necessary to convert back from the $r$, $\theta$ form to $x,y$ coordinates remember that
+\[ x = r \  cos \theta \]
+\[ y = r \  i \sin \theta \]
+We gain some feeling for what $\theta$ means in the symbol $e^{i\theta}$.  It is the angle a vector from the origin to the complex number makes with the positive x-axis.
+\subsection*{identities}
+Because
+\[ i^2 = -1 \]
+it follows that 
+\[ i = -\frac{1}{i} \]
+\subsection*{more on the conjugate}
+It's worth pointing out that the complex conjugate is almost exactly the same point, but reflected across the $x$ axis.
+\[ z = a + bi = r e^{i\theta} \]
+\[ z^* = a - bi = r e^{-i\theta} \]
+\[ z z^* = a^2 + b^2 = r^2 e^{i(\theta + - \theta)} = r^2 \]
+The complex conjugate is also written as $\overline{z}$.  Another formula for $r$ is
+\[ r = \sqrt{z z^*} \]
+A very useful fact about the conjugate is that, for a more involved expression, we should reverse the sign of each imaginary component.  An example is
+\[ z = f + ig \]
+where $f$ and $g$ are themselves complex, then
+\[ z^* = f^* - ig^* \]
+For instance
+\[ (z_1 z_2)* = \ [ \ (x_1 x_2 - y_1 y_2 )+ i (x_1 y_2 + x_2 y_1) \ ] \ * \]
+\[ =  (x_1 x_2 - y_1 y_2 ) - i (x_1 y_2 + x_2 y_1) \]
+but
+\[ z_1* \ z_2* = (x_1 - i y_1) (x_2 - i y_2) \]
+\[ = (x_1 x_2 - y_1 y_2) - i (x_1 y_2 + x_2 y_1) \]
+They are equal.
+
+\subsection*{example}
+Let's work an example of division by both methods:
+\[ \frac{1+i}{1-i} = \ ? \]
+\[ \frac{1+i}{1-i} \ \frac{1+i}{1+i} = \frac{1 + 2i - 1}{1 + 1} \]
+\[ = \frac{2i}{2} = i  \]
+The other way (with $r$, $\theta$) is
+\[ 1 + i = \sqrt{2}e^{i (\pi/4)} \]
+\[ 1 - i = \sqrt{2}e^{i (-\pi/4)} \]
+\[ \frac{1+i}{1-i} = \frac{\sqrt{2}}{\sqrt{2}} e^{i (\pi/2)} = e^{i (\pi/2)} = i \]
+The last step follows because
+\[ e^{i (\pi/2)} \]
+has unit length and a phase angle of $\pi/2$.  Alternatively, recall that $x = r \cos \theta$ and $y = r i \sin \theta$.
+
+\subsection*{matrix representation}
+For the math wonks, a complex number is really just an \emph{ordered pair} of real numbers $(a,b)$.  Another representation is as a matrix
+\[
+z_1 = a + bi = 
+\begin{bmatrix}
+a & -b \\
+b & \ \ a
+\end{bmatrix}
+\]
+\[
+z_2 = c + di = 
+\begin{bmatrix}
+c & -d \\
+d & \ \ c
+\end{bmatrix}
+\]
+Then $z_1 + z_2$ and $z_1 \times z_2 = z_1z_2$ work as expected
+\[ z_1 z_2 = (ac - bd) + (ad + bc) i \]
+\[ 
+z_1 z_2 =
+\begin{bmatrix}
+a & -b \\
+b & \ \ a
+\end{bmatrix} 
+\begin{bmatrix}
+c & -d \\
+d & \ \ c
+\end{bmatrix}
+= 
+\begin{bmatrix}
+ac - bd & -ad - bc \\
+cb + ad & \ \ ac - bd
+\end{bmatrix} 
+\]
+and the real part of $z$ (the length $r$), squared, is the determinant 
+\[ |z|^2 =
+\begin{vmatrix}
+a & -b \\
+b & \ \ a
+\end{vmatrix}
+= a^2 + b^2
+\]
+\subsection*{logarithms}
+How shall we define the logarithm of a complex number?  The important property we would like to have is
+\[ \ln z_1 z_2 = \ln z_1 + \ln z_2 \]
+If we follow the normal rules for logarithms, this will work out:
+\[ z_1 = r_1 e^{i \theta_1} \]
+\[ \ln z_1 = \ln r_1 + i \theta_1 \]
+Write
+\[ z_2 = r_2 e^{i \theta_2} \]
+\[ z_1 z_2 = r_1 r_2 e^{i (\theta_1 + \theta_2)} \]
+So
+\[ \ln z_1 z_2 = \ln (r_1 r_2 e^{i (\theta_1 + \theta_2)}) \]
+\[ = \ln r_1 + \ln r_2 + i (\theta_1 + \theta_2) \]
+\[ = \ln z_1 + \ln z_2 \]
+
+\end{document}  

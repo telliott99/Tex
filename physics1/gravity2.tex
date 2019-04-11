@@ -1,0 +1,86 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb}
+
+\title{Acceleration and gravity}
+%\author{The Author}
+\date{}							% Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+%\section{}
+%\subsection{}
+\Large
+This is a simple explanation of how to treat motion near the earth's surface, where the acceleration due to gravity is a constant, $g$.  The velocity of an object in the vertical direction is 
+\[ v = v_0 - gt \]
+That is, up is taken to be positive and down is negative.  If an object starts out with velocity $v _0$ (in the y-direction), after time $t$ its velocity will be given by this equation.  This can be checked by taking the derivative
+\[ \frac{d}{dt} \ v = \frac{dv}{dt} = -g \]
+The derivative of velocity with respect to time is acceleration, so this checks.  Here, it is just $-g$.
+Similarly distance is also a function of time.  That function is
+\[ h = h_0 + v_0 t - \frac{1}{2}gt^2 \]
+This expression can be checked by differentiating.  
+\[ \frac{d}{dt} \ h = \frac{dh}{dt} = v = v_0 - gt \]
+The result of taking the derivative explains why the distance equation has $-\frac{1}{2}gt^2$ while the velocity equation has just $-gt$.
+\vspace {2 mm}
+
+\noindent Example 1.  A ball is thrown so that it goes upward with a velocity of $16 \ m/s$.  If $g = 32 \ ft/s^2$, what is the position of the ball at time $t$?
+
+We have the distance equation
+\[ h = h_0 + v_0 t - \frac{1}{2}gt^2 \]
+We set $h_0 = 0$, $v_0 = 16$ and $g = 32$
+\[ h = 16 t - 16t^2 \]
+We wish to know when $h=0$
+\[ 0 = 16 t (1-t) \]
+$t=0$ is a solution, which is obviously correct.  The ball starts with $h=0$ at $t=0$.  The other solution is $t=1$.  The ball returns to $h=0$ at $t=1$.
+
+Notice also that 
+\[ v = v_0 - gt = 16 -32t \]
+so when $v=0$
+\[ 0 = v_0 - gt = 16 -32t \]
+\[ 16 = 32t \]
+and $t=1/2$.  The trajectory of this ball is a parabola.  It reaches its vertex when the upward velocity is zero ($t=1/2 s$).  It returns to the earth in a time equal to that which was needed for its ascent.
+\vspace {2 mm}
+
+\noindent Example 2.  
+Find t if a ball is dropped from a height = 392 feet, for $h_0 = 392$ and $v_0 = 0$
+The distance equation is
+\[ h = h_0 + v_0 t - \frac{1}{2}gt^2 \]
+We have $h_0 = 392$ and $v_0 = 0$
+\[ 0 = 392 - \frac{1}{2}gt^2 \]
+\[ 784 = 16t^2 \]
+\[ \frac{784}{16} = 49 = t^2 \]
+\[ t =7 \]
+
+\vspace {2 mm}
+
+\noindent Example 3.  A ball is thrown up in the air making an angle $\theta$ with respect to the horizontal.  What value of $\theta$ will give the maximum horizontal distance?
+\[ x(t) = v_x t \]
+\[ y(t) = v_y t - \frac{1}{2} g t^2 \]
+
+\[ v_x = v \cos \theta \]
+\[ v_y = v \sin \theta \]
+We find the time $t$ when $y=0$ and the ball has come back down to earth.  We can remove one factor of $t$ from each term on the right (we lose a possible solution but it's the one we already know, $y=0$ at $t=0$).
+\[ y(t) = 0 = v_y t - \frac{1}{2} g t^2 \]
+\[ 0 = v_y  - \frac{1}{2} g t \]
+\[ t = \frac{2}{g} v_y  \]
+Substitute for $t$ in the equation for $x(t)$ above, converting it to $x(\theta)$
+\[ x(t) = v_x t = v_x \frac{2}{g} v_y  \]
+\[ x(\theta) = v \cos \theta \ (\frac{2}{g}) \ v \sin \theta  \]
+\[ = \ \frac{2v^2}{g}  \sin \theta \cos \theta \]
+Remembering the sum of angles formula ($\sin 2s = 2 \sin s \cos s$):
+\[ = \ \frac{v^2}{g}  \sin 2 \theta \]
+This is a maximum (for fixed $v$) when $\sin 2 \theta$ is a maximum (equal to $1$, so $\theta = \pi/4$.
+Alternatively
+\[ \frac{dx}{d\theta } = 0 = \frac{d}{dx} (\frac{2v^2}{g}) \ sin \theta \ cos \theta \]
+\[ 0 = (\frac{2v^2}{g}) \ [\ - sin^2 \theta + cos^2 \theta \ ] \]
+Eliminate the constants in front and then we have
+\[ 0 = - sin^2 \theta + cos^2 \theta \]
+\[ sin \theta = cos \theta \]
+\[ \theta = \tan^{-1} 1 = \frac{\pi}{4} = 45^\circ \]
+
+\end{document}  

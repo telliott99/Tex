@@ -1,0 +1,167 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\usepackage{amsmath}
+
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{parskip}
+\usepackage{hyperref}
+
+\graphicspath{{/Users/telliott_admin/Dropbox/Tex/png/}}
+
+\title{Quick Projection Examples}
+%\author{The Author}
+\date{}							% Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+%\subsection{}
+\Large
+\noindent
+In other quick write-ups, we've looked at the projection of vectors in some detail, so I'll just review the main results quickly, and then do some examples.  If we have two vectors $\mathbf{a}$ and $\mathbf{b}$ in $\mathbb{R}^2$, and we wish to calculate the projection of $\mathbf{b}$ \emph{onto} $\mathbf{a}$, we are asking for the component of $\mathbf{b}$ that points in the same direction as $\mathbf{a}$.
+
+To solve the problem, we consider $\mathbf{b}$ as the sum of two particular vectors, which we will need to find.  These two vectors are the projection $\mathbf{p}$ itself, which lies entirely along $\mathbf{a}$, and another component, usually called $\mathbf{e}$, which is orthogonal to $\mathbf{a}$, and has no component in the same direction as $\mathbf{a}$.  Since $\mathbf{e}$ is orthogonal to $\mathbf{a}$, the dot product $\mathbf{a} \cdot \mathbf{e}$ is zero.
+
+\[ \mathbf{b} = \mathbf{p} + \mathbf{e} \]
+\[ \mathbf{e} = \mathbf{b} - \mathbf{p} \]
+\[ \mathbf{a} \cdot \mathbf{e} = 0 = \mathbf{a} \cdot (\mathbf{b} - \mathbf{p}) \]
+Since the dot product is distributive over addition and subtraction
+\[ 0 = \mathbf{a} \cdot \mathbf{b} - \mathbf{a} \cdot \mathbf{p} \]
+\[ \mathbf{a} \cdot \mathbf{p}  = \mathbf{a} \cdot \mathbf{b} \]
+Since $\mathbf{p}$ and $\mathbf{a}$ point in the same direction
+\[ \mathbf{a} \cdot \mathbf{p}  = \| \mathbf{a} \|  \| \mathbf{p} \| \]
+so we have that
+\[ \| \mathbf{p} \| = \frac{\mathbf{a} \cdot \mathbf{p}}{\| \mathbf{a} \|} =  \frac{\mathbf{a} \cdot \mathbf{b}}{\| \mathbf{a} \|} \]
+A unit vector in the same direction as $\mathbf{a}$ and $\mathbf{p}$ is $\mathbf{a}/\|\mathbf{a}\|$ so finally:
+\[ \mathbf{p} = \| \mathbf{p} \| \frac{\mathbf{a}}{\|\mathbf{a}\|} =  \frac{\mathbf{a} \cdot \mathbf{b}}{\| \mathbf{a} \|} \ \frac{\mathbf{a}}{\| \mathbf{a} \|} \]
+
+\[ \mathbf{p} =  \frac{\mathbf{a} \cdot \mathbf{b}}{\mathbf{a} \cdot \mathbf{a} } \ \mathbf{a} \]
+If $\mathbf{a}$ is a unit vector, then the component of $\mathbf{p}$ in the $\mathbf{a}$ direction is just $\mathbf{a} \cdot \mathbf{b}$, often written in the order $\mathbf{b} \cdot \mathbf{a}$.
+\subsection*{example 1}
+In 3D, find the projection of $\mathbf{b} = \langle 1, 2, 3 \rangle$ on the vector $\mathbf{a} = \langle 1, 1, 1 \rangle$.
+
+We compute 
+\[ \mathbf{a} \cdot \mathbf{b} = 6 \]
+\[ \mathbf{a} \cdot \mathbf{a} = 3 \]
+\[ \mathbf{p} =  \frac{\mathbf{a} \cdot \mathbf{b}}{\mathbf{a} \cdot \mathbf{a} }  \ \mathbf{a} = 2 \mathbf{a} = \langle 2, 2, 2 \rangle \]
+\[ \mathbf{e} = \mathbf{b} - \mathbf{p} = \langle 1, 2, 3 \rangle -  \langle 2, 2, 2 \rangle =  \langle -1, 0, 1 \rangle \]
+And easily confirm that
+\[ \mathbf{a} \cdot \mathbf{e} = \langle 1, 1, 1 \rangle \cdot \langle -1, 0, 1 \rangle = 0 \]
+
+We can also use this same example for the projection of a vector onto a plane (at least for the special case of $\mathbb{R}^3$).  If $\mathbf{n} = \langle 1, 1, 1 \rangle$ is the normal vector to a plane, and $\mathbf{b}$ is the same vector as above, the projection of $\mathbf{b}$ onto the normal vector $\mathbf{n}$ is the part of $\mathbf{b}$ that is perpendicular to the plane.  Then $\mathbf{p}$ and the error $\mathbf{e}$ switch places, and the value for $\mathbf{e}$ that we calculated above is the part of $\mathbf{b}$ that is in the plane.
+\subsection*{matrices}
+The more general formula used in $\mathbb{R}^3$ and higher is 
+\[ P = A(A^T A)^{-1} A^T \]
+To compute the projection of a vector $\mathbf{b}$ onto a plane which is defined by the columns of $A$, we just compute:
+\[ \mathbf{p} = P \mathbf{b} \]
+It seems like quite a bit, but if you look at the vector version from above
+\[ \frac{\mathbf{a} \cdot \mathbf{b}}{\mathbf{a} \cdot \mathbf{a} }  \ \mathbf{a} \]
+you may see some parallels.  $\mathbf{a} \cdot \mathbf{a}$ is the analog of $A^T A$, and since there is no matrix division we multiply by its inverse.  The trick is to remember that all this occurs in a certain order, first $A$, then the inverse $(A^T A)^{-1}$, and then $A^T$.
+
+To check this out, we need two vectors in the plane defined by the normal vector $\mathbf{n} = \langle 1, 1, 1 \rangle$.  We can make these up by inspection.  Set one of $x$, $y$ or $z$ to zero, one of the others to be $1$, and then compute the third value.  We will use $\langle 1, -1, 0 \rangle$ and $\langle 1, 0, -1 \rangle$.  We set up
+\[ A =
+\begin{bmatrix}
+\ \ 1 & \ \ 1 \\
+-1 & \ \ 0 \\
+\ \ 0 & -1 
+\end{bmatrix}
+\]
+Rather than grind out a calculation (I always seem to make errors), I used 
+\url{http://www.sympy.org/en/index.html}
+
+\[ A (A^T A)^{-1} A^T = 
+\frac{1}{3} \
+\begin{bmatrix}
+\ \ 2 & -1 & -1 \\
+-1 & \ \ 2 & -1 \\
+-1 & -1 & \ \ 2
+\end{bmatrix}
+\]
+Notice that $P^T = P$.  Also, note that $PP = P$.  Once a vector has been projected into a plane, it can't change upon a second projection.
+
+We have $\mathbf{b} = \langle 1, 2, 3 \rangle$ and we are to compute
+\[ P \mathbf{b} =  
+\frac{1}{3} \
+\begin{bmatrix}
+-3 \\
+\ \ 0 \\
+\ \ 3
+\end{bmatrix}
+=
+\begin{bmatrix}
+-1 \\
+\ \ 0 \\
+\ \ 1
+\end{bmatrix}
+ \]
+which matches what we had before.
+
+\subsection*{3D derivation}
+For a plane with \emph{basis} vectors $a_1$ and $a_2$ the projection is some combination of the two vectors.
+\[ p = \hat{x_1} a_1 + \hat{x_2} a_2 = A \hat{x} \]
+We know that $e=b-p=b-A\hat{x}$ is $\perp$ to the plane.
+
+\[ a_1^T(b-A \hat{x}) = 0 =  a_2^T(b-A \hat{x}) \]
+Put them into a matrix
+\[  
+\begin{bmatrix} 
+  a_1^T    \\ 
+  a_2^T    \\
+\end{bmatrix}
+(b-A\hat{x}) =
+\begin{bmatrix} 
+  0    \\ 
+  0    \\
+\end{bmatrix}
+\]
+\[A^T(b-A\ \hat{x}) = 0 \]
+\[A^T A\ \hat{x} = A^Tb \]
+\[ \hat{x} = (A^T A)^{-1}A^Tb \]
+The fundamental equation is then
+\[ p = A \hat{x} = A(A^T A)^{-1}A^Tb \]
+Compare with the one-dimensional case
+\[ a\frac{a^T b}{a^Ta} \]
+It's basically the same, as long as you remember that dividing is like multiplying by the inverse, and that it has to happen in a particular order.  (In this notation, we are using matrices, so the multiplication is understood to be a dot product).
+
+\subsection*{example 2}
+Suppose we have a line
+\[ l : \{p_0 + t \mathbf{v}, t \in \mathbb{R} \} \]
+How do we find the distance to the point on the line that is closest to the origin?  
+
+First, we recognize that the vector from the origin to that point of closest approach is perpendicular or orthogonal to the line.  So if we first find a vector to \emph{any} point on the line, and then find the projection $\mathbf{p}$ of that vector on the line, we can find the other part of it by subtraction, which is what we called $\mathbf{e}$ above.
+
+Let's call $\mathbf{r}$ the vector from the origin to $p_0$:
+
+The projection is 
+\[ \mathbf{p} = \frac{\mathbf{v} \cdot \mathbf{r}}{\mathbf{v} \cdot \mathbf{v}} \mathbf{v}  \]
+and the vector of closest approach is
+\[ \mathbf{r} - \mathbf{p} = \mathbf{r} - \frac{\mathbf{v} \cdot \mathbf{r}}{\mathbf{v} \cdot \mathbf{v}} \mathbf{v}  \]
+The distance to the line is just the length of this vector.  It is clear that the point so defined is actually on the line, because we have the equation of the line as given, with the substitution
+\[ t = -\frac{\mathbf{v} \cdot \mathbf{r}}{\mathbf{v} \cdot \mathbf{v}} \]
+
+The distance is
+\[  \text{distance} = \| \mathbf{r} - \mathbf{p} \| \]
+
+We can modify this approach to use any point $p_1$, rather than just the origin.  We simply set
+\[ \mathbf{r} = p_0 - p_1 \]
+and then proceed as before.
+
+\subsection*{example 3}
+Suppose we have a plane, and we want to know the distance between the origin and the plane.
+
+First, we recognize that this is again a problem of closest apprach.  We already know a vector orthogonal to the plane, $\mathbf{n}$.  We need a point on the plane, for example from the definition
+\[ P :  \mathbf{n} \cdot [(x,y,z) - p_0] \]
+or perhaps by solving 
+\[ ax + by + cz = d \]
+for $z$ with $x=0, y=0$.  Given some $p_0$ we find the dot product of the corresponding vector and a unit vector in the direction of $\mathbf{n}$:
+\[ \hat{\mathbf{n}} = \frac{\mathbf{n}}{\| \mathbf{n} \| } \]
+\[ \text{distance} = \mathbf{r} \cdot  \hat{\mathbf{n}} \]
+
+And as before, we can modify this for use with any point, rather than just the origin, by changing the definition of $\mathbf{r}$.
+
+\end{document}  

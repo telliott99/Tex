@@ -1,0 +1,283 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb}
+\graphicspath{{/Users/telliott_admin/Dropbox/Tex/png/}}
+
+\title{Line Integrals}
+%\author{The Author}
+\date{}							% Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+%\section{}
+%\subsection{}
+\Large
+
+A simple application of a line integral is to find the length of a curve.  A more sophisticated one yields the work done when moving along a curve, and there are certainly others.
+
+The basic formula can be derived by doing algebra with differentials.  Think of a small element of the path of the curve, $ds$, as a right triangle with side lengths $dx$ and $dy$.  Then
+
+\[ ds^2 = dx^2 + dy^2 \]
+
+We "divide and multiply" on the right by $dx^2$ to give
+
+\[ ds^2 = [1 + \frac{dy^2}{dx^2}] \ dx^2 \]
+
+then take the square root
+
+\[ ds = \sqrt{1 + (\frac{dy}{dx})^2} \ dx \]
+\[ ds = \sqrt{1 + (y')^2} \ dx \]
+
+In many cases $x$ and $y$ will be parametric equations (functions of a parameter like $t$), but they don't have to be.
+\subsection*{Example 0}
+Here is one where we already know the answer:  the arc length along the boundary of the circle of radius $R$ in the first quadrant.  Again, the formula is
+\[ ds = \sqrt{1 + (\frac{dy}{dx})^2} \ dx \]
+So we want
+\[ \int ds = \int_0^R  \sqrt{1 + (\frac{dy}{dx})^2} \ dx \]
+The circle is
+\[ x^2 + y^2 = R^2 \]
+By implicit differentiation, we easily obtain
+\[ \frac{dy}{dx} = -\frac{x}{y} \]
+\[ (\frac{dy}{dx})^2 = \frac{x^2}{y^2} \]
+So the integral is
+\[ = \int_0^R  \sqrt{1 + \frac{x^2}{y^2}} \ dx \]
+\[ = \int_0^R \frac{1}{y}  \sqrt{y^2 + x^2} \ dx \]
+\[ = R \int_0^R \frac{1}{y}  \ dx \]
+\[ = R \int_0^R \frac{1}{\sqrt{R^2-x^2}}  \ dx \]
+This can be solved by a trig substitution:
+\[ x = R \sin t \]
+\[ dx = R \cos t dt \]
+\[ \sqrt{R^2 - x^2} = R \cos t \]
+So we have
+\[ = R \int \frac{1}{R \cos t} R \cos t \ dt = R^2 t \]
+The slightly tricky part is the limits on $t$.  The lower limit was $x=0$, so now we need $R \sin t = 0$, so $t=0$.  And the upper limit was $x=R$, so now we need $R \sin t = R$ so $t = \pi/2$.  The integral is $\pi R/2$ and the whole circumference is $4$ times that or $C = 2 \pi R$.
+
+Another, simpler way to do this calculation is to use the parametrized circle ($x = \cos \theta, y = \sin \theta$).  Go back to the original definition of the element of arc $ds$:
+
+\[ ds^2 = dx^2 + dy^2 \]
+\[ L = \int ds = \int \sqrt{dx^2 + dy^2} \]
+\[ = \int \sqrt{\cos^2 \theta + \sin^2 \theta} \ d \theta \]
+\[ = \int \ d \theta \]
+
+Here, we can just go all the way around the circle from $\theta = 0 \Rightarrow 2 \pi$.  And for a circle of radius $a$ we have $a \cos \theta$ and $a \sin \theta$ which gives a factor of $a^2$ under the square root, yielding an extra factor of $a$ in the end.
+
+\subsection*{Example 1}
+Consider
+\[ y = x^2 \]
+\[ \frac{dy}{dx} = 2x \]
+\[ ds = \sqrt{1 + (\frac{dy}{dx})^2} \ dx \]
+\[ ds =  \sqrt{1 + 4x^2} \ dx \]
+
+The arc length is the integral of $ds$
+
+\[ L = \int  \sqrt{1 + 4x^2} \ dx \]
+\[ = 2 \int  \sqrt{(\frac{1}{2})^2 + x^2} \ dx \]
+
+This will be a minor challenge (see trig substitutions).  Rather than struggle with it, just set $a = \frac{1}{2}$ and look up the answer in a table of integrals
+
+\[ \int  \sqrt{a^2 + x^2} \ dx  = \frac{x}{2}\sqrt{a^2 + x^2} + \frac{a^2}{2} \ln \ | \ x + \sqrt{a^2 + x^2} \ | \]
+
+substitute back for $a = 1/2$
+
+\[ \frac{x}{2}\sqrt{\frac{1}{4} + x^2} + \frac{1}{8} \ln \ | \ x + \sqrt{\frac{1}{4} + x^2} \ | \]
+
+Suppose the limits are $x=1$ and $x=0$.  At the upper limit, we have
+
+\[ \frac{1}{2}(\sqrt{1.25}) + \frac{1}{8} \ \ln \ (1 + \sqrt{1.25}) \] 
+\[ \sqrt{1.25} \approx 1.118  \]
+\[ \ln (2.118) \approx 0.7505 \]
+\[ (0.5)(1.118) + (0.125)(0.7505) = 0.559 + 0.0938 = 0.6528 \]
+
+while at the lower limit the first term is $0$ and the second is
+
+\[ \frac{1}{8}\  \ln \frac{1}{2} = - (0.125)\  \ln 2 = - (0.125)(0.693) = -0.0866 \] 
+
+Subtracting
+
+\[ 0.6528 + 0.0866 = 0.7394 \]
+
+Remembering the factor of two we get $1.4788$
+
+Not exactly pretty, but it works.  Check by numerical integration
+
+\begin{verbatim}
+import scipy
+f = lambda x: x**2
+scipy.integrate.quad(f,0,1)
+\end{verbatim}
+This check gives the expected result $ 0.33333..$
+
+\begin{verbatim}
+g = lambda x: sqrt(1 + 4*x**2)
+scipy.integrate.quad(g,0,1)
+\end{verbatim}
+results in $1.47894$
+
+\subsection*{Example 2}
+Most commonly, however, we have $x$ and $y$ as functions of a parameter $t$.  Also we may have a vector field $\mathbf{F}$ where
+\[ \mathbf{F} = \ <M,N> \]
+or
+\[ \mathbf{F} = \ <P,Q,R> \]
+and we are interested in the integral along the curve (for the work done by $\mathbf{F}$):
+\[ \int_C \mathbf{F} \cdot d\mathbf{r} = \int_C F \cdot \hat{\mathbf{T}} ds \]
+\[ = \int_C P \ dx + Q \ dy + R \ dz \]
+This last part seems like a magic trick.  We'll see how it's done in the next section.
+
+Here I would like to show how we evaluate it.  The crucial insight is parametrization of the curve.  Suppose
+\[ \mathbf{F} = \ <x,y,z> \]
+and we have equations for $x(t), y(t), z(t)$
+\[ x = t, \ \ \ \ y = t, \ \ \ \ z = 2t^2 \]
+\[\frac{d\mathbf{r}}{dt} = \ <\frac{dx}{dt},\frac{dy}{dt},\frac{dz}{dt}> \]
+\[ = \ <1,1,4t> \]
+\[ \int_C \mathbf{F} \cdot dr \int \mathbf{F} \cdot \frac{d\mathbf{r}}{dt} \ dt = \int_C <t,t,2t^2> \  \cdot <1,1,4t> dt \]
+\[ = \int_C (2t + 8t^3) dt = t^2 + 2t^4 \]
+Evaluate from say, $t=0$ to $t=1$
+\[  t^2 + 2t^4 = 3 \]
+It doesn't seem complicated at all, once we have the parametric equations.
+\vspace{2 mm}
+
+\subsection*{Work}
+The basic line integral is something like this one for work
+\[ W = \int_C \mathbf{F} \cdot d\mathbf{r} \]
+We have a curve $C$ made up of lots of little pieces $d\mathbf{r}$.  For each piece, we compute the dot product with the force $\mathbf{F}$, multiplying by the component of the force that is in the same direction as we're headed.  
+
+As before, it makes great sense symbolically, but how to compute it?  To start with do
+\[ d\mathbf{r} = \hat{\mathbf{T}} \ ds \]
+where $\hat{\mathbf{T}}$ is the unit vector in the direction of $d\mathbf{r}$ and $ds$ is the magnitude of $d\mathbf{r}$.  Moreover, notice that
+\[ \frac{d\mathbf{r}}{dt} = \mathbf{v} = \hat{\mathbf{T}} \ \frac{ds}{dt} \]
+so
+\[  \int_C \mathbf{F} \cdot d\mathbf{r} =  \int_C \mathbf{F} \cdot \mathbf{v} \ dt =  \int_C \mathbf{F} \cdot \mathbf{T}\ \frac{ds}{dt} \ dt  \]
+If $\mathbf{F}$ has components
+\[ \mathbf{F} = \ <M,N> \]
+then this becomes
+\[  \int_C  \ <M,N> \ \cdot \ <\frac{dx}{dt},\frac{dy}{dt}> \ dt \]
+We could even write this
+\[  \int_C  M \ dx + N \ dy \]
+
+This is a useful mnemonic, but remember that this is a single integral, and we can't just do $dx$ and $dy$ separately.  We need a single variable and $t$, the parameter for the curve $C$, comes to the rescue.  (Either that or $y=f(x)$).  We must get all these in terms of $t$.  Then it's OK.  Also, it may be necessary to break the curve up into pieces.
+Suppose $C$ is the unit square and 
+\[ \mathbf{F} = \ <x,y> \ \]
+
+For the first leg we have $y=0$ and $x=0 \rightarrow 1$.  So parametrize $x$ using $t$ by setting $x=t$ and let $t=0 \rightarrow 1$.  Now
+\[ dx/dt = 1 \] 
+and 
+\[ dy/dt=0 \]
+ and since $\mathbf{F} = \ <x,y>$;  $M = x = t$)
+ \[   \int_C  \ <M,N> \ \cdot \ <\frac{dx}{dt},\frac{dy}{dt}> \ dt = \int M dt \]
+\[ = \int t \ dt \ \bigg|_0^1 \]
+\[ = \frac{1}{2} \]
+In a similar way, on the second leg (up to $(1,1)$)
+\[ dx/dt=0 \]
+ and 
+ \[ dy/dt=1 \]
+ and we have exactly the same integral.
+
+For the third and fourth legs, we get a minus sign (because $x$ and $y$ are equal to minus $t$), but again the absolute value of the integral is $\frac{1}{2}$, and in the end the total work is 0.
+
+That's interesting, why is the total work zero?  It turns out to be because our force $\mathbf{F} = \ <x,y>$ is the gradient of a potential function.  
+\[ \mathbf{F} = \nabla \mathbf{f} \]
+where
+\[ \nabla = \ < \ \frac{\partial }{\partial  x},\frac{\partial }{\partial  y},\frac{\partial }{\partial  z} > \]
+Can we guess what function? Sure!
+\[ f(x,y) = \frac{1}{2}x^2 + \frac{1}{2}y^2 \]
+That gives the correct values for the components of $\mathbf{F}$
+\[ \mathbf{F} = \nabla \mathbf{f} = \nabla ( \frac{1}{2}x^2 + \frac{1}{2}y^2) = \ <f_x,f_y> \ = \ <x,y> \]
+and since 
+\[  \hat{\mathbf{T}} \ ds = (dx\ \hat{\mathbf{i}} + dy\ \hat{\mathbf{j}}) \]
+Then, at least in the case where this gradient condition holds, we have
+
+\[ \int_C \mathbf{F} \cdot  \hat{\mathbf{T}} \ ds  = \ <f_x,f_y> \  \cdot  (dx\ \hat{\mathbf{i}} + dy\ \hat{\mathbf{j}})  \] 
+written with the "del" notation
+\[= (\frac{\partial f}{\partial  x} \hat{\mathbf{i}} + \frac{\partial f}{\partial  y} \hat{\mathbf{j}}) \cdot (dx\ \hat{\mathbf{i}} + dy\ \hat{\mathbf{j}}) \]
+\[ = \frac{\partial f}{\partial  x} \ dx + \frac{\partial f}{\partial  y} \ dy \]
+\[ = df \]
+
+\subsection*{another example}
+Suppose $\mathbf{F}$ is $<y,x> $ and we want
+\[ \int_C \mathbf{F} \cdot  \hat{\mathbf{T}} \ ds \]
+\[ = \int_C y \ dx + x \ dy \]
+
+$C$ is a sector of the unit circle between $0 <= \theta <= \pi/4$.  We break the curve up into 3 parts.
+$C_1$, from $(0,0)$ to $(0,1)$.  As before, notice that $y=0$, so $dy=0$ and 
+\[ \int_C y \ dx + x \ dy = 0 \]
+Also, notice that $\mathbf{F}$ is $<0,x>$, so $\mathbf{F} \perp d\mathbf{r}$ and then  $\mathbf{F} \cdot d\mathbf{r} = 0$.
+
+For $C_2$ from $(0,1)$ to $(1,0)$  Here, we're on the unit circle.  It's natural to change variables:
+
+\[ x = \cos \ \theta \]
+\[ dx = -sin \ \theta \ d \theta \]
+\[ y = \sin \ \theta \]
+\[ dy = \cos \ \theta \ d \theta \]
+
+\[ \int_C y \ dx + x \ dy  \]
+\[ = \int_C -\sin^2 \theta \ d \theta + \cos^2 \theta \ d \theta \]
+\[ = \int_C \cos \ 2 \theta \ d \theta \]
+\[ = \frac{1}{2} \sin \ 2 \theta \ \bigg|_0^{\pi/4} \]
+\[ = \frac{1}{2} \]
+
+For $C_2$ from $(1,0)$ back to $(0,0$, we could do $x=y=t$, but we don't need $t$, instead just use $x=y$ and $dx=dy$ then
+\[ \int_C y \ dx + x \ dy  \]
+\[ 2 \int_C x \ dx \]
+\[ = x^2  \ \bigg|_{1/\sqrt{2}}^0 \]
+\[ = \frac{1}{2} \]
+
+So, once again, the total integral is $0$.
+
+And the reason is that $\mathbf{F}$ is (again) the gradient ($\nabla$) of a potential function.  By guessing, we obtain this formula for the potential:
+
+\[ f(x,y) = xy \]
+\[ F = \nabla f = \ < \ f_x,f_y \ > \ = \ < \ y,x \ > \]
+
+The fundamental theorem of calculus for line integrals:
+
+ \[ \int_C \nabla f \cdot d \mathbf{r} =   f(P1) - f(P2) \]
+  
+The example is a closed curve (P1 = P2), so of course it's just 0.  But we can also do each part separately using the method.  We get $f(x,y) = (1/\sqrt{2} \times 1/\sqrt{2}) = 1/2$ along $C_2$ (starting from $0$ at $C_1$), and of course, minus that along $C_3$, back to $(0,0)$.
+
+In the case where $\mathbf{F}$ is the gradient ($\nabla$) of a potential function
+\[ \mathbf{F} \cdot \hat{\mathbf{T}} ds = (f_x \ \hat{\mathbf{i}} + f_y \ \hat{\mathbf{j}}) \cdot (dx \ \hat{\mathbf{i}} + dy \ \hat{\mathbf{j}} ) \]
+
+\subsection*{more}
+Here is are two more examples, from the OSU site:
+\begin{verbatim}
+www.math.oregonstate.edu/home/programs/undergrad/ +
+CalculusQuestStudyGuides/vcalc/conserve/conserve.html
+\end{verbatim}
+
+If $\mathbf{F}$ is the gradient of a function, then by FTC for line integrals
+ \[ \int_C \nabla f \cdot d \mathbf{r} = \int_C \mathbf{F} \cdot d \mathbf{r} =    f(P1) - f(P2) \]
+ 
+For example, suppose $f(x,y) = xy + x$ and C is the top half of the unit circle (starting from $\theta=0$), then
+
+\[ \mathbf{F} = \nabla f = \ < \ f_x, f_y \ > \  = \ < \ y+1,x \ > \ \]
+
+Parameterize the curve $C$ by 
+\[ x=\cos t, \ \ y = \sin t \]
+$ t = 0 \rightarrow t = \pi$.
+ \[ dx = - \sin t \ dt, \ \ dy = \cos t \ dt \]
+ \[ \int_C \nabla f \cdot d \mathbf{r} = (f_x \ \hat{\mathbf{i}} + f_y \ \hat{\mathbf{j}}) \cdot (dx \ \hat{\mathbf{i}} + dy \ \hat{\mathbf{j}} ) \]
+ \[= \int_C \ < \sin t + 1, \cos t > \  \cdot \ < -\sin t , \cos t> \ dt \]
+ \[ = \int_C \ - \sin^2 t - \sin t + \cos^2 t \ dt \]
+ \[ = \int_C \cos 2t - \sin t \ dt \]
+\[ = \frac{1}{2} \sin 2t + \cos t   \ \bigg|_0^{\pi} = -2 \]
+
+Another one:  determine if $\mathbf{F} = \ <z,2yz,x+y^2>$ is conservative.  There is a general method for this, but let's see if we can guess.
+
+Since $f_x = z$, the function is $f = xz + ..$
+
+Since $f_y = 2yz$, the function is $f = y^2z + ..$
+
+Since $f_z = x + y^2$, the function is $f = xz + y^2z + ..$
+
+We have the terms we need for the partial derivatives to work out.  
+
+\[ f = xz + y^2z + const \]
+
+
+
+\end{document}  

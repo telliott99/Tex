@@ -1,0 +1,81 @@
+Introduction
+Archimedes
+Circle and cone
+Easy pieces
+
+Common integrals
+Sphere and cone
+Sum of angles
+Techniques of integration
+Improper integrals
+
+Surface by revolution
+Solid of revolution
+
+Vectors
+Vector cross product
+Geometric rotation
+Vector rotation
+
+Double integrals
+Polar coordinates
+Change of variables
+Parametrization
+Jacobian
+
+Gravity
+Uniform circular motion
+Escape from earth
+Shortest path
+
+Average value
+Center of mass
+Moment of inertia
+Mass and spring
+Charge density
+
+Spherical cap
+Apple core
+Stovepipe
+Gaussian
+Exponential distribution
+
+Line integrals
+Cycloid
+
+Parabola
+Ellipse geometry
+Ellipse area
+Surface area
+Paraboloid
+Torus
+Pappus
+
+Newton
+Hanging chain
+Green's theorem
+Wave equation
+Maxwell's equations
+
+Difference quotient
+A famous limit
+Techniques of differentiation
+
+Exponential introduction
+Exponential to logarithm
+Logarithm to exponential
+Euler's equation
+
+Fundamental theorem of calculus
+Riemann sums
+
+Cosine squared
+Numerical integration
+Differentiation under the integral sign
+Optimization problems
+Lagrange
+
+More from Archimedes
+Value of pi
+
+References

@@ -1,0 +1,45 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{parskip}
+
+\title{problem ?}
+%\author{The Author}
+%\section{}
+% \subsection*{R code}
+\date{}							% Activate to display a given date or no date
+
+\graphicspath{{/Users/telliott_admin/Dropbox/Tex/png/}}
+
+\begin{document}
+\maketitle
+\large
+%\noindent
+\[ \int \frac{\sin 2x}{1 + \cos^2 x} \ dx \]
+The formulas to remember are:
+\[ \cos s + t = \cos s \cos t - \sin s \sin t \]
+\[ \sin s + t = \sin s \cos t + \cos s \sin t \]
+If $s=t$ the second one becomes:
+\[ \sin 2s = 2 \sin s \cos s \]
+So our problem is now:
+\[ \int \frac{2 \sin x \cos x}{1 + \cos^2 x} \ dx \]
+Notice that
+\[ \frac{d}{dx} \cos^2 x = - 2 \cos x \sin x \ dx \]
+That leads to the idea of letting
+\[ u = 1 + \cos^2 x \]
+\[ du = - 2 \cos x \sin x \ dx \]
+So the integral is 
+\[ = \int \frac{-du}{u} \]
+\[ = - \ln u \]
+\[ = - \ln (1 + \cos^2 x) + C \]
+We don't need absolute value signs because $1 + \cos^2 \ge 0$.
+Check by differentiating.  Remember the minus sign, the rest is
+\[ \frac{1}{1 + \cos^2 x} \ (-2 \cos x \sin x) \]
+so, with the minus sign we have our integrand back again.  Check.
+\end{document}  

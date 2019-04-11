@@ -1,0 +1,120 @@
+
+
+Let us work with two such polynomials:  
+\[ (x^4 + x^3 + x + 1) \text{, and } (x^3 + x^2)  \]
+
+Addition::
+\[ (x^4 + x^3 + x + 1) + (x^3 + x^2)  \]
+
+What to do with $2x^3$?  We do the addition mod $2$, and so obtain zero for the coefficient of $x^3$.  And the important rule is:  we \emph{do not} "carry the one."
+\[ = x^4 + x^2 + x + 1 \]
+
+Multiplication:
+\[ (x^2 + x + 1)(x + 1) = x^3 + x^2 + x + x^2 + x + 1 \]
+Here, there are two of $x^2$ and two of $x$ which all cancel.
+\[ = x^3 + 1 \]
+
+I have a question at this point, why don't we treat this as
+\[ (0x^3 + 1x^2 + 1x + 1)(0x^3 + 0x^2 + 1x + 1) \]
+and use the rules for multiplying $0$ and $1$ above?  In any event, we don't.
+
+\textbf{division}
+\[ \frac{x^2 + x + 1}{x + 1} \]
+We can do this formally, or we can guess.  The formal method is to divide $x^2/x$ which is equal to $x$ so then
+\[ x \times (x + 1) = x^2 + x \]
+Subtraction gives $1$, and the answer is $x$ with a remainder of $1/x+1$.
+
+When 
+\[ \frac{f(x)}{g(x)} \] 
+leaves no remainder, we say that $g(x)$ is a factor of $f(x)$ (and the quotient is another factor).
+
+\subsection*{Irreducible polynomial}
+
+An irreducible or prime polynomial is one without factors.  To restate this, to say that a given polynomial $p(x)$ is irreducible means that there do not exist:
+\[ f(x) \times g(x) = p(x) \]
+
+The set of polynomials over $GF(2)$ forms a ring, called the polynomial ring.
+
+There are only two irreducible polynomials of degree 3 in $GF(2)$ and they are:
+\[ x^3 + x + 1 \]
+\[ x^3 + x^2 + 1 \]
+
+It is claimed that you cannot find $f(x)$ and $g(x)$ such that $f(x) \times g(x)$ is equal to either of these, and these are the only polynomials in $GF(2)$ with that property.
+
+Now that's a challenge.  Suppose we build up possible factors of these expressions, starting with  
+\[ 1 \]
+and continuing with polynomials with greatest term $x^1$.  There are two:
+\[ x \]
+\[ x + 1 \]
+Now consider polynomials with greatest term $x^2$ formed by multiplying these last:
+\[ x (x) = x^2 \]
+\[ x (x + 1) = x^2 + x \]
+\[ (x + 1)(x + 1) = x^2 + 1 \]
+
+Now consider all products with greatest term $x^3$ by multiplying factors that we have generated so far:
+\[ x (x^2) = x^3 \]
+\[ x (x^2 + x) = x^3 + x^2 \]
+\[ x (x^2 + 1) = x^3 + x \]
+\[ (x + 1)(x^2) = x^3 + x^2 \]
+\[ (x + 1)(x^2 + x) = x^3 + x \]
+\[ (x + 1)(x^2 + 1) = x^3 + x^2 + x + 1 \]
+
+And that's it.  There is no way to generate any other polynomial with greatest term $x^3$, and since these two do not appear in our results, there is no way to factor either $x^3 + x + 1$ or $x^3 + x^2 + 1$.
+
+Proving something similar for higher degrees might be a challenge, but see Kak's proof, below.
+
+\subsection*{Modulo an irreducible polynomial}
+We will now consider all polynomials defined over $GF(2)$ modulo the irreducible polynomial $x^3 + x + 1$.
+
+When multiplication results in a polynomial whose degree equals or exceeds that of the irreducible polynomial, we will take for our result the remainder modulo that polynomial.
+
+Example:
+\[ (x^2 + x + 1) \times (x^2 + 1) \mod x^3 + x + 1 \]
+\[ = x^4 + x^2 + x^3 + x + x^2 + 1  \mod x^3 + x + 1  \]
+\[ = x^4 + x^3 + x  + 1  \mod x^3 +x+1 \]
+
+What is 
+\[ \frac{x^4 + x^3 + x  + 1}{x^3 +x+1} \]
+well
+\[ x (x^3 + x + 1) = x^4 + x^2 + x \]
+which when subtracted from the numerator leaves $x^3 - x^2 + 1$ so we have
+\[ \frac{x^3 - x^2 + 1}{x^3 +x+1} \]
+Now the quotient is $1$ with a remainder of $-x^2 - x$.
+
+Recall that $-1 = 1$, because $1$ is its own additive inverse:  $1 + 1 = 0$ so $1 = 0 - 1$.  We have then $x^2 + x$.
+
+Restate the result:
+\[ \frac{x^4 + x^3 + x + 1}{x^3 + x + 1} = x + 1 + \frac{x^2 + x}{x^3 + x + 1} \]
+
+Let's check:
+
+\[ (x^3 +x+1) \times (x + 1) \]
+\[ = x^4 + x^3 + x^2 + x + x + 1 \]
+\[ = x^4 + x^3 + x^2 + 1 \]
+which falls short of the original numerator $x^4 + x^3 + x  + 1$ by exactly $x^2 + x$.
+
+There is a less error-prone way to do this kind of modulo operation and we will see it in the next chapter.
+
+Polynomials defined over $GF(2)$ modulo the irreducible polynomial $x^3 + x + 1$ consist of the finite set:
+\[ 0 \]
+\[ 1 \]
+\[ x \]
+\[ x + 1 \]
+\[ x^2 \]
+\[ x^2 + 1 \]
+\[ x^2 + x \]
+\[ x^2 + x + 1 \]
+
+It's starting to look familiar.
+
+\[ 000 \]
+\[ 001 \]
+\[ 010 \]
+\[ 011 \]
+\[100 \]
+\[101 \]
+\[110 \]
+\[111 \]
+
+
+There are only eight of them.  We refer to this set as $GF(2^3)$.  3 is the degree of the modulus polynomial.

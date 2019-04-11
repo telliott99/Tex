@@ -1,0 +1,46 @@
+To make this concrete, here are two brief examples, and then a longer one.
+
+We have the formula for the area of a circle.  It depends on the radius:
+\[ A = \pi r^2 \]
+
+We ask, how does much does the area change with a small change in the radius?  Its dependence is
+\[ \frac{dA}{dr} = 2 \pi r \]
+by the power rule.  Or
+\[ dA = 2 \pi r \ dr \]
+
+At any particular radius $r$, if we add a little more radius $dr$, the increase in area is $2 \pi r \ dr$.
+
+If we are given the last equation we can obtain the area lying between any two radii as
+\[ A = \int dA = \int_{r_1}^{r_2} 2 \pi r \ dr \]
+
+We evaluate this by finding $F(r)$, the function whose derivative is $2 \pi r$.  This is, naturally $\pi r^2$.  To evaluate the integral between two limits $r_1$ and $r_2$, subtract the first from the second:
+\[ A = F(r_2) - F(r_1) \]
+\[ = \pi r_2^2 - \pi r_1^2 \]
+This is the area of a ring of inner radius $r_1$ and outer radius $r_2$.
+
+If $r_1 = 0$ and we go out to $r_2 = R$
+\[ A = \pi R^2 \]
+
+We have a variable $A$ whose value depends on $r$ as the square (here, but it could easily be some more complicated dependence $A = f(r)$).  We can slice the area up into many small pieces $dA$ whose area we know how to compute using the formula
+\[ dA = f(r) \ dr \]
+
+We add up all the little pieces of area by integrating
+\[ \int dA = \int f(r) \ dr \]
+To actually solve this equation, we need to find the function whose derivative is the part next to $dr$.
+
+Suppose we know that the derivative with respect to $r$ of $F(r)$ is equal to $f(r)$.  We're almost done.
+
+Finally we need to choose appropriate endpoints and evaluate the result at the second point, and then subtract the result at the first.
+
+How do we find $F(r)$ if we don't already know it?  There is a great art to this, and we'll see a bit of it as we go on in the book.
+
+Another simple example is the volume of the sphere.  We have that the surface area $4 \pi r^2$ is the derivative of the volume $V = 4/3 \ \pi r^3$.  If all we know is the derivative, we can calculate the volume as follows:
+
+\[ \frac{dV}{dr} = 4 \pi r^2 \]
+\[ dV = 4 \pi r^2 \ dr \]
+\[ V = \int  dV = \int 4 \pi r^2 \ dr \]
+\[ = \frac{4}{3} \pi r^3 \]
+by simply running the power rule backward!
+
+If $r_1 = 0$ and $r_2 = R$ then
+\[ V = \frac{4}{3} \pi R^3 \]

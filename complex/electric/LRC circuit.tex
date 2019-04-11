@@ -1,0 +1,71 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex	
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{parskip}
+\usepackage{color}
+
+\title{Complex numbers for calculation}
+%\author{The Author}
+\date{}							% Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+%\section{}
+%\subsection{}
+\Large
+\noindent
+The idea of this short write-up is to look at the way complex numbers \emph{simplify} certain calculations.  (You heard that right).  We're going to start with capacitors.  A capacitor consists of two, or a multiple of two, conductors or plates separated by insulation.
+
+In an isolated system, it could be a way of storing electrical energy.  In a circuit, one plate has excess positive charge, and the second has the same quantity of excess negative charge and this produces a voltage between them.  The drop in voltage stores energy.  In a simple DC circuit an example might be an electroporation device which discharges when a switch is thrown.  
+
+But it is really in AC circuits where capacitors come into their own.  AC is weird because the voltage goes back and forth with some period like the periodic functions sine and cosine.
+\[ V(t) = A \cos \omega t \]
+where $A$ is some constant.
+
+\subsection*{capacitor}
+If we put a capacitor into an AC circuit, then for reasons that are frankly beyond me at the moment, the charge is
+\[ q(t) = CVe^{j\omega t} \]
+where $C$ is a number that describes the capacity of the capacitor (with units of coulombs/volt), and $i$ is renamed to be $j$ because the electrical engineers use $i$ and $I$ for current.  Anyway the point is that the current across such a device is
+\[ i(t) = \frac{d}{dt} q(t)  = j\omega CV e^{j\omega t} =  j\omega q(t) \]
+So to solve this differential equation, we need to find a function where
+\[ i = \frac{d}{dt} q = j\omega q =  j\omega q \]
+If the voltage goes like the cosine, then this is a problem.
+
+From some research on the internet, the charge on a capacitor in this situation is
+\[ q(t) = CV(t) \]
+where $C$ is some constant and $V$ could be as given above.
+However, what we are going to do is to write the voltage as
+\[ V(t) = \cos e^{j\omega t}  \]
+where $j$ is $i = \sqrt{-1}$.  Then
+\[ q(t) = C e^{j\omega t}  \]
+so the current is
+\[ i(t) = j \omega C V e^{j\omega t}  \]
+so the equivalent of the resistance for the capacitor is
+\[ X_C = \frac{1}{j \omega C} \]
+\[ = -\frac{j}{\omega C } \]
+What does this mean?  It means that when the voltage is at the top of its cycle, the current through the capacitor is 90 degrees out of phase with it.
+\subsection*{resistor}
+Resistors are always simple.  We write
+\[ i(t) R = V(t) \]
+so the current is always in phase with the voltage and the "resistive impedance" of a resistor is just $R$
+\subsection*{inductor}
+An inductor is a way of storing energy in a magnetic field.  It is conceptually similar to a capacitor, but it is 90 degrees out of phase in the other direction.
+\[ \frac{d}{dt} i = \frac{1}{L} V e^{j\omega t}  \]
+Integrating both sides we obtain
+\[ i(t) = \frac{1}{Lj\omega} V e^{j\omega t}  \]
+The "inductive reactance" is 
+\[ X_L = j \omega L \]
+So when you put these things into series in an $RLC$ circuit, the equivalent resistance ($V/I$) is 
+\[ Z_R + Z_L + Z_C = R + j \omega L +  \frac{1}{j \omega C}  \]
+\[ = R + j (\omega L -  \frac{1}{\omega C} ) \]
+And the point is, now we can take the real part of this as the actual impedance
+\[ Z^2 = R^2 + (\omega L -  \frac{1}{\omega C} )^2 \]
+Still searching for enlightenment on why this is OK.
+
+\end{document}  

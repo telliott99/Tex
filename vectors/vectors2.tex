@@ -1,0 +1,74 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb}
+\usepackage{amsmath}
+\graphicspath{{/Users/telliott_admin/Dropbox/Tex/png/}}
+
+
+\title{Vectors and planes}
+%\author{The Author}
+\date{}							% Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+%\section{}
+%\subsection{}
+\large
+This is a continuation of the first write-up about vectors and the dot product.  Let's talk now about another type of vector multiplication, called the cross-product.  Unlike the dot product, which gives a number, the cross-product of two vectors is another vector.  The resulting vector is perpendicular to each of the original ones.  Among other things, this provides a way to find such vectors.  The symbol for the cross product of $u$ and $v$ is
+\[  u \times v \]
+There is a trick or device to remember how to compute the cross product.  We form the matrix
+\[
+\begin{bmatrix} 
+  i  &  j  &  k \\ 
+  u_1  &  u_2 & u_3 \\
+  v_1  &  v_2 & v_3
+\end{bmatrix}
+\]
+and then pretend we're taking its determinant.  Since $i$, $j$, and $k$ are vectors, this is not really a valid operation, but we just do it anyway.  I get
+\[ (u_2v_3 - u_3v_2) \ i - (u_1v_3 - u_3v_1) \ j  + (u_1v_2 - u_2v_1) \ k  \]
+\[ w = \ < (u_2v_3 - u_3v_2), - (u_1v_3 - u_3v_1), (u_1v_2 - u_2v_1)  > \]
+
+This looks kind of ugly, but it's usually not too bad.  
+
+Notice that if we do the dot product with $u$ or $v$, we  get $0$.  For example, with $u$
+\[ u_1(u_2v_3 - u_3v_2) - u_2(u_1v_3 - u_3v_1)  + u_3(u_1v_2 - u_2v_1)  \]
+\[ = u_1u_2v_3 - u_1u_3v_2 - u_2u_1v_3 - u_2u_3v_1  + u_3u_1v_2 - u_3u_2v_1  \]
+\[ = (u_1u_2v_3 - u_2u_1v_3) + (u_3u_1v_2 - u_1u_3v_2) + (u_2u_3v_1 - u_3u_2v_1)  \]
+\[ = 0 \]
+
+This is also try with $v$ and therefore it is true for $cu + dv$, i.e. for every vector in the plane formed by $u$ and $v$.
+
+I also want to show where we can get the equation of a plane.  The standard format is
+\[ ax + by + cz = d \]
+where $a,b,c, d$ are some constants.
+
+Suppose we are trying to find the equation of a plane and all we know is one single point that lies in it.  (We will need something more than this, the vector perpendicular to the plane, but that's coming in a bit).
+
+So we are given $P = (x_0,y_0,z_0)$ and we know it satisfies the equation of the plane, which is what we want to find.
+
+We also know that for each point $Q = (x,y,z)$ in the plane we can construct the vector that starts at $P$ and ends at $Q$, by just subtracting each component of P from the corresponding component of Q
+\[ v= \ <x-x_0,y-y_0,z-z_0> \]
+(remembering that $x_0,y_0,z_0$ will be known values---given in the problem statement, while $x,y,z$ are variables).  Since $v$ runs between two points in the plane, the vector $v$ itself lies in the plane.
+
+The definition of a normal vector to a plane is that it is perpendicular to every vector in the plane.  That is 
+\[ N =  \ <a,b,c> \]
+and 
+\[ N \perp v \]
+so
+\[ N \cdot v = 0 =  \ <a,b,c> \cdot <x-x_0,y-y_0,z-z_0> \]
+\[ 0 = ax - ax_0 + by - by_0 + cz - cz_0 \]
+Rearranging
+\[ ax + by + cz = ax_0 + by_0 + cz_0 \]
+Define
+\[ d = ax_0 + by_0 + cz_0 \]
+(Remember, we know $a,b,c,x_0,y_0,$ and $z_0$).
+Now we have the usual equation of a plane.
+\[ ax + by + cz = d \]
+And we see that, given such an equation, we can find the normal vector very easily.  It is just $N= \ <a,b,c>$!
+
+\end{document}  

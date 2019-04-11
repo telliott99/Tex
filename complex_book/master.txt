@@ -1,0 +1,41 @@
+Introduction
+Preface
+Arithmetic
+Conjugate
+Cubics
+
+Differentiation and CRE
+Differentiate
+CRE
+
+Functions
+Powers
+Exponential
+Logarithm
+Roots
+Trig functions
+Polar CRE
+CRE Examples
+
+Integrate
+Integrate
+Integrate 2
+Cauchy 1
+Cauchy 2
+Partial Fractions
+
+Residue Theory
+Residues
+Kaplan
+quotients
+Definitions
+
+Series
+Series
+Write series
+Trig Integrals
+Real Integrals
+
+Mapping
+Conformal mapping
+End

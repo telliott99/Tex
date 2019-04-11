@@ -1,0 +1,55 @@
+continuous
+a function f is continuous at c if
+- f(c) is defined
+- lim_x->c f(x) exists and = f(c)
+
+differentiable
+a function is differentiable at c
+if exists
+lim h -> 0 [f(x+h) - f(x)] / h
+
+if diff, then continuous
+and if not continuous then not diff
+
+extreme value theorem
+if f(x) is continuous on a closed interval
+then f(x) has both a max and min in the interval
+
+intermediate value theorem
+if f is continuous on [a,b] 
+and k is any number between f(a) and f(b)
+then there is at least one number c in (a,b)
+such that f(c) = k
+
+Rolle's theorem
+if f is continuous on [a,b]
+and differentiable on (a,b)
+and f(a) = f(b)
+then there exists a number c in (a,b)
+such that
+f'(c) = 0
+
+mean value theorem
+if f is continuous on [a,b]
+and differentiable on (a,b)
+then there exists a number c in (a,b)
+such that
+f'(c) = f(b) - f(a) / b - a
+
+L'Hospital's Rule
+if lim f(x)/g(x) is 0/0 or infty/infty
+if lim f'(x)/g'(x) exists (g'(x) unequal to 0)
+then
+lim f(x)/g(x) = lim f'(x)/g'(x)
+
+FTC-I
+if f is continuous on an open interval I containing a
+F(x) = int_a^x f(t) dt = f(x)
+for every x in the interval
+then F'(x) = f(x)
+
+FTC-II
+if f is continuous on [a,b]
+and if F' = f
+then
+int_a^b f(x) dx = F(a) - F(b)

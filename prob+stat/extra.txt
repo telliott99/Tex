@@ -1,0 +1,11 @@
+\emph{Grinstead and Snell} start their discussion by considering two probability distributions with the same mean and variance:
+\[ X = \{ 1 = 0, \ 2 = 1/4, \ 3 = 1/2, \ 4 = 0, \ 5 = 0, \ 6 = 1/4 \}  \]
+\[ Y = \{ 1 = 1/4, \ 2 = 1/4, \ 3 = 1/2, \ 4 = 1/2, \ 5 = 1/4, \ 6 = 0 \}  \]
+There must be something \emph{else} besides the mean ($\mu = 7/2$) and variance ($V=9/4$) that distinguishes these two distributions.
+
+In fact we could take the values for a fair die:
+\[ Z = \{ 1 = 1/6, \ 2 = 1/6, \ 3 = 1/6, \ 4 = 1/6, \ 5 = 1/6, \ 6 = 1/6 \}  \]
+with the same expected value and a somewhat different variance
+\[ \sum \ (x - \mu)^2 \ ] / 6 = 2.9166 \]
+Now we make the variance tighter by pushing more of the probability to the center, and keep the mean the same by doing it symmetrically.
+

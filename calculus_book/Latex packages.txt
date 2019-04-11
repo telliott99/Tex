@@ -1,0 +1,62 @@
+I wanted more space for chapter numbers in the calculus book.
+(> = 100 there was not enough).
+
+I found 
+https://tex.stackexchange.com/questions/7853/toc-text-numbers-alignment/7857#7857
+
+suggests package tocloft
+tocloft installed as below, requires stdclsdv
+
+I grabbed these off the web
+
+packages live in
+/Users/telliott_admin/Library/texmf/tex/latex/local
+
+in simpler times you would just drag *.sty there
+must also update the database
+
+texhash
+
+--------
+
+These days they use .ins files, 
+from which you can generate .sty
+so I did do
+
+latex stdclsdv.ins
+
+and follow the prompts to generate stdclsdv.sty.  
+But...  one package wanted *.ins
+
+The README says
+
+Get both
+stdclsdv.ins
+stdclsdv.dtx
+
+- run: latex stdclsdv.ins (which will generate stdclsdv.sty)
+- run: latex stdclsdv.dtx
+- run: makeindex -s gind.ist stdclsdv
+- run: latex stdclsdv.dtx
+- Print stdclsdv.dvi for a hardcopy of the package manual 
+- Move stdclsdv.sty to a location where LaTeX will find it.
+
+And then at the end, I was getting a control sequence error
+The docs
+
+http://mirrors.ibiblio.org/CTAN/macros/latex/contrib/tocloft/tocloft.pdf
+
+said to use this command
+\setlength{\cftXnumwidth}{3em}
+
+but what it didn't say was to subtitute for X:
+\setlength{\cftchapnumwidth}{3em}
+
+For debugging use 
+python /Users/telliott_admin/Tex/calculus_book/combine.py > full.tex 
+and examine the console for error messages.
+
+That works!
+
+# I used finally, 2.5em
+

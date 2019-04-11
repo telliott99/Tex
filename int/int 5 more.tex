@@ -1,0 +1,80 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{parskip}
+
+\title{Integration problems}
+%\author{The Author}
+%\section{}
+% \subsection*{R code}
+\date{}							% Activate to display a given date or no date
+
+\graphicspath{{/Users/telliott_admin/Dropbox/Tex/png/}}
+
+\begin{document}
+\maketitle
+\large
+%\noindent
+
+\section{}
+\[ \int \frac{\cos x \ \ln(\sin x)}{\sin x} \ dx \]
+whenever you see the log of "something" on top and "something" on the bottom, you should think about a substitution for "something", but first, here we see that if $u = \sin x$ then we have
+\[ du =  \cos x \ dx \]
+so we have
+\[ = \int \frac{ \ln u}{u} \ du \]
+now, do a second substitution to deal with the logarithm
+\[ v = \ln u \]
+\[ dv = \frac{1}{u} \ du \]
+so the integral is
+\[ \int v \ dv = \frac{v^2}{2} \]
+\[ =  \frac{1}{2} \ (\ln(\sin x))^2 + C \]
+\section{}
+\[ \int (\sin x + \cos x)^2 \ dx \]
+Here I notice that when multiplied out we get
+\[ = \int \sin^2 x + 2 \sin x \cos x + \cos^2 x \ dx \]
+\[ = \int 2 \sin x \cos x \ dx \]
+let $u = \sin x$ and then
+\[ du = \cos x \ dx \]
+so we have
+\[ \int u \ du = \frac{1}{2} u^2  =  \frac{1}{2} \sin^2 x + C \]
+\section{}
+\[ \int \frac{\cos^2 x}{1 + \sin x} \ dx \]
+I see a trick.  If we convert the bottom to a difference of squares, we'll have what's on top.  That is
+\[ \frac{1}{1 + \sin x} \ \frac{1 - \sin x}{1 - \sin x} = \frac{1 - \sin x}{1 - \sin^2 x} \]
+\[ = \frac{1 - \sin x}{\cos^2 x} \]
+So the integral becomes
+\[ \int 1 - \sin x \ dx = x + \cos x + C \]
+\section{}
+\[ \int \frac{\sin x}{1 + \sin x} \ dx \]
+The same trick gives
+\[ \int \frac{\sin x \ (1 - \sin x)}{(1 + \sin x)(1 - \sin x)} \ dx \]
+\[ = \int \frac{\sin x \ (1 - \sin x)}{\cos^2 x} \ dx \]
+\[ = \int \frac{\sin x}{\cos^2 x} \ dx - \int \tan^2 x \ dx \] 
+So the first term is
+\[ - \int \frac{1}{u^2} \ du = \frac{1}{u} \]
+\[ = \frac{1}{\cos x} + C \]
+and the second term is
+\[ \int \tan^2 x \ dx = \int \sec^2 x - 1 \ dx \]
+\[ =  \tan x - x + C \]
+Altogether we have
+\[ = \frac{1}{\cos x} + \tan x - x + C \]
+\section{}
+\[ \int (2 + \tan x)^2 \ dx \]
+Just multiply it out
+\[ \int 2 \ dx + \int 4 \tan x \ dx + \int \tan^2 x \ dx \]
+For the last term, proceed as we did above.  And for the middle term we have
+\[ 4 \int \tan x \ dx = 4 \int \frac{\sin x}{\cos x} \ dx \]
+let  $u = \cos x$, so
+\[ du = -\sin x \ dx \]
+\[ = - 4\int \frac{1}{u} \ du = - 4 \ln u = - 4 \ln \cos x + C \]
+Altogether we have
+\[ 2x - 4 \ln \cos x + \tan x - x + C \]
+\[ = x - 4 \ln \cos x + \tan x + C \]
+
+\end{document}  

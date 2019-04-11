@@ -1,0 +1,304 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{parskip}
+\usepackage{hyperref}
+
+\title{Integration:  examples}
+%\author{The Author}
+%\section{}
+% \subsection*{R code}
+\date{}							% Activate to display a given date or no date
+
+\graphicspath{{/Users/telliott_admin/Dropbox/Tex/png/}}
+
+\begin{document}
+\maketitle
+\Large
+%\noindent
+
+Here is a short write-up of some elementary approaches to integration problems, mostly by example.  Many of these come from:
+
+\url{www.whitman.edu/mathematics/calculus_online/section08.03.html}
+
+We start with substitution.
+
+\subsection*{Substitution  $1$}
+
+\[ \int \sin x \cos x \ dx \]
+
+Let $u=\sin x$, then $du = \cos x \ dx$ so
+
+\[ = \int u \ du = \frac{1}{2} u^2 + c =  \frac{1}{2}  \sin^2 x + C  \]
+
+(I deliberately write a lowercase $c$ for the constant in the expression with $u$, since the two constants $c$ and $C$ aren't necessarily equal).
+
+Notice that we could also start with $u = \cos x$ and obtain a different result 
+
+\[ -\frac{1}{2}   \cos^2 x + C \]
+
+which is somehow equivalent.  I leave the details to you.  But check by differentiating:
+
+\[ \frac{d}{dx} \ \frac{1}{2} \sin^2 x + C = \sin x \cos x  \]
+\[ \frac{d}{dx} \ -\frac{1}{2} \cos^2 x + C = \sin x \cos x  \]
+
+\subsection*{2}
+
+\[ \int \tan x \ dx = \int \frac{\sin x}{\cos x} \ dx \]
+
+Let $u=\cos x$, then $du = -\sin x \ dx$ and $-du = \sin x \ dx$ so
+
+\[ = -\int \frac{1}{u} \ du = -\ln |u| + c = -\ln |\cos x| + C \]
+
+Again, check by differentiating:
+
+\[ \frac{d}{dx} \ -\ln |\cos x| + C \]
+\[ = - \frac{1}{\cos x} \ (- \sin x) = \tan x \]
+
+\subsection*{3}
+
+\[ \int \frac{x}{\sqrt{1 - x^2}} \ dx \]
+
+You will know you are really "getting" this method when you do the problem without the substitution, but for now, let $u=1-x^2$, then $du = -2x \ dx$ and $-(1/2) \ du = x \ dx$ so
+
+\[ = -\frac{1}{2} \int \frac{1}{\sqrt{u}} \ du = -\sqrt{u} + c = -\sqrt{1-x^2} + C  \]
+
+\subsection*{4}
+
+This one takes a little more thought:
+
+\[ \int \frac{\sin(\ln x)}{x} \ dx \]
+
+Notice that we have both $\ln x$ and its derivative.  Why not let $u=\ln x$, then $du = 1/x \ dx$ and
+
+\[ = \int \sin u \ du = - \cos u + c = - \cos (\ln x) + C \]
+
+Going backward is obvious when you remember the chain rule.
+
+\subsection*{5}
+
+\[ \int \frac{1}{x \ln x} \ dx \]
+
+This is the same substitution as the previous one.  We obtain:
+
+\[ \int \frac{1}{u} \ du = \ln u + c = \ln (\ln x) + C \]
+
+\subsection*{6}
+
+\[ \int x \sin(x^2) \ dx \]
+
+Again, we start by looking for something to turn into $u$, provided that $du$ is also present.  Let $u = x^2$, then $du = 2 x \ dx$, so $1/2 \ du = x \ dx$ and
+
+\[ = \frac{1}{2} \int \sin u \ du = -  \frac{1}{2} \cos u + c = - \frac{1}{2} \cos(x^2) + C \]
+
+\subsection*{7}
+
+\[ \int \sin^3 x \ dx \]
+
+The trick here is to first substitute $\sin^2 x = 1 - \cos^2 x$
+
+\[ \int (1 - \cos^2 x) \sin x \ dx \]
+\[ = \int \sin x \ dx - \int \cos^2 x \sin x \ dx \]
+
+Now, for the second term let $u = \cos x$, then $du = -\sin x \ dx$ and the integral is just
+
+\[ = \int u^2 \ du = \frac{1}{3} u^3 + c \] 
+
+and altogether we obtain:
+
+\[ = -\cos x + \frac{1}{3} \cos^3 x + C \]
+
+\subsection*{8}
+
+This is a famous (and useful) result that is obtained by a trick
+
+\[ \int \sec x \ dx \]
+
+We transform the term $\sec x$ by multiplying
+
+\[ \sec x \ \frac{\sec x + \tan x}{\sec x + \tan x} = \frac{\sec^2 x + \sec x \tan x}{\sec x + \tan x} \]
+
+Observe that
+
+\[ \sec^2 x = \frac{d}{dx} \ \tan x \]
+\[ \sec x \tan x = \frac{d}{dx} \ \sec x \]
+
+So if we let $u = \sec x + \tan x$, then of course $du = \sec x \tan x + \sec^2 x$, and we have
+
+\[ \int \frac{1}{u} \ du \]
+
+So the integral is
+
+\[ = \ln |u| + c = \ln |\sec x + \tan x| + C \]
+
+\subsection*{9}
+
+This one looks hard:
+
+\[ \int x \sqrt{x-3} \ dx \]
+
+But it's relatively easy if we just substitute $u = x-3$, so then $du = dx$ and we have
+
+\[ = \int (u+3) \sqrt{u} \ du \]
+\[ = \int u^{3/2} + 3 u^{1/2} \ du \]
+\[ = \frac{2}{5} u^{5/2} + 2 u^{3/2} + c \]
+\[ = \frac{2}{5} (x-3)^{5/2} + 2 (x-3)^{3/2} + C \]
+
+\subsection*{10}
+
+\[ \int e^{2x} \cos(1 - e^{2x}) \ dx \]
+
+This one also looks hard but is pretty easy.  Notice that we have (almost) the derivative of what is inside the cosine function.
+
+Let $u = 1 - e^{2x}$, then $du = -2e^{2x} \ dx$ and the integral is just
+
+\[ = - \frac{1}{2} \int \cos u \ du \]
+\[ = - \frac{1}{2} \sin u + c = - \frac{1}{2} \sin (1 - e^{2x}) + C  \]
+
+\subsection*{11}
+
+This one is harder than the previous examples.
+
+\[ \int \sqrt{4 - \sqrt{x}} \  dx \]
+
+I don't "see" anything immediately, but let's just try $u=4 - \sqrt{x}$ and see what happens.  Then:
+
+\[ du = - \frac{1}{2 \sqrt{x}} \ dx \]
+\[ -2 \sqrt{x} \ du = dx \]
+
+Plug in for $\sqrt{x}$ !
+\[ -2 (4-u) \ du = dx \]
+
+So the integral is
+
+\[ \int \sqrt{u} \ (-2) (4-u) \ du \]
+
+That looks like it is possible.
+
+\[ = (-2) \int 4 \sqrt{u} - u^{3/2} \ du \]
+\[ = (-2) (\frac{8}{3} u^{3/2} - \frac{2}{5} u^{5/2} ) + c \]
+\[ = -\frac{16}{3} (4 - \sqrt{x})^{3/2} + \frac{4}{5}(4 - \sqrt{x})^{5/2} + C \]
+
+\subsection*{Trial and Error}
+
+The next set of problems I want to introduce is usually solved by what is called "integration by parts", a reversal of the product rule.  But since you don't learn this method in Calculus AB, I'm going to do it in a slightly sneaky way.  The way it works is we try differentiating various products and see if we get an interesting pattern.
+
+\[ \frac{d}{dx} \ x \ln x = \ln x + x \frac{1}{x}  = \ln x + 1 \] 
+
+Now the trick is to integrate both sides.  The left side is just what we started with ($x \ln x$).  The right side is
+
+\[ \int (\ln x + 1) \ dx = \int \ln x \ dx + \int 1 \ dx = \int \ln x \ dx + x \]
+
+Putting the $x$ on the other side we obtain:
+
+\[ \int \ln x \ dx = x \ln x - x + C \]
+
+So now we know how to do $\int \ln x \ dx$, which would certainly not have been obvious by just looking at it.  
+
+Another point is that this result has two terms, and the second term does its work by canceling out something that comes from differentiating the first term.  This pattern is seen in all problems that can be solved using integration by parts.
+
+\subsection*{2}
+
+We extend this idea in two ways.  We try periodic functions like $e^x$ and we try higher powers of $x$.  Start with the first:
+
+\[ \frac{d}{dx} \ x e^x = e^x + x e^x \]
+
+As before, integrate both sides.  We obtain
+
+\[ x e^x = \int e^x \ dx + \int x e^x \ dx = e^x + \int x e^x \ dx \]
+\[ \int x e^x \ dx = x e^x - e^x \]
+
+Now try
+
+\[ \frac{d}{dx} \ x^2 e^x = 2xe^x + x^2 e^x \]
+
+Integrate both sides:
+
+\[ x^2 e^x = \int 2xe^x \ dx + \int x^2 e^x \ dx \]
+\[  \int x^2 e^x \ dx = x^2 e^x - 2 \int xe^x \ dx \]
+\[ = x^2 e^x - 2x e^x + 2 e^x \]
+
+If you wanted to, you could try $x^3 e^x$ and so on, and then maybe you would see the pattern that would give the answer for $x^n e^x$.
+
+\subsection*{3}
+
+Trig functions also give useful results:
+
+\[ \frac{d}{dx} \ x \sin x = \sin x + x \cos x \]
+
+Integrate:
+
+\[ x \sin x = - \cos x + \int x \cos x \ dx \]
+\[ \int x \cos x \ dx = x \sin x + \cos x + C \]
+
+Check by differentiating:
+
+\[ \frac{d}{dx} \ [ \ x \sin x + \cos x + C \ ] \ = \sin x + x \cos x - \sin x = x \cos x \]
+
+\subsection*{4}
+
+Back to $\sin x \cos x$:
+
+\[ \frac{d}{dx} \ \sin x \cos x = \cos x \cos x + \sin x (-\sin x) \]
+\[ = \cos^2 x - \sin^2 x \]
+
+Integrate:
+
+\[ \sin x \cos x = \int \cos^2 x \ dx - \int \sin^2 x \ dx \]
+
+This looks like a bit of a mess, but remember, we can always convert $\sin^2$ into $\cos^2$ and vice-versa using the essential trig identity $\sin^2 x + \cos^2 x = 1$.  From before the integration:
+
+\[ \frac{d}{dx} \ \sin x \cos x = \cos^2 x - \sin^2 x \]
+\[ = \cos^2 x - (1 - \cos^2 x) \]
+\[ = 2 \cos^2 x - 1\]
+Now integrate:
+
+\[ \sin x \cos x = 2 \int \cos^2 x \ dx - \int 1 \ dx \]
+\[ \int \cos^2 x \ dx = \frac{1}{2}(x +  \sin x \cos x) + C \]
+
+and since (by integrating the identity):
+
+\[ \int \sin^2 x \ dx + \int \cos^2 x \ dx = \int 1 \ dx = x  \]
+\[ \int \sin^2 x \ dx = x - \int \cos^2 x \ dx \]
+
+we can convert between the two integrals as needed.  Namely:
+\[ \int \sin^2 x \ dx = x - \frac{1}{2}(x +  \sin x \cos x) + C \]
+\[ = \frac{1}{2}(x -  \sin x \cos x) + C \]
+
+In studying this material, 99 percent of what you need to know is the kinds of substitutions shown here, plus the list of basic integrals (including how to integrate $\sec x$), as well as knowing the derivatives of the inverse functions $\sin^{-1}$, $\tan^{-1}$ and $\sec^{-1}$.
+
+\subsection*{5}
+
+This one you don't need to know, but it's fun to explore a little.
+
+\[ \int (\ln x)^2 \ dx \]
+
+We did $x \ln x$ before, why not try $ x (\ln x)^2$?  There is a reason for suggesting this.  In the product rule, one of the terms coming out will have $d/dx$ of $x$ times the other factor, which is just that factor back again.  Thus:
+
+\[ \frac{d}{dx} \ x (\ln x)^2 = (\ln x)^2 +  2 x \ln x (\frac{1}{x}) = (\ln x)^2 + \ln x  \]
+
+Integrating both sides
+
+\[ x (\ln x)^2 = \int (\ln x)^2 \ dx + 2 \int \ln x \ dx \]
+
+In the first example of this section we obtained:
+
+\[ \int \ln x \ dx = x \ln x - x + C \]
+
+So
+
+\[ x (\ln x)^2 = \int (\ln x)^2 \ dx + 2x \ln x - 2x + C \]
+
+Finally
+
+\[ \int (\ln x)^2 \ dx = x (\ln x)^2 - 2x \ln x + 2x + C \]
+
+You should check this by differentiating and obtain $(\ln x)^2$.
+
+\end{document}  

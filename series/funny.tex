@@ -1,0 +1,55 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\usepackage{amsmath}
+
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{parskip}
+
+\graphicspath{{/Users/telliott_admin/Dropbox/Tex/png/}}
+
+\title{Funny series}
+%\author{The Author}
+\date{}							% Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+%\subsection{}
+\Large
+\noindent
+In Strogatz book (\emph{The Joy of x}), he gives the following series
+\[ 1 - \frac{1}{2} + \frac{1}{3} - \frac{1}{4} + \frac{1}{5} - \cdots \]
+and he says that the sum of the series is equal to the natural logarithm of $2$:
+\[ \ln 2 = 1 - \frac{1}{2} + \frac{1}{3} - \frac{1}{4} + \frac{1}{5} - \cdots \]
+with the provision that you have to calculate the sum in the order given.
+
+For example, the second, third and fourth partial sums are:
+\[ S_2 = \frac{1}{2} ; \ \  S_3 = \frac{5}{6}; \ \ S_4 = \frac{14}{24}; \ \ S_5 = \frac{94}{120} \]
+with $S_4 = 0.583$ and $S_5 = 0.783$.  For any partial sum $S_n$ and the previous sum $S_{n-1}$ the value of the series will be bounded by the two sums.
+
+I thought I would try to show that $\ln 2$ is the correct value for series, by using a Taylor series for the logarithm.  Taylor says we can write a function $f(x)$ (near the value $x=a$) as an infinite sum
+\[ f(x) = \sum_{n=0}^\infty \frac{f^n(a)}{n!} (x-a)^n\]
+where $f^n$ means the nth derivative of $f$ and $f^0$ is just $f$, and these derivatives are to be evaluated at $x=a$.
+Near $a=0$ this simplifies to 
+\[ f(x) = \sum_{n=0}^\infty \frac{f^n(0)}{n!} (x)^n\]
+
+Let's calculate the derivatives of the logarithm:
+\[ f^0 = \ln x; \ \ f^1 = \frac{1}{x} = x^{-1}; \ \ f^2 = -x^{-2}; \ \ f^3 = 2x^{-3}; \ \ f^4 = -3!\ x^{-4}  \]
+The first thing I notice is that we can't use $a=0$, since $f^1 = 1/x$ is undefined there.  So, let's try $a=1$.  Then (evaluated at $a=1$)
+\[ f^0 = \ln x = 0; \ \ f^1 = \frac{1}{x} = 1; \ \ f^2 = -x^{-2} = -1; \ \ f^3 = 2; \ \ f^4 = -3!  \]
+
+Going back to the definition
+\[ f(x) = \sum_{n=0}^\infty \frac{f^n(a)}{n!} (x-a)^n\]
+I get the following series near $a = 1$:
+\[ \ln x = \frac{0}{0!} (x-1)^0 +  \frac{1}{1!} (x-1)^1 - \frac{1}{2!} (x-1)^2 + \frac{2}{3!} (x-1)^3 - \frac{3!}{4!} (x-1)^4 + \cdots \]
+For the special value $x=2$, all the terms $(x-1)^n$ go away (which confirms that $a=1$ is an excellent choice!).  We have then
+\[ \ln x = \frac{0}{0!} +  \frac{1}{1!} - \frac{1}{2!} + \frac{2}{3!} - \frac{3!}{4!} + \cdots \]
+\[ =  0 + 1 - \frac{1}{2} + \frac{1}{3} - \frac{1}{4} + \cdots \]
+which is what was to be proved.
+
+\end{document}  

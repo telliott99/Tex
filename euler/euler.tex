@@ -1,0 +1,66 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb}
+\graphicspath{{/Users/telliott_admin/Dropbox/Tex/png/}}
+
+\title{A bit about series}
+%\author{The Author}
+\date{}							% Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+%\section{}
+%\subsection{}
+\large
+
+One of the several equivalent definitions of the number e is
+\[e =  \lim_{n \rightarrow \infty} (1 + \frac{1}{n})^n \]
+
+It's relatively easy to use the binomial theorem to derive an infinite series based on the above definition
+\[ (a + b)^n = c_0 \ a^nb^0 + c_1 \ a^{n-1}b^1 + c_2 \ a^{n-2}b^2 + c_3 \ a^{n-3}b^3 + \ldots  \]
+The a terms drop out ($a=1$) and $b = \frac{1}{n}$ so
+\[ (1 + \frac{1}{n})^n = c_0 \ \frac{1}{n^0} +  c_1 \ \frac{1}{n^1} +  c_2 \ \frac{1}{n^2} +  c_3 \ \frac{1}{n^3}  + \ldots \]
+The coefficients are from the combinations formula
+\[ c_k = \frac{n! }{(n-k)! k!}, \ \ \   k = 0, 1, 2 \ldots\]
+if we expand this slightly we obtain
+\[ c_k = \frac{n(n-1)(n-2) \ldots (n-k+1) }{k!} \]
+Thus, the kth term is in the binomial expansion for e as defined above is:
+\[  \frac{n(n-1)(n-2) \ldots (n-k+1) }{n^k \ k!} \]
+There are k terms like $(n-1)$,  $(n-2) $ and so on in the numerator, matched by k $n$ terms in the denominator, so that as n gets very large these ratios all become 1, so we are left with simply
+\[ e = \frac{1}{0!} + \frac{1}{1!} + \frac{1}{2!} + \ldots   = \sum_{k=0}^{\infty} \frac{1}{k!}  + \ldots  \]
+And since k is just a "dummy variable" we will substitute it by n in the formulas below.
+
+Similarly, by the same approach one can show that 
+\[e^x =  \lim_{n \rightarrow \infty} (1 + \frac{x}{n})^n \]
+\[ e^x = \frac{x^0}{0!} + \frac{x^1}{1!} + \frac{x^2}{2!} + \ldots   = \sum_{n=0}^{\infty} \frac{x^n}{n!} \]
+
+There are series expansions for sine and cosine as well.  Proving these is not so easy as stated above for e.  The method requires Taylor series approximations, which is moderately advanced calculus.  Let's just assume the results
+\[ sin \ x = \frac{x^1}{1!} - \frac{x^3}{3!} + \frac{x^5}{5!} - \frac{x^7}{7!} + \ldots = x - \frac{x^3}{3!} + \frac{x^5}{5!}  - \frac{x^7}{7!} + \ldots \]
+\[ cos \ x = \frac{x^0}{0!} - \frac{x^2}{2!} + \frac{x^4}{4!}  - \frac{x^6}{6!} + \ldots =  1  - \frac{x^2}{2!} + \frac{x^4}{4!}  - \frac{x^6}{6!} + \ldots \]
+
+However, it is easy to see that these must be correct, because differentiating term by term, we obtain
+\[\frac{d}{dx} sin \ x = cos \ x, \ \ \ \  \frac{d}{dx} cos \ x = -sin \ x \]
+Now, what we would like to do is to show that Euler's formula follows from these definitions for the three series.  Recall that the formula is
+\[  e^{i x} = cos \ x + i \ sin \ x \]
+So let's try substituting $ix$ for $x$ in the series for e first, then that for sine.  We have:
+\[ e^{ix} = \frac{(ix)^0}{0!} + \frac{(ix)^1}{1!} + \frac{(ix)^2}{2!}  + \frac{(ix)^3}{3!}  + \frac{(ix)^4}{4!}   + \frac{(ix)^5}{5!}  \ldots \]
+Now
+\[ i^0 = 1, \ \ \ i^1 = i,  \ \ \ i^2 = -2,  \ \ \ i^3 = -i, \ \ \  i^4 = 1, \ \ \  i^5 = i \]
+So
+\[ e^{ix} = \frac{(ix)^0}{0!} + \frac{(ix)^1}{1!} + \frac{(ix)^2}{2!}  + \frac{(ix)^3}{3!}  + \frac{(ix)^4}{4!}   + \frac{(ix)^5}{5!}  \ldots \]\
+\[ e^{ix} = \frac{x^0}{0!} + i \frac{x^1}{1!} - \frac{x^2}{2!}  -  i \frac{x^3}{3!}  + \frac{x^4}{4!}   + i \frac{x^5}{5!}  \ldots \]
+\[ e^{ix} = 1 + i x - \frac{x^2}{2!}  -  i \frac{x^3}{3!}  + \frac{x^4}{4!}   + i \frac{x^5}{5!}  \ldots \]
+The real terms (without i), when grouped together equal cosine x
+\[ cos \ x =  1  - \frac{x^2}{2!} + \frac{x^4}{4!} + \ldots \]
+The terms containing i, when grouped together equal sine of $ix$
+\[ sin \ x = x - \frac{x^3}{3!} + \frac{x^5}{5!}  + \ldots \]
+\[ i \ sin \ x = ix - i\frac{x^3}{3!} + i\frac{x^5}{5!} + \ldots \]
+So
+\[  e^{i x} = cos \ x + i \ sin \ x \]
+QED.
+\end{document}  

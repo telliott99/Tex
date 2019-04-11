@@ -1,0 +1,100 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex	
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{parskip}
+\usepackage{color}
+
+\title{Euler's identity and complex numbers}
+%\author{The Author}
+\date{}							% Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+%\section{}
+%\subsection{}
+\Large
+\noindent
+\subsection*{Taylor series}
+The way most people first see a connection demonstrated between exponential and trigonometric functions is through the Taylor Series, which allows construction of a series that approximates a function provided the derivatives are known.  (For a different approach, see Chapter 22 in Feynman's Lectures of Physics).  Near $x=0$, the approximation is
+\[ f(x) \approx f(0) + f^1(0) \frac{x}{1!} + f^2(0) \frac{x^2}{2!} + f^3(0) \frac{x^3}{3!} \dots \]
+where $f^n(0)$ is the nth derivative of $f$ evaluated at $0$.  Applied to the exponential function $e^x$, it's simple, since the function is its own derivative, and at zero, is equal to $1$.  Thus
+\[ e^x \approx 1 + \frac{x}{1!} + \frac{x^2}{2!} + \frac{x^3}{3!} \dots \]
+The series also provides a method for finding the numerical value of $e$, by just plugging in $x=1$.
+
+I won't do it here, but it turns out that if you apply this method to the sine and cosine, and then to the complex sine function $\sin ix$, it is easy to show that
+\[ e^{i\theta} = \cos \theta + i \sin \theta \]
+
+\subsection*{radial coordinates}
+Instead of $x,y$ ccordinates, a different way to represent complex numbers uses the notion of an angle $\theta$ and radius $r$ in the complex plane.  This idea has in the past been credited to a guy named Argand (the Argand plane).  However, another mathematician named Wessel wrote about it earlier, but his paper was apparently not noticed.
+\[ a + bi = r \cos \theta + r i \sin \theta \]
+We use Euler's famous identity
+\[ e^{i\theta} = \cos \theta + i \sin \theta \]
+\[ a + bi = r e^{i\theta} \]
+The $x$-coordinate is $a$ and the $y$-coordinate is $b$ and so the length of the hypotenuse is 
+\[ r = \sqrt{x^2 + y^2} \]
+Compute $\theta$ by finding the angle whose tangent is what we need:
+\[ \theta = tan^{-1} (\frac{y}{x}) \]
+
+We gain some feeling for what $\theta$ means in the symbol $e^{i\theta}$.  It is the angle a vector from the origin to the complex number makes with the positive x-axis.
+
+\subsection*{derivation}
+It's fun to look at a quick derivation of Euler's equation.  It may lack something in mathematical rigor, but it's like lightning.
+
+Suppose we imagine a point on a circle of radius $r = 1$ in the complex plane.
+\[ z = \cos \theta + i \sin \theta \]
+Now manipulate in the way that Euler was always ready to do:
+\[ \frac{dz}{d\theta} = - \sin \theta + i \cos \theta \]
+\[ = i^2 \sin \theta + i \cos \theta \]
+\[ = i (i \sin \theta + \cos \theta) \]
+\[ = i z \]
+So rearrange and integrate
+\[ \frac{1}{z} \ dz = i \ d\theta \]
+\[ \int \frac{1}{z} \ dz = \int i \ d\theta \]
+\[ \ln z = i \theta \]
+\[ z = e^{i \theta} = \cos \theta + i \sin \theta \]
+Amazing.
+
+\subsection*{exponential forms of sine and cosine}
+\[ e^{i \theta} = \cos \theta + i \sin \theta \]
+Now
+\[ e^{-i \theta} = \cos -\theta + -i \sin \theta \]
+\[ = \cos \theta + -i \sin \theta \]
+By addition, then
+\[ e^{i \theta} + e^{-i \theta} = 2 \cos \theta \] 
+\[ \frac{1}{2}(e^{i \theta} + e^{-i \theta}) = \cos \theta \] 
+And by subtraction
+\[ e^{i \theta} - e^{-i \theta} = 2i \cos \theta \] 
+\[ \frac{1}{2i}(e^{i \theta} - e^{-i \theta}) = \sin \theta \]
+All of the familiar relationships hold.  In particular
+\[ \frac{d}{d\theta} \ \cos \theta = \frac{d}{d\theta} \ \frac{1}{2}(e^{i \theta} + e^{-i \theta}) \]
+\[ = \frac{1}{2}i(e^{i\theta} - e^{-i \theta}) = -\frac{1}{2i}(e^{i\theta} - e^{-i \theta}) = - \sin \theta \]
+
+\[ \frac{d}{d\theta} \ \sin \theta = \frac{d}{d\theta} \ \frac{1}{2i}(e^{i \theta} - e^{-i \theta}) \]
+\[ = \frac{1}{2}(e^{\theta} + e^{-i \theta}) = \cos \theta \]
+Finally, (since $e^{i \theta} e^{-i \theta} = 1$):
+\[ \sin^2 \theta = -\frac{1}{4}(e^{i \theta} - e^{-i \theta})^2 = -\frac{1}{4}(e^{2i \theta} - 2 + e^{-2i \theta} )\]
+\[ \cos^2 \theta = \frac{1}{4}(e^{i \theta} + e^{-i \theta})^2 = \frac{1}{4}(e^{2i \theta} + 2 + e^{-2i \theta} )\]
+If you follow the signs carefully, you will see that summing the last two equations just gives $1$.
+
+\subsection*{more on Euler}
+\[ e^{i \theta} = \cos \theta + i \sin \theta \]
+Multiply by $e^{i \phi}$
+\[ e^{i \theta} \ e^{i \phi} = e^{i (\theta + \phi)} \]
+So the right-hand side is
+\[ \cos (\theta + \phi) + i  \sin(\theta + \phi) \]
+But the left-hand side is
+\[ = (\cos \theta + i \sin \theta) (\cos \phi + i \sin \phi) \]
+\[ = \cos \theta \cos \phi - \sin \theta \sin \phi + i (\sin \theta \cos \phi + \sin \phi \cos \theta ) \]
+So, as we said before, if two complex numbers are equal, both the real and the imaginary parts are equal.
+\[ \cos (\theta + \phi) = \cos \theta \cos \phi - \sin \theta \sin \phi \]
+\[ \sin(\theta + \phi) = \sin \theta \cos \phi + \sin \phi \cos \theta \]
+That should look familiar.  When mathematics works out like that, not only is it sure to be right, but it should fill you with awe.
+
+
+\end{document}  

@@ -1,0 +1,32 @@
+positive semi-definite and definite
+
+for any column vector v with real entries a and b (can be negative)
+v^T M v should be > 0 as long as v is not the 0 vector.
+
+Ex 1.
+I is positive definite
+
+[a b] I = [ a  0 ]
+          [ 0  b ]
+
+X [ a ] = a^2 + b^2
+  [ b ] 
+
+Ex 2. M = [ 1  2 ]
+          [ 2  1 ]
+
+is not positive definite b/c e.g. if b < 0 then
+
+v x M = [a + 2b a + 2b] 
+x v = a^2 + 4ab + b^2
+if a = 1
+   b = -1
+the result is 1 -4 + 1 = -2 
+
+M can have negative entries
+
+what follows?
+- all eigenvalues are positive
+- other stuff :)
+
+============================================

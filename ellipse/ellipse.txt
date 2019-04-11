@@ -1,0 +1,12 @@
+area of ellipse
+pi a b
+
+y = b^2 sqrt (1 - x^2/a^2)
+y' = -2 b^2 x 1/sqrt (1 - x^2/a^2)
+y'^2 = 4b^4 x^2 1/(1-x^2/a^2)
+C = 2 pi y
+
+area element ds = sqrt(1 + y'^2)
+
+\int 2 pi y ds
+2 pi \int b^2 sqrt (1 - x^2/a^2)

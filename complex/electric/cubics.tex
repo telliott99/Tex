@@ -1,0 +1,79 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex	
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{parskip}
+\usepackage{color}
+
+\title{Cubics and complex numbers}
+%\author{The Author}
+\date{}							% Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+%\section{}
+%\subsection{}
+\Large
+\noindent
+Among the applications of complex numbers that are often cited is their use in solving cubic equations.  I find the procedures for solving cubics difficult to grasp, but I discovered another approach that makes sense to me, building up to cubics from quadratics.  So let's start with
+\[ f(x) = ax^2 + bx + c \]
+As you know, the graph of this function is a parabola, pointing up or down depending on the sign of $a$.  It's symmetric about the vertex, which can be found in various ways, but using calculus, it is the place where the slope is equal to zero
+\[ 2ax + b = 0 \]
+\[ x = - \frac{b}{2a} \]
+\[ y = a(- \frac{b}{2a})^2 + b(- \frac{b}{2a}) + c \]
+\[ y = \frac{b^2}{4a} - \frac{b^2}{2a} + c = - \frac{b^2}{4a} + c\]
+Now, if the sign of $a$ is positive and $y < 0$ at the vertex, then the parabola opens up and the vertex is below the $x$-axis and there will be two real roots.  There are two places where $y=0$ and the graph crosses the $x$-axis.  If $y=0$ then there is a single real root, that is repeated.  And if $a < 0$ and $y$ is above the $x$-axis, there are no real roots.
+
+We obtain the quadratic equation by completing the square.
+\[ y = ax^2 + bx + c \]
+When is $y=0$?
+\[ 0 = ax^2 + bx + c \]
+\[ -\frac{c}{a} = x^2 + \frac{b}{a}x  \]
+\[ -\frac{c}{a} + \frac{b^2}{4a^2} = (x^2 + \frac{b}{a}x + \frac{b^2}{4a^2}) \]
+\[ -\frac{c}{a} + \frac{b^2}{4a^2} = (x + \frac{b}{2a})^2 \]
+\[ -4ac + b^2 = 4a^2(x + \frac{b}{2a})^2 \]
+\[ \sqrt{b^2 - 4ac} = 2ax + b \]
+\[ x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \]
+
+As an aside, if $a=1$, then this is the same as
+\[ x = \frac{b}{2} \pm \sqrt{(\frac{b}{2})^2 - c} \]
+and of course, we can always divide the above equation by $a$ to achieve this, changing the coefficients $b,c$ to $b',c'$.
+
+The term $b^2-4ac$ in the first version is called the discriminant, $D$.  If $D<0$ there are no real solutions, but we can get two complex solutions which have the form
+\[ x = p \pm i q \]
+To see why this is so, suppose $b^2 < 4ac$.  Factor out $-1$ to obtain $(-1)(b^2 - 4ac)$.  Then the factor of $-1$ can come out as $i$ and for the square root part we have $\pm i \sqrt{4ac - b^2}$.
+
+These two solutions $x = p \pm i q$ are complex conjugates, so that
+\[ (p + iq)(p - iq) = p^2 + q^2 \]
+
+On the other hand, if $b^2 = 4ac$, there is only a single solution yielding $y=0$ and notice that from above, the $y$-value of the vertex of the parabola is 
+\[ y = - \frac{b^2}{4a} + c \]
+\[ 0 = - \frac{b^2}{4a} + c \]
+\[ b^2 = 4ac \]
+and then $D$ must be equal to zero.
+
+Finally, if $D>0$, there are two real solutions.
+\subsection*{cubics}
+What about cubics?  Well, any cubic has an $x^3$ in it.  That means that as $x$ gets large and positive $f(x)$ is also large and positive, while if $x$ is large and negative, $f(x)$ is large and negative.  Consequently, the graph must cross the $x$-axis at least once, and so there must be at least one real root.  
+
+When we are building a cubic from a quadratic, no matter what the quadratic, the last step must be to multiply by $(x-r)$, where $r$ is real.
+
+So in other words, these are the roots of any cubic
+\[ (x-r)(x + \sqrt{D})(x - \sqrt{D}) \]
+if $D<0$ then the latter two factors are complex conjugates.  They must be, so that their product gives a completely real quadratic.  If $D=0$ then we just have
+\[ (x-r)x^2 \]
+This has three roots, at $x=0$ (repeated) and at $x=r$.  It turns out that the graph does not cross the $x$-axis at $x=0$, because the first derivative
+\[ 2x \]
+is equal to zero at $x=0$, it is a local maximum or local minimum.
+
+
+
+
+
+
+\end{document}  

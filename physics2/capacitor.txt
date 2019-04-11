@@ -1,0 +1,22 @@
+capacitor
+two plates separated by an insulator
+stores energy electrostatically
+small amount of leakage current
+
+characterized by capacitance
+ration of electric charge to the voltage difference
+Farad = 1 coulomb/volt
+
+usage:  block direct current
+allow AC current to pass
+smooth output of power supplies
+tune radio to particular frequency
+
+Hydraulic analogy a membrane in a pipe with water
+the water flows back and forth 
+but never goes very far, this is like AC current
+the "membrane" can stretch and allow back and forth movement
+but no electrons pass across the capacitor
+
+inductor is analogous but stores energy in a magnetic field
+

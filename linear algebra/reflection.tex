@@ -1,0 +1,81 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\usepackage{amsmath}
+
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb}
+\graphicspath{{/Users/telliott_admin/Dropbox/Tex/png/}}
+
+\title{Reflection matrix for two dimensions}
+%\author{The Author}
+\date{}							% Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+%\subsection*{rotation}
+%\subsection{}
+\large
+\noindent
+Consider reflection across the y-axis.  It's clear that a starting vector x,y should be converted to -x,y.  The matrix that does this is
+\[
+\begin{bmatrix}   -1 & 0  \\  \ \ 0 &  1  \end{bmatrix}
+\begin{bmatrix}   x   \\  y  \end{bmatrix} = \begin{bmatrix}   -x   \\ \ \   y  \end{bmatrix}
+\]
+Reflection across the x-axis would use the same matrix with signs switched.  Having done all this, we would like to develop a matrix for reflection across an arbitrary axis.  For this example, I will label the angle between the axis we want to reflect across and the y-axis as theta.
+
+\noindent
+The key idea here is that the reflection can be composed from elementary operations that we already know how to do.  That is, first we rotate our vector (and the axis of reflection) clockwise through the angle theta, so that, our chosen axis is now aligned with the y-axis. Then we do a reflection across the y-axis in the usual way, and finally, we rotate back counter-clockwise through angle theta.
+
+\noindent
+Remember that in a series of matrix multiplications, the first one is just to the left of the vector.  The operation we will do is:
+
+\[
+\begin{bmatrix}   \ \ \cos \theta & \sin \theta  \\  -\sin \theta & \cos \theta  \end{bmatrix}
+\begin{bmatrix}   -1 & 0  \\  \ \ 0 &  1  \end{bmatrix}
+\begin{bmatrix}   \cos \theta & -\sin \theta  \\  \sin \theta &\ \  \cos \theta  \end{bmatrix}
+\begin{bmatrix}   x   \\  y  \end{bmatrix} = \begin{bmatrix}   u   \\  v  \end{bmatrix}
+\]
+If we multiply these three matrices together, we obtain
+\[
+2
+\begin{bmatrix}   \ \ \frac{1}{2} - \cos^2 \theta & - \sin \theta \cos \theta  \\  - \sin \theta \cos \theta & \cos^2 \theta - \frac{1}{2})  \end{bmatrix}
+\]
+To check this result, consider the axis of reflection y = -x.  The angle of rotation is 45¡
+\[
+\sin \frac{\pi}{4} = \cos \frac{\pi}{4} = \frac{1}{\sqrt{2}}
+\]
+The matrix above becomes much simpler
+\[
+\begin{bmatrix}  \ \ 0 & -1  \\  -1 &\ \  0  \end{bmatrix}
+\]
+We can see that this is correct for reflection across y = -x by considering what it does to the unit vectors 1,0 and 0,1
+\[
+\begin{bmatrix}  \ \ 0 & -1  \\  -1 &\ \  0  \end{bmatrix}
+\begin{bmatrix}   1   \\  0  \end{bmatrix} = \begin{bmatrix}  \ \ \  0   \\ \ \   -1  \end{bmatrix}
+\]
+\[
+\begin{bmatrix}  \ \ 0 & -1  \\  -1 &\ \  0  \end{bmatrix}
+\begin{bmatrix}  0   \\  1  \end{bmatrix} = \begin{bmatrix}  \   -1   \\ \ \  0  \end{bmatrix}
+\]
+Having worked our way through this, there is another way to do reflection across an arbitrary axis that is perhaps a little easier.  We form the projection of vector v on the vector r corresponding to the axis in question.
+\[
+\mathbf{p} = \frac{v \cdot r }{ r \cdot r}  \ \ \mathbf{r}
+\]
+and subtract the result from $\mathbf{v}$.  Switch signs on this, and then add it back to the projection.  
+
+To use the same example as before, for $y = -x$, we have $r = \ <1,-1>$.  Considering the unit vector $\hat{i}= \ <1,0>$, we have $1/2$ for the ratio of dot products.
+\[
+\mathbf{p} = \frac{v \cdot r }{ r \cdot r}  \ \ \mathbf{r} = \frac{(1)(1) + (0)(-1)}{(1)(1) + (-1)(-1)} = \frac{1}{2} \ \mathbf{r} 
+\]
+This gives the projection vector $\mathbf{p} = \ <1/2,-1/2>$.
+We must subtract the projection $\mathbf{p}$ from $\hat{i}$, giving 
+\[ \hat{i} - p = \ <1/2, 1/2> \]
+Switch signs on this term (to do the actual reflection) and add it back to $\mathbf{p}$
+\[ <-1/2, -1/2> + <1/2,-1/2> \ = <0, -1> \]
+The reflection of the unit vector $\hat{i}$ across the axis $y = -x$ gives the vector $-\hat{j}$, as we had before.
+
+\end{document}  

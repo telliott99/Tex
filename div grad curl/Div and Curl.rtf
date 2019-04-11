@@ -1,0 +1,246 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1038\cocoasubrtf290
+{\fonttbl\f0\fmodern\fcharset0 Courier-Bold;\f1\fmodern\fcharset0 Courier;\f2\fmodern\fcharset0 Courier-Oblique;
+\f3\fnil\fcharset0 AppleSymbols;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww11380\viewh18280\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ri-200\ql\qnatural\pardirnatural
+
+\f0\b\fs32 \cf0 Work and Curl.
+\f1\b0 \
+\
+  Work = \uc0\u8747 \sub c\nosupersub  
+\f0\b F
+\f1\b0  \uc0\u8729  d
+\f0\b r
+\f1\b0  \
+    =  \uc0\u8747 \sub c\nosupersub  
+\f0\b F
+\f1\b0  \uc0\u8729  
+\f0\b T
+\f1\b0  ds \
+    =  \uc0\u8747 \sub c\nosupersub  M dx + N dy\
+\
+
+\f0\b Green's theorem
+\f1\b0 :\
+\
+  \uc0\u8747 \sub c\nosupersub  
+\f0\b F
+\f1\b0  \uc0\u8729  d
+\f0\b r
+\f1\b0  along a 
+\f2\i closed curve
+\f1\i0 \
+    = \uc0\u8747 \sub  \nosupersub \uc0\u8747 \sub R \nosupersub curl 
+\f0\b F
+\f1\b0  dA\
+\
+where the curl of 
+\f0\b F
+\f1\b0  is defined as\
+\
+  N\sub x\nosupersub  - M\sub y\nosupersub \
+\
+  \uc0\u8747 \sub c\nosupersub  
+\f0\b F
+\f1\b0  \uc0\u8729  d
+\f0\b r
+\f1\b0  along a 
+\f2\i closed curve
+\f1\i0 \
+    = \uc0\u8747 \sub  \nosupersub \uc0\u8747 \sub R \nosupersub N\sub x\nosupersub  dx - M\sub y\nosupersub  dy\
+\
+These are all equivalent statements:\
+\
+  
+\f0\b F
+\f1\b0  is a gradient of some potential f\
+  \uc0\u8747 \sub c\nosupersub  
+\f0\b F
+\f1\b0  \uc0\u8729  d
+\f0\b r
+\f1\b0  = f(P1) - f(P0)\
+  
+\f0\b F
+\f1\b0  is conservative\
+  curl 
+\f0\b F
+\f1\b0  = 0\
+\
+Auroux hasn't done this yet but for 2D:\
+\
+Curl 
+\f0\b F
+\f1\b0  = \uc0\u8711  X 
+\f0\b F 
+\f1\b0 (symbolically)\
+\
+det    \uc0\u8706 /\u8706 x  \u8706 /\u8706 y\
+		 M     N\
+\
+Curl 
+\f0\b F
+\f1\b0  = N\sub x\nosupersub  - M\sub y\nosupersub \
+\
+There is a second line integral, not along 
+\f0\b T
+\f1\b0 , but along the normal vector to the curve, 
+\f0\b n
+\f1\b0 , \
+where 
+\f0\b n
+\f1\b0  
+\f3 \uc0\u8869 
+\f1  
+\f0\b T
+\f1\b0  and so 
+\f0\b n
+\f1\b0  \uc0\u8729  
+\f0\b T
+\f1\b0  = 0.  This is\
+\
+
+\f0\b Flux
+\f1\b0 .    \
+\
+  \uc0\u8747 \sub c\nosupersub  
+\f0\b F
+\f1\b0  \uc0\u8729  
+\f0\b n
+\f1\b0  ds \
+\
+Interpretation for flux is in terms of a velocity field, it measures how much fluid passes across the curve per unit time.\
+\
+By convention 
+\f0\b n
+\f1\b0  is 90\'b0 cw (right) of 
+\f0\b T
+\f1\b0 .\
+\
+Example:  Suppose F is <x,y>\
+and C is a circle with r = a, \
+going around ccw centered at the origin.\
+\
+
+\f0\b F
+\f1\b0  
+\f3 //
+\f1  
+\f0\b n
+\f1\b0  everywhere along the curve, so \
+
+\f0\b \
+  F
+\f1\b0  \uc0\u8729  
+\f0\b n
+\f1\b0  = |
+\f0\b F
+\f1\b0 | |
+\f0\b n
+\f1\b0 |= |
+\f0\b F
+\f1\b0 |\
+\
+  \uc0\u8747 \sub c\nosupersub  
+\f0\b F
+\f1\b0  \uc0\u8729  
+\f0\b n
+\f1\b0  ds = |
+\f0\b F
+\f1\b0 | length of the curve\
+     = a 2\uc0\u960  a\
+  \
+Example:  Suppose instead F is <-y,x>\
+
+\f0\b F
+\f1\b0  
+\f3 \uc0\u8869 
+\f1  
+\f0\b n
+\f1\b0  everywhere along the curve, so \
+
+\f0\b F
+\f1\b0  \uc0\u8729  
+\f0\b n
+\f1\b0  = 0\
+Flux is 0\
+\
+Usually, though, we do it in coordinates:\
+\
+for Work\
+d
+\f0\b r
+\f1\b0  = 
+\f0\b T
+\f1\b0  ds = <dx,dy>\
+\
+for Flux\
+
+\f0\b n
+\f1\b0  is 
+\f0\b T
+\f1\b0  rotated 90\'b0 to the right\
+
+\f0\b n
+\f1\b0  ds = <dy,-dx>\
+\
+If 
+\f0\b F
+\f1\b0  = <P,Q>\
+\
+  \uc0\u8747 \sub c\nosupersub  
+\f0\b F
+\f1\b0  \uc0\u8729  
+\f0\b n
+\f1\b0  ds\
+    =  \uc0\u8747 \sub c\nosupersub  <P,Q> \uc0\u8729  <dy,-dx> \
+    =  \uc0\u8747 \sub c\nosupersub  -Q dx + P dy \
+\
+
+\f0\b Green's theorem
+\f1\b0  for flux:\
+\
+  \uc0\u8747 \sub c\nosupersub  
+\f0\b F
+\f1\b0  \uc0\u8729  
+\f0\b n
+\f1\b0  ds along a 
+\f2\i closed curve
+\f1\i0 , the flux, \
+    = \uc0\u8747 \sub  \nosupersub \uc0\u8747 \sub R \nosupersub div 
+\f0\b F
+\f1\b0  dA\
+\
+where div is the 
+\f2\i divergence
+\f1\i0  of 
+\f0\b F
+\f1\b0 \
+\
+  if 
+\f0\b F
+\f1\b0  = <P,Q>\
+  div 
+\f0\b F
+\f1\b0  = P\sub x\nosupersub  + Q\sub y\nosupersub \
+  \uc0\u8747 \sub c\nosupersub  
+\f0\b F
+\f1\b0  \uc0\u8729  
+\f0\b n
+\f1\b0  ds \
+    = \uc0\u8747 \sub  \nosupersub \uc0\u8747 \sub R \nosupersub div 
+\f0\b F
+\f1\b0  dA \
+    = \uc0\u8747 \sub  \nosupersub \uc0\u8747 \sub  \nosupersub P\sub x\nosupersub  dx + Q\sub y\nosupersub  dy\
+\
+Auroux hasn't done this yet but for 2D:\
+\
+Div 
+\f0\b F
+\f1\b0  = \uc0\u8711  \u8729  
+\f0\b F
+\f1\b0 \
+   = \uc0\u8706 /\u8706 x M \u8706 /\u8706 y N\
+   = M\sub x\nosupersub  + N\sub y\nosupersub \
+\
+ }

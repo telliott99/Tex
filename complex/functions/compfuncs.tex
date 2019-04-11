@@ -1,0 +1,333 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{parskip}
+\usepackage{color}
+\usepackage{hyperref}
+
+\title{Elementary complex functions}
+%\author{The Author}
+%\section{}
+%\subsection*{}
+\date{}							% Activate to display a given date or no date
+
+\graphicspath{{/Users/telliott_admin/Dropbox/Tex/png/}}
+% \begin{center} \includegraphics [scale=0.4] {gauss3.png} \end{center}
+\begin{document}
+\maketitle
+\Large
+I want to learn a bit about the theory of complex functions.  It is often described as being very beautiful, and I'd like to understand how more difficult integrals (over the real numbers) can be solved.  Marsden gives three examples that he says are either very difficult or impossible if we cannot use complex integrals:
+\[ \int_0^{\infty} \frac{\sin^2 x}{x^2} \ dx = \frac{\pi}{2} \]
+\[ \int_0^{\infty} \frac{x^{\alpha-1}}{1+x} \ dx = \frac{\pi}{\sin \alpha \pi} \]
+\[ \int_0^{2 \pi} \frac{d \theta}{a + \sin \theta} = \frac{2 \pi}{\sqrt{a^2-1}} \]
+
+In this section we'll  look at some simple complex functions---just ignore the contradiction  :)
+
+A complex function is a function which takes a complex number $z$, which is just an \emph{ordered pair} of two real numbers $x$ and $y$, and generates or emits a second complex number $w$.
+
+\[ w = f(z) = u(x,y) + i v(x,y) \]
+
+The real part of $w$ is the output of $u(x,y)$ (as the notation says).  It is a function of both $x$ and $y$, and similarly the imaginary part of $w$ is the output of $v(x,y)$.  These are real functions of two real variables.
+
+We will be especially interested in computing their partial derivatives.  As we'll see later, if (and only if) the derivatives meet these conditions (called the CRE conditions):
+\[ u_x = v_y \]
+\[ u_y = - v_x \]
+then the function in question is \emph{analytic}.  That means it is differentiable, in other words, it's a \emph{good} function and we can do calculus with it.
+
+Furthermore, if a complex function is analytic, then we will see that its derivative is independent of the direction in which change occurs.
+
+So for example if we change a little bit in the $x$ direction, we get:
+\[ f'(z) = u_x + iv_x  \]
+
+For example, suppose
+\[ f(z) = z^2 \]
+\[ = x^2 - y^2 + 2ixy \]
+\[ f'(z) = u_x + iv_x \]
+\[ = 2x + 2iy = 2z \]
+which certainly looks familiar.
+
+\subsection*{polynomials}
+There are a few functions that are important and not analytic.  These can generally be seen to involve the complex conjugate:
+\[ |z|^2 = zz* \]
+
+For functions that have a derivative everywhere (excepting points where the function may vanish, like the origin for $1/x$), most of the usual rules of calculus apply
+\[ \frac{d}{dz} c = 0, \ \ \  c = \text{constant} \]
+\[ \frac{d}{dz} z = 1 \]
+\[ \frac{d}{dz} z^n = nz^{n-1}, \ \ \ n \ne 0 \]
+\[ (f + g)' = f' + g' \]
+\[ (fg)' = f' g + f g' \]
+\[ (\frac{f}{g})' = \frac{f' g - f g'}{g^2} \]
+
+\subsection*{exponential}
+First of all, write
+\[ e^z = e^{x + iy} \]
+\[ = e^x e^{iy} \]
+Reversing Euler:
+\[ = e^x (\cos y + i \sin y) \]
+\[ = e^x \cos y + i e^x \sin y \]
+So the real part of $e^z$ is 
+\[ u(x,y) = e^x \cos y \]
+\[ u_x = e^x \cos y \]
+\[ u_y = - e^x \sin y \]
+and the imaginary part is
+\[ v(x,y) = e^x \sin y \]
+\[ v_x = e^x \sin y \]
+\[ v_y = e^x \cos y \]
+Hence
+\[ u_x = v_y \]
+\[ u_y = - v_x \]
+The CRE conditions are satisfied and the complex exponential $e^z$ is analytic.  (Which, according to Shankar, we could have predicted, since it depends only on $z$ and not on $z*$).
+
+Notice also that (evaluating the derivative along $\Delta y =0$:
+\[ f'(z) = u_x + iv_x  \]
+\[ = e^x \cos y + i e^x \sin y = z \]
+The exponential is its own derivative.  (Which is good because we want our definitions for the complex functions to give the standard results when $z$ has only a real part, i.e. when $y=0$.
+
+Now, once more we recall Euler's formula (for a real variable $\theta$ or $x$):
+\[ e^{i \theta} = \cos \theta + i \sin \theta \]
+\[ e^{i x} = \cos x + i \sin x \]
+Substitute $-x$ for $x$:
+\[ e^{-i x} = \cos -x + i \sin -x \]
+\[ = \cos x - i \sin x \]
+By addition and subtraction we obtain:
+\[ 2 \cos x = e^{i x} + e^{-i x} \]
+\[ \cos x = \frac{e^{i x} + e^{-i x}}{2} \]
+and
+\[ 2i \sin x = e^{i x} - e^{-i x} \]
+\[ \sin x = \frac{e^{i x} - e^{-i x}}{2i} \]
+
+We will also need the hyperbolic sine and cosine later so let's just remind ourselves:
+\[ 2 \cosh x = e^x + e^{-x} \]
+\[ 2 \sinh x = e^x - e^{-x} \]
+
+The derivative of the complex exponential is as we would hope and expect:
+\[ \frac{d}{dz} e^z = e^z \]
+
+This can be proved by using a Taylor series.  Shankar says to define $e^z$ in the same way as $e^x$.  That is:
+\[ e^x = \sum_0^{\infty} \frac{x^n}{n!} \]
+which we know converges because
+\[ |x| < R = \lim_{n \rightarrow \infty} \frac{|a_n|}{|a_{n+1}|} \]
+where $a_n = 1/n!$.  So
+\[ e^z = \sum_0^{\infty} \frac{z^n}{n!} \]
+and again we see that 
+\[ \frac{d}{dz} \ e^z = e^z \]
+differentiating the series term by term.
+
+The complex exponential 
+\[ e^z = e^x e^{iy} \]
+has some properties that are not shared with the real exponential.  As we saw before, the angle $\theta + 2 \pi = \theta$ (and $2 \pi = 0$), so any number is really a family of numbers with different $\theta + 2 \pi k$ for integer $k$.
+
+In particular, $e^z$ is periodic with a period of $2 \pi i$.  Additionally, it is possible for $e^z$ to be negative.  Consider that it is possible that
+\[ e^z = -1 \]
+as follows.  Let $z = 0 + i\pi$.  Then 
+\[ e^x = e^0 = 1 \]
+and
+\[ e^{iy} = e^{i\pi} = -1 \]
+So
+\[ e^z = e^x e^{iy} = e^x(\cos y + i \sin y) = 1 (-1) = -1 \]
+
+\subsection*{derivation of the Cauchy-Riemann equations}
+Part of what is going on is that calculus of complex functions is not like calculus of real functions.  We're used to thinking of the derivative as a slope, but for complex functions that is no simple geometric interpretation.  The derivative maps $z$ to a new complex number.  
+
+For a complex function $f(z)$ which produces a complex number $w = f(z)$, we may approach $z$ from any one of an infinite number of directions in the Argand plane.  The CRE are necessary and sufficient conditions such that the derivative is the same for any direction of approach.
+
+Here are two quick proofs in the forward direction (differentiability implies the CRE):
+
+Write the basic definition of the derivative:
+\[ f'(z_0) = \lim_{\Delta z \rightarrow 0} \frac{f(z + z_0) - f(z)}{\Delta z} \]
+\[ = \frac{dw}{dz} =   \lim_{\Delta z \rightarrow 0} \frac{\Delta w}{\Delta z} \]
+\[ =  \lim_{\Delta z \rightarrow 0} \frac{\Delta u + i \Delta v}{\Delta x + i \Delta y} \]
+Now, our constraint is that the derivative must be the same for any direction of approach.  Pick two convenient directions:  with $\Delta y = 0$ or with $\Delta x = 0$.  For the first one, we have
+\[ f'(z_0) =  \lim_{\Delta x \rightarrow 0} \frac{\Delta u + i \Delta v}{\Delta x} =  \lim_{\Delta x \rightarrow 0} \frac{\Delta u}{\Delta x} + i \frac{\Delta v}{\Delta x} \]
+Notice that $\Delta z \rightarrow 0$ becomes $\Delta x \rightarrow 0$ and the limit is just equal to 
+\[ f'(z_0) = u_x + i v_x \]
+This is a standard limit for two real functions of two real variables.
+
+For the first second approach, with $\Delta x = 0$, we have
+\[ f'(z_0) =  \lim_{\Delta y \rightarrow 0} \frac{\Delta u + i \Delta v}{i \Delta y} = \lim_{\Delta y \rightarrow 0} \frac{\Delta u}{i \Delta y} +  \frac{i \Delta v}{i \Delta y} \]
+Here, the $i$ terms cancel on the right (and recall that $1/i = -i$) so we have:
+\[ f'(z) = -i u_y + v_y \]
+Equating the two results we have that 
+\[ f'(z) = u_x + i v_x = v_y - i u_y \]
+Both the real and the imaginary parts must be equal:
+\[ u_x = v_y \]
+\[ v_x = - u_y \]
+These are the CRE.
+
+\subsection*{alternative derivation}
+Write:
+\[ z = x + iy \]
+Clearly,
+\[ \frac{\partial z}{\partial x} = 1, \ \ \ \frac{\partial z}{\partial y} = i \]
+Now,
+\[ w = f(z) = u(x,y) + i \ v(x,y) \]
+where $u$ and $v$ are real functions over $\mathbb{R}^2$.
+
+Recalling the chain rule
+\[ w = u(x,y) + i \ v(x,y) \]
+\[ \frac{\partial w}{\partial x} = \frac{dw}{dz} \ \frac{\partial z}{\partial x} \]
+\[ =  \frac{dw}{dz} \]
+(by the result immediately above).
+Similarly
+\[ \frac{\partial w}{\partial y} = \frac{dw}{dz} \ \frac{\partial z}{\partial y} \]
+\[ =  i \frac{dw}{dz} \]
+Hence we can equate the two expressions 
+\[ \frac{dw}{dz} = \frac{\partial w}{\partial x} = -i \frac{\partial w}{\partial y} \]
+
+Now if we actually compute the partials and plug them in to the last equation, we obtain:
+\[ \frac{\partial w}{\partial x} = u_x + i v_x \]
+\[ \frac{\partial w}{\partial y} = u_y + i v_y \]
+\[ u_x + i v_x = -i (u_y + i v_y) = v_y - i u_y \]
+Both the real and the imaginary parts must be equal:
+\[ u_x = v_y \]
+\[ v_x = - u_y \]
+These (again) are the CRE.
+
+The result above
+\[ \frac{df}{dz} = \frac{\partial f}{\partial x} = - i \frac{\partial f}{\partial y} \]
+is just saying that the derivative $df/dz$ can be computed with constant $y$, or constant $x$ or anything in between.  Take the first direction, constant $y$:
+\[ \frac{df}{dz} = \frac{\partial f}{\partial x} = u_x + i v_x \]
+
+From above
+\[ u_x = e^x \cos y \]
+\[ v_x = e^x \sin y \]
+\[ \frac{df}{dz} = \frac{\partial f}{\partial x} =  e^x \cos y + i  e^x \sin y = z \]
+Just like for $x \in \mathbb{R}$, where
+\[ \frac{d}{dx} \ e^x = e^x \]
+For a $z \in \mathbb{C}$
+\[ \frac{d}{dz} \ e^z = e^z \]
+
+\subsection*{polar coordinates}
+
+An alternative form of the CRE holds in polar coordinates:
+\[ r u_r = v_{\theta} \]
+\[ u_{\theta} = - r v_r \]
+
+One way to get this is to write
+\[ \frac{\partial u}{\partial r} =  \frac{\partial u}{\partial x}\frac{\partial x}{\partial r} + \frac{\partial u}{\partial y}\frac{\partial y}{\partial r} \]
+and since 
+\[ z = x + iy \]
+\[= r \cos \theta + r \sin \theta \]
+then using the equation with the partials and computing $x_r$, $y_r$ etc.:
+\[ u_r = u_x x_r + u_y y_r \]
+\[ u_r = u_x \cos \theta + u_y \sin \theta \]
+while
+\[ u_{\theta} = u_x x_{\theta} + u_y y_{\theta} \]
+\[ u_{\theta} = -u_x \ r \sin \theta + u_y \  r \cos \theta \]
+similarly
+\[ \frac{\partial v}{\partial \theta} =  \frac{\partial v}{\partial x}\frac{\partial x}{\partial \theta} + \frac{\partial v}{\partial y}\frac{\partial y}{\partial \theta} \]
+\[ v_{\theta} = -v_x \ r \sin \theta + v_y \ r \cos \theta \]
+while
+\[ v_r = v_x x_r + v_y y_r \]
+\[ v_r = v_x \cos \theta + v_y \sin \theta \]
+
+Substituting from the cartesian CRE, rewrite the last equation as
+\[ v_r = -u_y \cos \theta + u_x \sin \theta \]
+multiply by $r$
+\[ r v_r = -u_y \ r \cos \theta + u_x \ r \sin \theta = - u_\theta  \]
+This is the second of the polar form CRE as given above. Similarly
+\[ u_r = u_x \cos \theta + u_y \sin \theta \]
+substituting
+\[ u_r = v_y \cos \theta + - v_x \sin \theta \]
+\[ r u_r = v_y \ r \cos \theta + - v_x \ r \sin \theta = v_{\theta} \]
+which is the other one.
+
+\subsection*{trig functions}
+
+We can define the complex counterparts of the real trigonometric functions similarly to their real equivalents by saying (again) that Euler's formula is also good for a complex number $z$.  This leads to:
+\[ 2 \cos z = e^{iz} + e^{-iz} \]
+and
+\[ 2i \sin z = e^{iz} - e^{-iz} \]
+
+On the other hand, Shankar defines them using series in the same way as the real versions:
+\[ \sin z = \sum_0^{\infty} (-1)^n \frac{z^{2n+1}}{(2n +1)!} \]
+\[ \cos z = \sum_0^{\infty} (-1)^n \frac{z^{2n}}{(2n)!} \]
+\[ \sinh z = \sum_0^{\infty} \frac{z^{2n+1}}{(2n +1)!} \]
+\[ \cosh z = \sum_0^{\infty} \frac{z^{2n}}{(2n)!} \]
+and showing that they converge for any $z$.
+
+Now, going back to the exponential form:
+\[ \cos z = \frac{e^{iz} + e^{-iz}}{2} \]
+ if we consider $z = iy$ then
+\[ \cos iy = \frac{e^{i^2y} + e^{-i^2y}}{2} \]
+\[ = \frac{e^{-y} + e^{y}}{2} \]
+But this is just $\cosh y$.  That is:
+\[ \cos iy = \cosh y \]
+Similarly
+\[ 2i \sin iy = e^{i^2y} - e^{-i^2y} \]
+\[ = e^{-y} - e^{y} \]
+\[ = - (e^y - e^{-y}) \]
+\[ = -2 \sinh y \]
+Hence 
+\[ i \sin i y = -\sinh y \]
+\[ \sin i y =  i \sinh y \]
+
+We proved above that the complex exponential is analytic.  There is a theorem that says that if we add two analytic functions together, the result is also analytic.  Hence, the trigonometric functions are analytic.
+
+But, just to check this result, let's write them out in terms of $u$ and $v$ and see whether the partial derivatives follow the CRE conditions:
+
+\[ \sin z = \sin(x + iy) \]
+By the addition formula
+\[ = \sin x \cos iy + \sin iy \cos x \]
+where $x$ and $y$ are real.
+
+Recalling the result for the hyperbolic sine and cosine from above
+\[ \cos iy = \cosh y \]
+\[ \sin i y =  i \sinh y \]
+then
+\[ \sin z = \sin x \cos iy + \sin iy \cos x \]
+\[ = \sin x \cosh y + i \cos x \sinh y \]
+Taking the derivatives:
+\[ u(x,y) =  \sin x \cosh y \]
+\[ u_x = \cos x \cosh y \]
+\[ u_y = \sin x \sinh y \]
+and
+\[ v(x,y) = \cos x \sinh y \]
+\[ v_x = - \sin x \sinh y \]
+\[ v_y = \cos x \cosh y \]
+So we see that
+\[ u_x = v_y \]
+\[ u_y = -v_x \]
+
+The CRE are satisfied and therefore, the complex sine is analytic.
+
+Similarly we have that 
+\[ \cos z = \cos (x + iy) \]
+\[ = \cos x \cos iy - \sin x \sin iy \]
+\[ = \cos x \cosh y - i \sin x \sinh y \]
+So
+\[ u(x,y) =  \cos x \cosh y \]
+\[ u_x = - \sin x \cosh y \]
+\[ u_y = \cos x \sinh y \]
+and
+\[ v(x,y) = -\sin x \sinh y \]
+\[ v_x = -\cos x \sinh y \]
+\[ v_y = -\sin x \cosh y \]
+So we see that
+\[ u_x = v_y \]
+\[ u_y = v_x \]
+Thus the complex cosine is also analytic.
+
+We can also prove that:
+
+\[ \sin^2 z + \cos^2 z = 1 \]
+The easy way is
+\[ \cos^2 z + \sin^2 z = \ [ \frac{e^{iz} + e^{-iz}}{2} \ ]^2 +  [ \frac{e^{iz} - e^{-iz}}{2i} \ ]^2 \ ] \]
+\[= \frac{e^{2iz} + 2 + e^{-2iz} - e^{2iz} + 2 - e^{-2iz} }{4} \]
+\[ = 1 \]
+
+\subsection*{logarithm}
+
+Nearly everything works for $z$ similarly to the real numbers, except for the issue of multiple phase angles.  For example
+\[ \ln z = \ln r e^{i\theta} = \ln r + i \theta \]
+but we may have any multiple of $2 k \pi$ added to $\theta$:
+\[ \ln z = \ln r e^{i\theta + 2k\pi} = \ln r + i (\theta + 2k\pi), \ \ \ k \in \{ 0, 1, 2,  \dots \} \]
+The value with $k=0$ is called the \textbf{principal value} of $\ln z$, and it is taken from $-\pi \le \theta \le \pi$.
+
+\end{document}  

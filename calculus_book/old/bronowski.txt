@@ -1,0 +1,30 @@
+When I was in high school, there was a wonderful series about science and knowledge filmed by the BBC that was conceived, written and narrated by Jacob Bronowski.  It aired in the U.S. the fall of 1974, just after Dr. Bronowski's untimely death.
+
+Below is a screenshot from the fifth episode, \emph{The Music of the Spheres}.
+\begin{center} \includegraphics [scale=0.25] {Bronowski1.png} \end{center}
+
+The narrator has just finished explaining that the fundamental principle of our world is the right-angle relationship between the vertical defined by gravity, and the horizontal, defined by the horizon. 
+
+ It is natural to look for a similar structure elsewhere.  It had been known at least since 2000 B.C. that a 3-4-5 triangle has a right angle, and this was widely used by builders, surveyors and others.  The Babylonians knew a number of other such triangles, including $3367-3456-4825$, which indicates a systematic method of finding them.
+
+The Greeks knew that for odd $m$ the triple
+\[ m, \frac{m^2-1}{2}, \frac{m^2 +1}{2} \]
+have the Pythagorean "triple" property (e.g. 5-12-13, 7-24-25, and so on ).
+
+Euclid had this formula for any two integers $m > n$
+\[ a = m^2 - n^2 \ \ \ \ b = 2mn \ \ \ \ c = m^2 + n^2 \]
+
+What was not known is why these numbers work.  Not only are there non Pythagorean integer triples, but also non-integer triples like $1-1-\sqrt{2}$ and $1-2-\sqrt{3}$.
+
+We observe in the screenshot that the four identical right triangles placed at right angles with respect to each other form the square of the hypotenuse, except for a missing section in the center (above).  That is, the four triangles plus the small square are equal to the square of the hypotenuse.
+
+We also see that the side of the small green square tile is the difference between the long and the short side of the triangle.
+
+Now, rearrange the tiles:
+\begin{center} \includegraphics [scale=0.25] {Bronowski2.png} \end{center}
+Bronowski says "and now we \emph{immediately} see" that ...
+
+I added a line to make things a bit clearer.
+\begin{center} \includegraphics [scale=0.25] {Bronowski3.png} \end{center}
+
+I leave it to you to work out how the section to the left of the red line is the square on the long side of the triangle, and the section on the right of the red line is the square on the short side.  After all, this is a "proof without words."

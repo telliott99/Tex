@@ -1,0 +1,58 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb}
+
+\title{Surface area of a solid of revolution}
+\begin{document}
+\maketitle
+Suppose we revolve a function y = f(x) around the x-axis.  To compute the surface area of the solid, we imagine slicing it into disks in the usual way, moving along the x-axis in increments dx.  Then we need to find the surface area of the disk.  The elements of surface area ds are given by:
+\[ 
+ds = \sqrt{1 + (\frac{dy}{dx})^2} \ dx
+\]
+After setting up ds, we will integrate
+\[ 
+\int 2 \pi y \ ds
+\]
+As an example, consider the circle with unit radius centered at the origin.
+\[ 
+x^2 + y^2 = 1;  \ \  y = f(x) = \sqrt{1 - x^2}
+\]
+Using implicit differentiation, it is easy to show that
+\[ 
+ 2x \ dx + 2y \ dy = 0
+\]
+\[ 
+ \frac{dy}{dx} = -x/y
+\]
+Then
+\[ 
+ds = \sqrt{1 + \frac{x^2}{y^2}} \ dx =  \sqrt{1 + \frac{x^2}{1 - x^2}} \ dx
+\]
+\[ 
+S = 2 \pi \int   \sqrt{1-x^2} \  \sqrt{1 + \frac{x^2}{1 - x^2}} \ dx = 2 \pi \int   \sqrt{1-x^2 + x^2} \ dx = 2 \pi \int dx = 2 \pi x
+\]
+evaluate from x = -1 to x = 1, giving:
+\[ 
+S = 4 \pi
+\]
+If we want the more general solution for radius R, then everything is the same except the limits of integration are -R and R, and the first term inside the integral is
+\[ 
+\sqrt{R^2 - x^2}
+\]
+So the second term in the integral simplifies to:
+\[ 
+S = 2 \pi \int   \sqrt{R^2-x^2} \  \sqrt{1 + \frac{x^2}{R^2 - x^2}} \ dx \]
+\[ = 2 \pi \int   \sqrt{R^2-x^2 + x^2} \ dx = 2 \pi \int R dx = 2 \pi R x
+\]
+
+evaluate from x = -R to x = R, giving $2R$ times $2 \pi R$ 
+\[ 
+S = 4 \pi R^2
+\]
+
+\end{document}  

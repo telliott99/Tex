@@ -1,0 +1,258 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1038\cocoasubrtf290
+{\fonttbl\f0\fmodern\fcharset0 Courier;\f1\fmodern\fcharset0 Courier-Bold;\f2\fmodern\fcharset0 Courier-Oblique;
+\f3\fnil\fcharset0 LucidaGrande;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww14300\viewh18700\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ri-360\ql\qnatural\pardirnatural
+
+\f0\fs32 \cf0 Integrating to find 
+\f1\b volume
+\f0\b0 \
+\
+Example 1:  The volume contained between a parabola and a plane, calculated as a 
+\f2\i surface of revolution
+\f0\i0 .\
+\
+The simplest example:  \
+  y = x\super 2\nosupersub      rotated around the x-axis\
+\
+We will slice horizontally (integrate over y).\
+The area of each slice is \
+\
+  A = \uc0\u960 x\super 2\nosupersub  = \uc0\u960 y\
+  \uc0\u8747  A dy = \u960 /2 y\super 2\nosupersub \
+\
+  So, from 0 to 1 we have V = \uc0\u960 /2\
+\
+-------------\
+\
+Alternatively, we could view the function as\
+\
+  y = \uc0\u8730 x\
+\
+Now we slice vertically (integrate over x).\
+The area of each slice is \
+\
+  A = \uc0\u960 y\super 2\nosupersub  = \uc0\u960 x\
+  \uc0\u8747  A dx = \u960 /2 x\super 2\nosupersub \
+\
+  As before, from 0 to 1 we have V = \uc0\u960 /2\
+\
+-------------\
+\
+We can do the same problem in a different way, by computing a double integral to find the volume underneath f(x,y):\
+\
+  z = f(x,y) = 1 - x\super 2\nosupersub  - y\super 2\nosupersub \
+\
+This is the same solid.  \
+In the xz plane it is f(x, y = 0) = 1 - x\super 2\nosupersub \
+\
+The parabola opens down with a maximum at z = 1.\
+The volume we want is from z = 0 to 1.\
+\
+This is an obvious candidate for polar coordinates, but let's do it using x and y.\
+\
+First, we need to determine the limits of integration.  The maximum extent of x and y is in the plane z = 0 so that \
+\
+  x\super 2\nosupersub  + y\super 2\nosupersub  = 1\
+\
+Choose dy for the inner integral, fixing x we have:\
+\
+  y = -/+ \uc0\u8730 (1-x\super 2\nosupersub )\
+  the min and max for x are x = -1 and x = 1\
+\
+So, over those limits we have:\
+\
+  \uc0\u8747  \u8747  (1 - x\super 2\nosupersub  - y\super 2\nosupersub ) dy dx\
+\
+The inner integral is:\
+\
+  \uc0\u8747  (1 - x\super 2\nosupersub  - y\super 2\nosupersub ) dy =\
+\
+  = [y - yx\super 2\nosupersub  - 
+\f3 \uc0\u8531 
+\f0  y\super 3\nosupersub ]\
+\
+  = [y (1-x\super 2\nosupersub ) - 
+\f3 \uc0\u8531 
+\f0  y\super 3\nosupersub ] from -\uc0\u8730 (1-x\super 2\nosupersub ) to \uc0\u8730 (1-x\super 2\nosupersub )\
+\
+  = 2 (1-x\super 2\nosupersub )\super 3/2\nosupersub  - 2 
+\f3 \uc0\u8531 
+\f0  (1-x\super 2\nosupersub )\super 3/2\nosupersub \
+\
+  = 4/3 (1-x\super 2\nosupersub )\super 3/2\nosupersub \
+\
+The outer integral cries out for a trig substitution: \
+\
+x = sin
+\f3 \uc0\u952 
+\f0 ;  \uc0\u8730 (1-x\super 2\nosupersub ) = cos
+\f3 \uc0\u952 
+\f0 ;  dx = cos
+\f3 \uc0\u952 
+\f0  d
+\f3 \uc0\u952 
+\f0 \
+\
+  \uc0\u8747  4/3 (1-x\super 2\nosupersub )\super 3/2\nosupersub  dx\
+\
+  = 4/3 \uc0\u8747  cos\super 3
+\f3 \nosupersub \uc0\u952 
+\f0  cos
+\f3 \uc0\u952 
+\f0  d
+\f3 \uc0\u952 
+\f0 \
+\
+The dreaded cos\super 4
+\f3 \nosupersub \uc0\u952 
+\f0 !  Its integral is:\
+\
+  \'bccos\super 3
+\f3 \nosupersub \uc0\u952 
+\f0  sin
+\f3 \uc0\u952 
+\f0  + \'be[\'bd(
+\f3 \uc0\u952 
+\f0  + sin
+\f3 \uc0\u952 
+\f0  cos
+\f3 \uc0\u952 
+\f0 )]\
+\
+This looks ugly but almost all of it goes away.  The limits of integration are\
+\
+  x = -1 to x = 1\
+   = -\uc0\u960 /2 to = \u960 /2\
+\
+The cos(\uc0\u960 /2) =  cos(-\u960 /2) = 0 so we get:\
+\
+  4/3 [ \'be[\'bd(
+\f3 \uc0\u952 
+\f0 )] ] between -\uc0\u960 /2 and = \u960 /2\
+  \uc0\u960 /4 - - \u960 /4\
+  = \uc0\u960 /2\
+\
+-------------\
+\
+Can we use polar coordinates the whole way and avoid some of the above complexity?\
+\
+  z = f(x,y) = 1 - x\super 2\nosupersub  - y\super 2\nosupersub \
+\
+The problem is that z is easy in terms of x and y, not so easy in terms of r and 
+\f3 \uc0\u952 
+\f0 . \
+\
+x = sin
+\f3 \uc0\u952 
+\f0 ;  y = cos
+\f3 \uc0\u952 
+\f0 ;  \
+dx = cos
+\f3 \uc0\u952 
+\f0  d
+\f3 \uc0\u952 
+\f0 ;  dx = -sin
+\f3 \uc0\u952 
+\f0  d
+\f3 \uc0\u952 
+\f0 \
+\
+  z = 1 - x\super 2\nosupersub  - y\super 2\nosupersub \
+\
+????\
+\
+==============================================\
+\
+Triple integrals for volume\
+\
+Example:  region between two parabolas.\
+\
+  z = x2 + y2 \
+  z = 4 - x2 + y2\
+\
+Volume = \uc0\u8747  \u8747  \u8747  dV\
+\
+  = \uc0\u8747  \u8747  \u8747  dz dy dx\
+\
+what is the range for z?  \
+top z = second curve = 4 - x2 + y2\
+bottom z = second curve = x2 + y2\
+\
+what about x and y?\
+wherever z bottom < z top!\
+\
+ x2 + y2 < 4 - x2 + y2\
+ x2 + y2 < 2\
+\
+for a fixed value of x, what are the bounds\
+for y?\
+\
+ bounds y = -/+ \uc0\u8730 (2 - x2)\
+ x ranges from -/+ \uc0\u8730 2\
+\
+The inner integral is: \
+\
+  \uc0\u8747  dz = z evaluated between top & bottom\
+  = 4 - 2x2 - 2y2\
+\
+The middle integral is ugly!  \
+Switch to polar coordinates!\
+\
+  = \uc0\u8747  \u8747  \u8747  dz r dr d
+\f3 \uc0\u952 
+\f0 \
+\
+Now the inner integral is evaluated between\
+\
+x2 + y2 = r2 and 4 - x2 - y2 = 4 - r2\
+\
+The middle integral is\
+\
+  \uc0\u8747  \u8747  4 - 2r2  r dr d
+\f3 \uc0\u952 
+\f0 \
+\
+What are the bounds for r?\
+The upper (or outer) bound is \
+\
+  x2 + y2 = 2\
+  r2 = 2\
+  r = \uc0\u8730 2\
+\
+Middle integral is\
+  \uc0\u8747  4 - 2r2  r dr\
+  = [ 2r2 - 4/3 r3 ] between 0 and \uc0\u8730 2\
+  = 4 - 4/3 2 \uc0\u8730 2 = 4 - 8/3 \u8730 2\
+\
+Outer integral is\
+\
+  = 8 \uc0\u960  - 16/3 \u8730 2 \u960 \
+\
+\
+\
+\
+\
+Example:  a unit sphere at the origin.\
+\
+  x2 + y2 + z2 = 1\
+\
+Volume of the sphere above z = 1/\uc0\u8730 2\
+\
+  \uc0\u8747  \u8747  \u8747  dx dy dz\
+\
+what is the range for z?  \
+  1/\uc0\u8730 2 to surface z = 1\
+\
+what about x and y?\
+what is the "shadow" of x and y? \
+(at z = 1/\uc0\u8730 2)\
+\
+  z2 = \'bd\
+  \'bd = x2 + y2 \
+\
+ x min = 1/\uc0\u8730 2, x max = 1/\u8730 2\
+ y(x) = \uc0\u8730 (\'bd - x2)\
+\
+}

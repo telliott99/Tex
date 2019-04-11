@@ -1,0 +1,62 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb}
+
+\title{Chain Rule and Quotient Rule}
+%\author{The Author}
+\date{}							% Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+%\section{}
+%\subsection{}
+\large
+Using $f'(x)$ is sometimes not as nice as the $\frac{dy}{dx}$ differential notation, because the latter allows us to do algebraic manipulation of the differentials.  If $y=x^2$ (for example), we write
+\[ y = f(x) = x^2 \]
+Then
+\[ \frac{dy}{dx} = f'(x) = 2x \]
+It is perfectly OK to move the $dx$ to the other side
+\[ \frac{dy}{dx} dx = dy = 2x \ dx \]
+Imagine that $x$ is some function of another variable, like time $t$.  Then $y$ will also be a function of $t$ (through its dependence on $x$), and it will also be true that
+\[ \frac{dy}{dt} = \frac{dy}{dx} \ \frac{dx}{dt} \]
+To convince yourself that this is true, just cancel the $dt$ on top and bottom.
+So if we divide the previous equation on both sides by $dt$, we see that the result makes sense:
+\[ \frac{dy}{dt} = (2x) \ \frac{dx}{dt} \]
+because
+\[ \frac{dy}{dx} = 2x \]
+Suppose we are given $y = f(x)$, and $x = f(t)$ and asked to calculate $\frac{dy}{dt}$.  The way we get it is:
+\[ \frac{dy}{dt} = \frac{dy}{dx} \ \frac{dx}{dt} \]
+Here is an example
+\[ y = x^2, \ \ \ \ x = 3t, \]
+\[ \frac{dy}{dx} = 2x, \ \ \ \ \frac{dx}{dt} = 3, \ \ \ \ \frac{dy}{dt} = \frac{dy}{dx}\ \frac{dx}{dt} = 6x = 18t \]
+which we can easily confirm by just substituting into $y=x^2$
+\[ y = x^2 = (3t)^2 = 9t^2, \ \ \ \ \frac{dy}{dt} = 18t \]
+This is what's called the chain rule.  Another example will give a glimpse of how useful it can be.  Suppose we are given
+\[ y = \sqrt{(1+x^2)}  \]
+What is $dy/dx$?
+We make a "substitution"
+\[ u = 1 + x^2, \ \ \ \  \frac{du}{dx} = 2x \]
+\[ y = \sqrt{u}, \ \ \ \ \frac{dy}{du} = \frac{1}{2\sqrt{u}}  \]
+\[ \frac{dy}{dx} = \frac{dy}{du} \ \frac{du}{dx} = \frac{1}{2\sqrt{u}}  2x = \frac{x}{\sqrt{(1+x^2)}} \]
+
+There is one more rule to cover, and that is the quotient rule.  If we have 
+\[ \frac{f(x)}{g(x)} \]
+or more simply
+\[ \frac{u}{v} \]
+what is 
+\[ \frac{d}{dx} (\frac{u}{v}) = ? \]
+We use the known value for $\frac{d}{dx} v^{-1}$, the product rule and the chain rule
+\[ \frac{d}{dx} (\frac{u}{v}) = \frac{du}{dx} \ (\frac{1}{v} )  +   \frac{d}{dx} (\frac{1}{v}) \ u = \frac{u'}{v} - \frac{v'}{v^2} \ u = \frac{u'v}{v^2} - \frac{v'u}{v^2} = \frac{u'v - v'u}{v^2}\]
+We check by using it on a simple known example
+\[ y = \frac{1}{x}  \]
+\[ \frac{dy}{dx} = \frac{ (0)(x) - (1)(1)}{x^2} = -\frac{1}{x^2} \]
+Perhaps that was too easy.  How about
+\[ y = \frac{x}{x^2}   \]
+\[ \frac{dy}{dx} = \frac{ (1)(x^2) - (2x)(x)}{x^4} = -\frac{x^2}{x^4} = -\frac{1}{x^2} \]
+
+\end{document}  

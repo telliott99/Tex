@@ -1,0 +1,82 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\title{Rotation of Quadratics}
+%\author{The Author}
+\date{}							% Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+%\section{}
+%\subsection{}
+\large
+In algebra you studied the quadratic equations for circle, ellipse, parabola and hyperbola.
+\[x^2 + y^2 = r^2 \]
+\[x^2/a^2 + y^2/b^2 = 1 \]
+\[y = ax^2 \]
+\[x^2/a^2 - y^2/b^2 = 1 \]
+recognizing that any of these can become more complex by translation of the origin to $(x,y)$ = ($h,k$).  So for example
+\[(y-k) = a(x-h)^2 \]
+You may know that this form can be reached from something like
+\[ ax^2 + bx + c = y \]
+by "completing the square."
+
+However, you might have realized there has to be more to it than this.  How does the equation $xy=1$ fit into this system?  It's a hyperbola, but there is no $x^2$ or $y^2$ and there is that funny looking $xy$ business.  What about a rotated ellipse or parabola (forget the circle).
+
+The formulas for counter-clockwise rotation are
+\[ x = u \cos \theta - v \sin \theta \]
+\[ y = u \sin \theta + v \cos \theta \]
+That is $(x,y)$ is rotated counter-clockwise with respect to $(v,v)$.
+
+Thus, if $\theta = \frac{\pi}{4}$, then
+\[ x = \frac{1}{\sqrt{2}}u - \frac{1}{\sqrt{2}}v = \frac{1}{\sqrt{2}} (u - v) \]
+\[ y = \frac{1}{\sqrt{2}}u + \frac{1}{\sqrt{2}}v = \frac{1}{\sqrt{2}} (u + v) \]
+
+Let's see what happens to the hyperbola $xy=1$  Notice that we're going to switch directions.  By using these formulas and plugging in for $x,y$, we are going to rotate clockwise from $u,v$.
+\[ \frac{1}{\sqrt{2}} (u - v) \frac{1}{\sqrt{2}} (u + v) \]
+\[ \frac{1}{2} (u^2 - v^2) = 1 \]
+\[ u^2 - v^2 = 2 \]
+
+That looks correct.  At its smallest $v^2=0$ and then $u^2=2$.  For very large $u$ then $\pm u =\pm v$.  These are the asymptotes.
+
+Let's see what happens to the parabola $v=u^2$
+\[ \frac{1}{\sqrt{2}} (-x + y) = \frac{1}{2} (x + y)^2 \]
+\[ -x + y = 2\sqrt{2} (x^2 + 2xy + y^2) \]
+\[ 2\sqrt{2} (x^2 + 2xy + y^2) + x - y = 0 \]
+Rotation can introduce or remove $xy$ terms.
+
+We started with a "conic section" in normal orientation and then rotated through some angle.  That is pretty straightforward, as you can see.  Going backward, taking an equation with mixed up terms and figuring out what angle to rotate through to get it normal-looking, can be more complicated.
+
+In fact, just from the equation it can be difficult to decide what kind of figure you have.  That's what I want to talk about now, the rules you use to recognize what you have.
+
+In the standard form, you will have something like
+\[ Ax^2 + Bxy + Cy^2 + Dx + Ey + F = 0 \]
+
+\noindent The discriminant is $B^2 - 4AC$
+\vspace{2 mm}
+
+\noindent if $< 0$, the equation represents an ellipse;
+\vspace{1 mm}
+
+\noindent if $< 0$ and $A = C$ and $B = 0$, the equation represents a circle
+\vspace{1 mm}
+
+\noindent if $= 0$, the equation represents a parabola;
+\vspace{1 mm}
+
+\noindent if $> 0$, the equation represents a hyperbola;
+\vspace{1 mm}
+
+\noindent if $> 0$ and $A + C = 0$, the equation represents a rectangular hyperbola.
+\vspace{2 mm}
+
+For our parabola above we had $B^2 = 8\sqrt{2}$ and $4AC = 8\sqrt{2}$, which is indeed a parabola.
+
+\end{document}  

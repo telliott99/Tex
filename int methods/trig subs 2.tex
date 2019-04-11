@@ -1,0 +1,139 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{parskip}
+
+\graphicspath{{/Users/telliott_admin/Dropbox/Tex/png/}}
+
+\title{Trig Subs 2}
+%\author{The Author}
+\date{}							% Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+%\section{}
+%\subsection{}
+\Large
+
+There are at least a couple more trig substitutions that are very useful for finding integrals.  One that we saw in looking at Euler's equation was:
+
+\[ \int \frac{1}{\sqrt{1 + z^2}} \ i \ dz = i \ \ln \ (\sqrt{1+z^2} + z) \]
+or generally
+\[ \int \frac{1}{\sqrt{1 + x^2}} \ dx =  \ln \ (\sqrt{1+x^2} + x) \]
+
+Of course, one way to see that this is correct is to differentiate the right-hand side:
+
+\[ \frac{d}{dx} \ \ln \ (\sqrt{1+x^2} + x) \]
+by the chain rule
+\[ = \frac{1}{\sqrt{1+x^2} + x} \ (\frac{x}{\sqrt{1+x^2}} + 1) \]
+We put the second term over a common denominator
+\[ =  \frac{1}{\sqrt{1+x^2} + x} \ (\frac{x + \sqrt{1+x^2}}{\sqrt{1+x^2}}) \]
+And now it's clear!
+\[ = \frac{1}{\sqrt{1+x^2}} \]
+
+The integral is normally written in a completely general way as
+
+\[ \int \frac{1}{x^2 + a^2} \ dx \]
+
+with $a$ a constant.  Our trig substitution is to draw a right-triangle with angle $y$ and side opposite $x$, and side adjacent $a$.  Then the hypotenuse is $\sqrt{x^2 + a^2}$.  We have:
+
+\[ \frac{x}{a} = \tan y \]
+\[ \frac{1}{a} \ dx = \sec^2 y \ dy \]
+
+\[ \frac{a}{\sqrt{x^2+a^2}} = \cos y \]
+
+So with the substitution the integral becomes
+\[ \int \frac{1}{a} \ \cos y \ a \ \sec^2 y \ dy \]
+which is just
+\[ \int \sec y \ dy \]
+
+We did this in the other section.  The trick is to multiply by 
+\[ \int \sec y \ \frac{\sec y + \tan y}{\sec y + \tan y} \ dy \]
+\[ \int  \frac{\sec^2 y + \sec y \tan y}{\sec y + \tan y} \ dy \]
+This is just
+\[ \int \frac{1}{u} \ du \]
+so we have
+\[ = \ln \ (\sec y + \tan y) \]
+
+If we undo the substitution we obtain
+\[ = \ln \ (\frac{\sqrt{x^2 + a^2}}{a} + \frac{x}{a} ) \]
+and with $a=1$ this is just
+\[ = \ln \ (\sqrt{x^2 + 1} + x ) \]
+
+\subsection*{}
+
+How about
+\[ \int x^3 \sqrt{1-x^2} \ dx \]
+
+This looks difficult, with that extra factor of $x^2$.  Try substituting
+\[ x = \sin \theta \]
+\[ dx = \cos \theta \ d \theta \]
+
+We have
+\[ = \int \sin^2 \theta \sqrt{1-\sin^2 \theta} \sin \theta \ d \theta \]
+\[ = \int (1-\cos^2 \theta) \cos^2 \theta  \sin \theta \ d \theta \]
+\[ = \int (-\cos^2 \theta + \cos^4 \theta) (-\sin \theta \ d \theta) \]
+\[ = -\frac{1}{3} \cos^3 \theta + \frac{1}{5} \cos^5 \theta + C \]
+\[ = -\frac{1}{3} (1-x^2)^{3/2} + \frac{1}{5} (1-x^2)^{5/2} + C \]
+
+We can check this by differentiating, and then we'll understand what happened to the extra factor of $x^2$
+\[ \frac{d}{dx} \ [ \  -\frac{1}{3} (1-x^2)^{3/2} + \frac{1}{5} (1-x^2)^{5/2} + C \ ] \]
+\[ = x (1-x^2)^{1/2} - x (1-x^2)^{3/2} \]
+\[ = x (1-x^2)^{1/2}  \ [ \ 1 - 1 + x^2  \ ] \]
+and there it is!
+\[ = x^3 (1-x^2)^{1/2}  \]
+\[ = x^3 \sqrt{1-x^2}  \]
+
+\subsection*{}
+
+Here's another one that looks weird at first:
+
+\[ \int \sqrt{x^2 + 6x} \ dx \]
+
+Try completing the square
+
+\[ = \int \sqrt{x^2 + 6x + 9 - 9} \ dx \]
+\[ = \int \sqrt{(x + 3)^2 - 3^2} \ dx \]
+
+Now substitute
+\[ \frac{x+3}{3} = \sec t \]
+
+$x+3$ is the hypotenuse, $3$ the side adjacent to angle $t$, and $\sqrt{(x + 3)^2 - 3^2}$ is the side opposite.  So
+
+\[ \sqrt{(x + 3)^2 - 3^2} = 3 \tan t \]
+
+and for $dx$:
+
+\[ \frac{x+3}{3} = \sec t \]
+\[ \frac{1}{3} \ dx = \sec t \tan t \ dt  \]
+
+So our integral is 
+
+\[ = \int 3 \tan t \ 3 \sec t \tan t \ dt \]
+
+Recall that $\tan^2 t + 1 = \sec^2 t$
+
+\[ = 9 \int \sec^3 t - \sec t \ dt \]
+
+We had a trick for $\sec t$ which gives 
+\[ \int \sec t \ dt = \ln | \sec t + \tan t | + C \]
+
+(easily checked by differentiating).  The other term is solved by integration by parts.  I'll just give a sketch here:
+
+\[ \int sec^3 t \ dt = \sec t \tan t - \int \sec^3 t \ dt + \int \sec t \ dt \]
+\[ \int sec^3 t \ dt = \frac{1}{2} \ [ \ \sec t \tan t + \int \sec t \ dt \ ] \]
+
+combined with what was above, we end up subtracting (one-half) $\int \sec t \ dt$
+
+\[ = (9) \  \frac{1}{2} \ [ \ \sec t \tan t - \ln | \sec t + \tan t | \ ]  + C \]
+
+I'll leave it to you to substitute back for $x$.
+
+
+\end{document}  

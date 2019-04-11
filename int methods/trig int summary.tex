@@ -1,0 +1,176 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{parskip}
+
+\title{Summary of trig and other integrals}
+%\author{The Author}
+%\section{}
+% \subsection*{R code}
+\date{}							% Activate to display a given date or no date
+
+\graphicspath{{/Users/telliott_admin/Dropbox/Tex/png/}}
+
+\begin{document}
+\maketitle
+\Large
+%\noindent
+
+To make things simpler, I'm going to use the convention that the function $F(x)$ has as its derivative $f(x)$. 
+\[ \frac{d}{dx} \ F(x) = f(x) \]
+In that case, we write, alternatively
+\[ \int f(x) \ dx = F(x) + C \]
+For a \emph{definite} integral, we evaluate $F$ at the two endpoints of the interval $[a,b]$
+\[ \int_a^b f(x) \ dx = F(b) - F(a) \]
+but for the \emph{indefinite} integral we need to remember to write the constant $C$.
+
+\subsection*{basic trig derivatives}
+
+You've seen differentiation of the 6 basic trig functions before, namely:
+
+\begin{flalign*}
+& \ \ \ \ \ \   F(x) = \cos x \ ; \ \ \  f(x) = -\sin x & \\
+& \ \ \ \ \ \   F(x) = \sin x \ ; \ \ \  f(x) = \cos x & \\
+& \ \ \ \ \ \   F(x) = \tan x \ ; \ \ \  f(x) = \sec^2 x & \\
+\end{flalign*}
+
+\begin{flalign*}
+& \ \ \ \ \ \   F(x) = \sec x \ ; \ \ \  f(x) = \sec x \ \tan x & \\
+& \ \ \ \ \ \   F(x) = \csc x \ ; \ \ \  f(x) = - \csc x \ \cot x & \\
+& \ \ \ \ \ \   F(x) = \cot x \ ; \ \ \  f(x) = - \csc^2 x & 
+\end{flalign*}
+
+Our focus is on integration, so when faced with a problem like
+
+\[ \int \sin x \ dx = - \cos x + C \]
+
+you just find $f(x) = -\sin x$ in the list, read off $F(x)$, and take account of the minus sign.
+
+I'm sure you've noticed the symmetry between the "co-" functions $\csc x$ and $\cot x$ and the ones above.  Just remember the minus sign.
+
+And don't forget, if you see this problem you should be able to give the solution:
+
+\[ \int \sec^2 x \ dx = \tan x + C \]\
+
+\subsection*{going from $f(x)$ to $F(x)$}
+
+Now, looking at the list of functions $f(x)$ above, which trig functions are missing?  We need to be able to solve problems like:
+
+\[ \int \tan x \ dx \]
+\[ = \int \frac{\sin x}{\cos x} \ dx \]
+
+Substitute $u = \cos x$ and notice that we have $-du = \sin x \ dx$ as well.  That is,
+\[ \int \frac{\sin x}{\cos x} \ dx \]
+\[ = -\int \frac{1}{u} \ du \]
+\[ = -\ln \ |u | + C \]
+\[ = -\ln \ |\cos x | + C \]
+And by the usual symmetry we have a similar result for the cotangent.  
+
+\[ \int \cot x \ dx =  \ln \ |\sin x \ | \]
+
+What about the secant?
+
+\[ \int \sec x \ dx  \]
+
+This involves a more subtle trick.
+
+\[ = \int \sec x \ \frac{\sec x + \tan x}{\sec x + \tan x} \ dx  \]
+\[ = \int \ \frac{\sec^2 x + \sec x \ \tan x}{\sec x + \tan x} \ dx  \]
+
+Notice that if $u = \sec x + \tan x$, then $du = \sec^2 x + \sec x \ \tan x \ dx$
+
+So, substituting, all we have is just:
+\[ = \int \frac{1}{u} \ du \]
+\[ = \ln \ |u | + C \]
+\[ = \ln \ | \sec x + \tan x \ | + C \]
+
+Fill out our table:
+
+\begin{flalign*}
+& \ \ \ \ \ \    F(x) = \sin x \ ; \ \ \  f(x) = -\cos x  & \\
+&  \ \ \ \ \ \   F(x) = \cos x \ ; \ \ \  f(x) = \sin x & \\
+& \ \ \ \ \ \    F(x) = \tan x \ ; \ \ \  f(x) = -\ln \ |\cos x \ | & \\
+& \ \ \ \ \ \    F(x) = \sec x \ ; \ \ \  f(x) = \ln \ | \sec x + \tan x \ |  & \\
+& \ \ \ \ \ \    F(x) = \csc x \ ; \ \ \ f(x) = - \ln \ | \csc x + \cot x \ | & \\
+& \ \ \ \ \ \    F(x) = \cot x \ ; \ \ \  f(x) = \ln \ |\sin x | & \\
+\end{flalign*}
+
+\subsection*{cosine squared}
+
+One more trig function that comes up regularly is $\cos^2 x$.  I've worked it elsewhere so here, let me just list the answer:
+
+\[ \int \cos^2 \  x \ dx = \frac{1}{2} (x + \sin x \ \cos x) + C \]
+
+It is easily checked by differentiating $F(x)$.  There is an alternative formula:
+
+\[ \int \cos^2 \  x \ dx = \frac{1}{2} (x + \frac{1}{2} \ \sin \ 2x) + C \]
+
+The two are related by the double-angle formula.
+
+\subsection*{logarithms and exponentials}
+
+You know (and we used it above) that
+\[ \int \frac{1}{x} \ dx = \ln x + C \]
+
+But what is
+\[ f(x) = \ln x \ ; \ \ \  F(x) = ?? \]
+
+Let's try differentiating
+\[ \frac{d}{dx} \ x \ln x \]
+\[ = x \frac{1}{x} + \ln x = 1 +  \ln x \]
+So..
+\[ \frac{d}{dx} \ (x \ln x - x) =  \ln x \]
+
+Our table should then have
+\[ f(x) = \frac{1}{x} \ ; \ \ \  F(x) = \ln x \]
+\[ f(x) =  \ln x \ ; \ \ \  F(x) = \ x \ln x - x \]
+
+We can also try differentiating another product
+
+\[ \frac{d}{dx} \ x e^x \]
+\[ = x e^x + e^x \]
+So
+\[ \frac{d}{dx} \ (x e^x - e^x )  = x e^x \]
+And our table will include
+\[ f(x) = x e^x \ ; \ \ \  F(x) = x e^x - e^x \]
+
+
+\subsection*{inverse trig functions}
+
+Inverse trig functions as the result of integration:
+
+\[ \int \frac{1}{\sqrt{1-x^2}} \ dx = \sin^{-1} x \]
+\[ \int \frac{1}{1 + x^2} \ dx = \tan^{-1} x \]
+\[ \int \frac{1}{|x| \ \sqrt{1 + x^2}} \ dx = \sec^{-1} x \]
+
+A moderately complicated one is 
+
+\[ \int \frac{1}{\sqrt{1 + x^2}} \ dx =  \ln (\sqrt{1+x^2} + x ) \]
+
+Check it by differentiating.  We obtain:
+\[ \frac{d}{dx} \ \ln (\sqrt{1+x^2} + x ) \] 
+
+\[ = (\frac{1}{\sqrt{1 + x^2} + x}) (\frac{2x}{2 \sqrt{1+x^2}} + 1) \]
+\[ = (\frac{1}{\sqrt{1 + x^2} + x}) (\frac{x}{\sqrt{1+x^2}} + \frac{\sqrt{1+x^2}}{\sqrt{1+x^2}} ) \]
+\[ = (\frac{1}{\sqrt{1 + x^2} + x}) (\frac{x + \sqrt{1+x^2}}{\sqrt{1+x^2}} ) \]
+which does indeed simplify to
+\[ = \frac{1}{\sqrt{1 + x^2}} \]
+
+\subsection*{hyperbolic trig functions}
+
+Without getting into the theory, the fundamental result about $\cosh x$ is
+\[ \int \sinh x  \ dx = \cosh x \]
+\[ \int \cosh x  \ dx = \sinh x \]
+
+Notice the lack of a minus sign.  The reason for the name "hyperbolic" is this:
+
+\[ \cosh^2 x - \sinh^2 x = 1 \]
+
+
+\end{document}  

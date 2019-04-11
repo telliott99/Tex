@@ -1,0 +1,69 @@
+\documentclass[11pt, oneside]{article} 
+\usepackage{geometry}
+\geometry{letterpaper} 
+\usepackage{graphicx}
+	
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{parskip}
+\usepackage{color}
+\usepackage{hyperref}
+
+\graphicspath{{/Users/telliott_admin/Dropbox/Tex/png/}}
+% \begin{center} \includegraphics [scale=0.4] {gauss3.png} \end{center}
+
+\title{Archimedean property}
+\date{}
+
+\begin{document}
+\maketitle
+\Large
+
+This property can be stated in a variety of forms.  One statement is that the real numbers are not bounded above in $\mathbb{N}$.  No matter how large a real number $x$ that we take, we can always find an integer that is larger.
+
+Statements of the theorem all start with this:  for any real number $x$ ($\forall x \in \mathbb{R}$), we can find an integer $n$ such that ($\exists \ n \in \mathbb{N} \ | \ \ $):
+
+$\bullet$  $n > x$
+
+Or, for any real $a$ \emph{however small} we can find
+
+$na > x$.
+
+In the immortal words of xxx:  if we have a bathtub full of water and a teaspoon, we can empty the bathtub (given enough time).
+
+If you prefer a small real number like $\epsilon$ ($\forall \epsilon \in \mathbb{R}$)
+
+$\bullet$  $\frac{1}{n} < \epsilon$
+
+Beck says:
+
+\begin{quote}Theorem 7.6 (the Archimedean property) essentially says that \textbf{infinity is not part of the real numbers}... The Archimedean Property underlies the construction of an infinite decimal expansion for any real number, while the Monotone Sequence Property shows that any such infinite decimal expansion actually converges to a real number.\end{quote}
+
+Apostol goes through this development:
+
+$\bullet$  The set $\mathbf{P}$ of positive integers is \emph{unbounded above}.  The proof is to assume that $P$ is bounded above.  Then there is a largest element $n$ of $\mathbf{P}$ which is less than the bound.  
+
+But by definition $n + 1$ is $\in \mathbf{P}$.
+
+$\bullet$  For every real $x$ there exists a positive integer $n$ such that $n > x$.  Proof:  if this were not so, then $x$ would be an upper bound for $\mathbf{P}$.
+
+Now, simply replace $x$ with $y/x$:
+
+$\bullet$  For every real $y/x$ there exists a positive integer $n$ such that $n > y/x$.  Thus $nx > y$.
+
+Apostol: 
+
+\begin{quote}Geometrically it means that any line segment, no matter how long, may be covered by a finite number of line segments of a given positive length, no matter how small. In other words, a small ruler used often enough can measure arbitrarily large distances. Archimedes realized that this was a fundamental property of the straight line and stated it explicitly as one of the axioms of geometry.\end{quote}
+
+Stewart's definition is:
+
+Given a real number $\epsilon > 0$, there exists a positive integer $n$ such that
+\[ \frac{1}{10^n} < \epsilon \]
+
+This is certainly compatible with the other definitions.  If $n$ is an integer than so is $10^n$.  So $\epsilon$ is Apostol's (small) positive length and if we can choose $N$ so that $N \epsilon$ is as large as we please, we can certainly choose it so that $N \epsilon > 1$.
+
+I interpret this as follows:  in distinguishing two real numbers $a$ and $b$ (really, trying to find another number in the gap between them), if $a - b = \epsilon$ is the distance between them, we can always find 
+\[ \frac{1}{10^n} < \epsilon \]
+and so always find another number (either real or rational) that lies between $a$ and $b$.
+
+\end{document}}

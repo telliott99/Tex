@@ -1,0 +1,81 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{parskip}
+
+\title{Integration---summary}
+%\author{The Author}
+%\section{}
+% \subsection*{R code}
+\date{}							% Activate to display a given date or no date
+
+\graphicspath{{/Users/telliott_admin/Dropbox/Tex/png/}}
+
+\begin{document}
+\maketitle
+\Large
+%\noindent
+The derivatives and integrals of trig functions are fundamental.  Start with sine and cosine:
+\[ \frac{d}{dx} \ \sin x = \cos x \]
+\[ \int \cos x \ dx = \sin x + C \]
+The cosine is just a question of changing sign.
+
+As you know, application of the quotient rule gives:
+\[ \frac{d}{dx} \ \tan x = \sec^2 x \]
+So
+\[ \int \ \sec^2 x \ dx = \tan x \]
+because the quotient rule gives minus $u v'$ and so $\sin^2 x + \cos^2 x$ on top, leaving only $1/v^2$ in the end.
+
+The secant is 
+\[ \frac{d}{dx} \ \sec x = \sec x \tan x  \]
+Recalling 
+\[ (\frac{u}{v})' = \frac{u'v - u v'}{v^2} \]
+We get $\sin x$ on top from the $-uv'$ part, and multiply that by $1/v^2$.
+
+So 
+\[ \int \sec x \tan x = \sec x + C \]
+which seems really odd, but there it is.
+
+Finally, the cotangent and cosecant are related to their non-"co" friends, but with a minus sign.
+\[  \frac{d}{dx} \ \cot x = -\csc^2 x \]
+\[ \int \ \csc^2 x \ dx = -\cot x + C \]
+\[  \frac{d}{dx} \ \csc x = -\csc x \cot x \]
+\[ \int \  \csc x \cot x  \ dx = -\csc x + C \]
+
+You need to know these!  The same folks who take a simple calculus concept and turn it into a complicated arithmetic problem also find it amusing to ask about cosecant rather than cosine, even though you would almost never see it in real life.
+
+\subsection*{integrating}
+
+There isn't anything new in thinking about $\int \sin x \ dx$.  What about 
+\[ \int \tan x \ dx \]
+
+If we substitute $u=\cos x$ we see that $du = -\sin x \ dx$ so we have
+\[ \int \tan x \ dx = - \int \frac{1}{u} \ du  \]
+\[ = - \ln \ \cos x  + C \]
+This should be written as an absolute value
+\[ \int \tan x \ dx = - \ln \ | \cos x |  + C \]
+
+The next interesting one is the secant
+\[ \int \sec x \ dx \]
+There is a trick to this one, multiply top and bottom by $\sec x + \tan x$
+\[ \int \sec x \ \frac{\sec x + \tan x}{\sec x + \tan x} dx \]
+You see that $\sec^2 x$ is the derivative of $\tan x$ and $\sec x \tan x$ is the derivative of $\sec x$ so this is just
+\[  \int \frac{1}{u} \ du  \]
+again, namely
+\[ \int \sec x \ dx = \ln | \sec x +  \tan x \ | + C \]
+As before, the "co" versions are similar but for a minus sign.
+ \[ \int \cot x \ dx = \ln \ | \sin x |  + C \]
+\[ \int \csc x \ dx = - \ln | \csc x +  \cot x \  | + C \]
+
+The other most important ones are the inverse of the sine, tangent, and secant, which I've covered elsewhere.
+
+
+
+
+\end{document}  

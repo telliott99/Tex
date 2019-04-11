@@ -1,0 +1,242 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{parskip}
+\usepackage{hyperref}
+
+\title{Integration:  Table Generation}
+%\author{The Author}
+%\section{}
+% \subsection*{R code}
+\date{}							% Activate to display a given date or no date
+
+\graphicspath{{/Users/telliott_admin/Dropbox/Tex/png/}}
+
+\begin{document}
+\maketitle
+\Large
+%\noindent
+
+I thought I would try to derive (at least) some of the integrals shown in standard tables.  Here they are.  Each one comes in three versions [ A:  ($x^2 + a^2$), B:  ($x^2 - a^2$), C:  ($a^2 - x^2$) ].  I will group them in the following way:
+
+\begin{equation} \int \sqrt{x^2 + a^2} \ dx \end{equation}
+\begin{equation} \int \frac{1}{x^2 + a^2} \ dx \end{equation}
+\begin{equation} \int \frac{1}{\sqrt{x^2 + a^2}} \ dx \end{equation}
+\begin{equation} \int \frac{x^2}{\sqrt{x^2 + a^2}} \ dx \end{equation}
+\begin{equation} \int \frac{1}{x\sqrt{x^2 + a^2}} \ dx \end{equation}
+\begin{equation} \int \frac{1}{x^2 \sqrt{x^2 + a^2}} \ dx \end{equation}
+
+In every case, we can deal with the term $a^2$ by factoring it out.  We will end up with $x/a$ and then substitute for that.  So we'll just keep it simple and use $1$ for $a^2$ below.  Let's see how far we get.
+
+\section*{1A $\int \sqrt{x^2 + 1} \ dx$}
+
+Multiply top and bottom by what's on the top
+
+\[ = \int \frac{x^2 + 1}{\sqrt{x^2 + 1}} \ dx \]
+\[ =  \int \frac{x^2}{\sqrt{x^2 + 1}} + \frac{1}{\sqrt{x^2 + 1}} \ dx \]
+
+The term on the right is \# 3A.  The answer is:
+
+\[ \int \frac{1}{\sqrt{x^2 + 1}} \ dx = \ln |\sqrt{x^2+1} + x| + C \]
+
+Now for the term on the left.  That is actually \# 4A.  The answer is:
+
+\[ \int \frac{x^2}{\sqrt{x^2 + 1}} \ dx = x \sqrt{x^2 + 1} + \int \sqrt{x^2 + 1} \ dx + C \]
+
+We've come full circle and have the same integral that we started with, in the answer (which is OK).  We assemble everything but just group the two identical terms on the left, divide by 2, and obtain:
+
+\[ \int \sqrt{x^2 + 1} \ dx = \frac{1}{2} \ x \sqrt{x^2 + 1} + \frac{1}{2} \ln |\sqrt{1+x^2} + x| + C \] 
+
+\section*{1B $\int \sqrt{x^2 - 1} \ dx$}
+
+Use a trig substitution.
+
+\[ \text{hyp} = x, \ \ \text{adj} = 1, \ \ \text{opp} = \sqrt{x^2-1}  \]
+\[ x = \sec t, \ \ dx = \sec t \tan t \ dt, \ \ \sqrt{x^2-1} = \tan t \]
+
+We have:
+
+\[ \int \sqrt{x^2 - 1} \ dx = \int \sec t \tan^2 t \ dt \]
+\[ = \int \sec t + \sec^3 t \ dt \]
+
+We've done these elsewhere:
+
+\[ = \ln |\sec t + \tan t| +  \frac{1}{2} \sec t \tan t +   \frac{1}{2} \ln | \sec t +  \tan t|  C \]
+\[ = \frac{3}{2} \ln |x + \sqrt{x^2-1}| + \frac{1}{2} x \sqrt{x^2-1} + C \]
+
+\section*{1C $\int \sqrt{1 - x^2} \ dx$}
+
+Multiply top and bottom by $\sqrt{1 - x^2}$
+
+\[ = \int \frac{1-x^2}{\sqrt{1 - x^2}} \]
+\[ = \int \frac{1}{\sqrt{1 - x^2}} \ dx - \frac{x^2}{\sqrt{1 - x^2}} \ dx \]
+
+The first term is just $\sin^{-1} x$ and the second one is \# 4C.  Substituting the answer from there:
+
+\[ \int \sqrt{1 - x^2} \ dx = \sin^{-1} x + x \sqrt{1-x^2} - \int \sqrt{1-x^2} \ dx \]
+
+Two copies of our integral, so:
+
+\[ 2 \int \sqrt{1 - x^2} \ dx =  \sin^{-1} x + x \sqrt{1-x^2} \]
+\[ \int \sqrt{1 - x^2} \ dx = \frac{1}{2} \sin^{-1} x + \frac{x}{2} \sqrt{1-x^2} \]
+
+\section*{2A $\int 1/(x^2 + 1) \ dx$}
+
+This one is just $\tan^{-1} x$.  We derive this as follows
+\[ \text{opp} = x \]
+\[ \text{adj} = 1 \]
+\[ \text{hyp} = \sqrt{1+x^2}  \]
+\[ x = \tan t \]
+\[ t = \tan^{-1} x \]
+\[ \frac{dx}{dt} = \sec^2 t = 1 + x^2 \]
+\[ \frac{dt}{dx} = (\tan^{-1} x)' = \frac{1}{1 + x^2} \]
+
+\[ = \tan^{-1} x  + C \]
+
+If we started with
+
+\[ \int \frac{1}{x^2 + a^2} \ dx = \frac{1}{a^2} \int \frac{1}{(x/a)^2 + 1} \ dx \]
+
+then we pick up a factor of $a$ from the substitution ($u=x/a$, $a\ du=dx$) and end up with
+
+\[ = \frac{1}{a} \tan^{-1} \frac{x}{a}  + C \]
+
+\section*{2B $\int 1/(x^2 - 1) \ dx$}
+
+Ingenious trick doesn't work here.
+
+\[ \text{hyp} = x, \ \ \text{adj} = 1, \ \ \text{opp} = \sqrt{x^2-1}  \]
+\[ x = \sec t, \ \ dx = \sec t \tan t \ dt, \ \ 1/\sqrt{x^2-1} = \cot t \]
+
+The integral is
+
+\[ = \int \cot^2 t \sec t \tan t \ dt \] 
+\[ = \int \cot t \sec t \ dt \]
+\[ = \int \frac{1}{\sin t} \ dt \]
+
+\section*{2C $\int 1/(1 - x^2) \ dx$}
+
+Ingenious trick:
+
+\[ = \frac{1}{2} \int \frac{1}{1-x} + \frac{1}{1 + x} \ dx \]
+\[ = \frac{1}{2} -\ln |1-x| + \ln |1+x| + C \]
+\[ = \frac{1}{2} \ln |\frac{|1+x|}{\ln |1-x|}|\]
+
+\section*{3A $\int 1/\sqrt{x^2 + 1} \ dx$ }
+
+This one is a trig substitution.
+
+\[ \text{opp} = x, \ \ \text{adj} = 1, \ \ \text{hyp} = \sqrt{1+x^2}   \]
+\[ x = \tan t, \ \ dx = \sec^2 t  \ dt, \ \ 1/\sqrt{x^2-1} = \cos t \]
+
+We have
+
+\[ \int \cos t \sec^2 t \ dt \]
+\[ = \int \sec t \ dt \]
+\[ = \ln |\sec t + \tan t| + c \]
+\[ = \ln |\sqrt{1+x^2} + x| + C \]
+
+Let's think about how we'd have to change things for
+
+\[ \int 1/\sqrt{x^2 + a^2} \ dx \]
+
+We just multiply top and bottom by $1/a$, obtaining
+
+\[ \frac{1}{a} \int \frac{1}{ \sqrt{(x/a)^2 + 1}}\ dx \]
+
+Then substitute
+
+\[ u = x/a, \ \ a \ du = dx \]
+
+\[ = \int \frac{1}{ \sqrt{u^2 + 1}}\ du \]
+\[ = \ln |\sqrt{(x/a)^2 + 1} + (\frac{x}{a}) | + C \]
+
+Not what Strang says!
+
+\section*{3B $\int 1/\sqrt{x^2 - 1} \ dx$}
+
+Trig substitution.  Let $x = \sec t$, $dx = \sec t \tan t \ dt$, and $\sqrt{x^2 - 1} = \tan t$
+
+\[ = \int \frac{1}{\tan t} \sec t \tan t \ dt \]
+\[ = \int \sec t \ dt \]
+\[ = \ln | \sec t + \tan t | + c = \ln | x + \sqrt{x^2 - 1} | + C \]
+
+Let's check this one.  The derivative is
+
+\[ \frac{1}{x + \sqrt{x^2-1}} \ (1 + \frac{x}{\sqrt{x^2-1}} ) \]
+\[ = \frac{1}{x + \sqrt{x^2-1}} \ (\frac{\sqrt{x^2-1}}{\sqrt{x^2-1}} + \frac{x}{\sqrt{x^2-1}} ) = \frac{1}{\sqrt{x^2-1}}\]
+
+
+\section*{3C $\int 1/\sqrt{1 - x^2} \ dx$}
+
+This one is just $\sin^{-1} x$.  We get that by
+\[ x = \sin t \]
+\[ \sqrt{1-x^2} = \cos t \]
+\[ \frac{dx}{dt} = \cos t \]
+\[ \frac{dt}{dx} = \frac{1}{\cos t} = \frac{1}{\sqrt{1-x^2}} \]
+
+\section*{4A $\int x^2/\sqrt{x^2 + 1} \ dx$ }
+
+We'll try integration by parts (IBP).  Let $u = x$ and $du = dx$, then
+
+\[ dv = \frac{x}{\sqrt{x^2 + 1}} \ dx \]
+\[ v = \sqrt{x^2 + 1} \]
+
+We have then
+
+\[ = x \sqrt{x^2 + 1} + \int \sqrt{x^2 + 1} \ dx \]
+
+and the right-hand term is \# 1A.
+
+Recall:
+
+\[ \int \sqrt{x^2 + 1} \ dx = \frac{1}{2} \ [ \ x \sqrt{x^2 + 1} + \ln |\sqrt{1+x^2} + x| + C \] 
+
+So
+???
+\[ \int \frac{x^2}{\sqrt{x^2 + 1}} \ dx = \frac{1}{2} \ [ \ x \sqrt{x^2 + 1} + \ln |\sqrt{1+x^2} + x| + C \]
+
+
+
+\section*{4B $\int x^2/\sqrt{x^2 - 1} \ dx$}
+
+Use IBP.  Let $u=x$, $du=dx$, 
+
+\[ dv = \frac{x}{\sqrt{x^2-1}} \ dx \]
+\[ v = \sqrt{x^2-1} \]
+
+So the integral is
+
+\[ = \frac{3}{2} x \sqrt{x^2-1} - \frac{3}{2} \ln |x + \sqrt{x^2-1}| + C \]
+
+\section*{4C $\int x^2/\sqrt{1 - x^2} \ dx$}
+
+Use IBP.  Let $u=x$, $du=dx$, 
+
+\[ dv = \frac{x}{\sqrt{1-x^2}} \ dx \]
+\[ v = - \sqrt{1-x^2} \]
+So the integral is
+\[ = - x \sqrt{1-x^2} + \int \sqrt{1-x^2} \ dx \]
+
+which is \# 1C.  Kind of circular!
+
+\[ = - x \sqrt{1-x^2} + \sin^{-1} x + \frac{x}{2} \sqrt{1-x^2} \]
+
+\[ = \sin^{-1} x - \frac{x}{2} \sqrt{1-x^2} \]
+
+\section*{5A $\int 1/x \sqrt{x^2 + 1} \ dx$ }
+\section*{5B $\int 1/x \sqrt{x^2 - 1} \ dx$}
+\section*{5C $\int 1/x \sqrt{1 - x^2} \ dx$}
+
+\section*{6A $\int 1/x^2 \sqrt{x^2 + 1} \ dx$ }
+\section*{6B $\int 1/x^2 \sqrt{x^2 - 1} \ dx$}
+\section*{6C $\int 1/x^2 \sqrt{1 - x^2} \ dx$}
+
+
+\end{document}  

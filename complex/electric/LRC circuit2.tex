@@ -1,0 +1,52 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex	
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{parskip}
+\usepackage{color}
+
+\title{LRC Circuit 2}
+%\author{The Author}
+\date{}							% Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+%\section{}
+%\subsection{}
+\Large
+\noindent
+The idea of this short write-up is to look at the equations developed in Halliday and Resnick for LRC circuit and compare their solution to what we obtained in the case of a mass and spring system with friction.
+
+There are three types of components:  resistor with an impedance of
+\[ V = iR \]
+capacitor with capacitance $C$
+\[ \frac{1}{C} q = V \]
+\[ \frac{1}{C} \dot{q} = \frac{1}{C} i = \dot{V} \]
+inductor with $L$
+\[ V = L \dot{i} \]
+I'm not yet sure why these make sense.  Nevertheless, they write
+\[ U = \frac{1}{2}Li^2 + \frac{1}{2C}q^2\]
+\[ \dot{U} = L i \ \dot{i} + \frac{1}{C} q \ \dot{q} = -i^2 R \]
+Since $i = \dot{q}$, we can lose one factor of $i$
+\[ L \ \dot{i} + \frac{1}{C} q = -i R \]
+And since $i = \dot{q}$, $\dot{i} = \ddot{q}$:
+\[ L \ \ddot{q} + \frac{1}{C} q = -\dot{q} R \]
+Rearrange:
+\[ L \ \ddot{q} + \dot{q} R + \frac{1}{C} q = 0 \]
+\[ \ddot{q} + \frac{R}{L}\dot{q} + \frac{1}{LC} q = 0 \]
+
+Compare to what we had for the mass and spring with a small amount of friction:
+\[ \ddot{x} + \gamma \dot{x} + \omega_0{}^2 x = 0 \]
+\[ \omega_0{}^2 = k/m \sim \frac{1}{LC} \]
+\[ \omega' = \sqrt{\omega_0{}^2 - (\frac{\gamma}{2})^2} \sim \sqrt{\frac{1}{LC} - (\frac{R}{2L})^2}\]
+\[ x(t) = e^{(-\gamma/2) t} \ C \cos(\omega't + \phi) \]
+Write
+\[ q(t) = q_m e^{-(R/2L) t} \ \cos \omega' t \]
+Looks like the same solution to me.
+
+\end{document}  

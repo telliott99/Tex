@@ -1,0 +1,51 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb}
+
+\title{Derivatives}
+%\author{The Author}
+\date{}							% Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+%\section{}
+%\subsection{}
+\large
+The basic method for finding the slope of a tangent line to a function $f(x)$ at $x$ is to compute the difference quotient
+\[ \frac{f(x+h) - f(x)}{h} \]
+for a small change $h$.  Since $ h = \Delta x$ and  $ \Delta y = f(x + h) - f(x)$, this is $\Delta y / \Delta x$, the slope of a secant line between the points $(x,f(x))$ and $(x+h, f(x+h))$ on the curve $y=f(x)$.  To find the derivative we find the limit
+\[ lim_{h \to 0}  \  \frac{f(x+h) - f(x)}{h}  \]
+Last time we went through some examples
+
+\[ f(x) = x^2 \ \ \Rightarrow \ \  f'(x) = 2x \]
+\[ f(x) = \sqrt{x} = x^{1/2}\ \ \Rightarrow \ \  f'(x) = \frac{1}{2}x^{-1/2}\]
+\[ f(x) = \frac{1}{x} = x^{-1} \ \ \Rightarrow \ \  f'(x) = -\frac{1}{x^2} = -x^{-2} \]
+We deduce that the general formula is
+\[ f(x) = x^n \ \ \Rightarrow \ \  f'(x) = nx^{n-1} \]
+
+We would like to find a general expression for $f'(x)$, when $f(x) = x^n$ with integer $n$ ($n = 1, 2, 3 \cdots$).  Recall that the Binomial Theorem gives the expansion of $(x + h)^n$.  We only need the first three terms.
+\[ (x + h)^n = x^n + nx^{n-1}h + n(n-1)x^{n-2}h^2 + \cdots  \]
+Now we compute the difference quotient and find the limit
+\[ \frac{f(x+h) - f(x)}{h} \]
+\[ \frac{x^n + nx^{n-1}h + n(n-1)x^{n-2}h^2 + \cdots - x^n}{h} \]
+\[ \frac{nx^{n-1}h + n(n-1)x^{n-2}h^2 + \cdots} {h} \]
+\[ nx^{n-1} + n(n-1)x^{n-2}h + \cdots  \]
+ and find the limit
+ \[ lim_{h \to 0}  \ nx^{n-1} + n(n-1)x^{n-2}h = nx^{n-1}  \]
+ This is called the power rule
+ \[f(x) = x^n, \ \ \ \ f'(x) = nx^{n-1} \]
+ 
+Another question is what to do with a sum or difference of polynomials, such as 
+ \[ f(x) + g(x) \]
+ If you write out the difference quotient in the second case
+ \[ \frac{ f(x+h) - f(x) + g(x+h) - g(x)}{h} \]
+ everything can be exactly as before, just grouping all the terms from $f(x)$ and those from $g(x)$ separately. 
+ 
+\[  [f(x) + g(x)]' = f'(x) + g'(x)  \]
+
+\end{document}  

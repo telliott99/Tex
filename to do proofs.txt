@@ -1,0 +1,16 @@
+view e as
+lim (1+1/n)^n
+
+then e^x = that to the n
+
+so how is it equal to 
+
+lim (1+x/n)^n ??
+
+my proof uses the binomial 
+see:  exponential.pdf p. 3
+
+could also use the mooculus trick
+e^{x ln(1+1/x)} 
+
+combine with Courant p. 152

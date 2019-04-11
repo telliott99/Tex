@@ -1,0 +1,58 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb}
+\graphicspath{{/Users/telliott_admin/Dropbox/Tex/png/}}
+
+\title{Derivatives of rational powers}
+%\author{The Author}
+%\section{}
+%\subsection{}
+\date{}							% Activate to display a given date or no date
+
+\begin{document}
+\large
+\maketitle
+An amazing fact about the power rule is that it applies not only to the positive integers $n=1,2,\dots$ it also applies to the negative integers, and it even applies to rational exponents (powers) $m/n$.  
+\[ \frac{d}{dx} x^{\frac{m}{n}} = \frac{m}{n} \  x^{\frac{m}{n} - 1}  \]
+The original proof is by Newton's extension of the binomial.  This short write-up gives two alternative proofs---the first uses the chain rule and the derivative of $e^x$.
+
+For simpler notation, start by letting $r = m/n$ so that $x^{m/n} = x^r$.  Then write the definition of the natural logarithm of $x$
+\[ x^r = e^{\ln(x^r)} \]
+Take derivatives on both sides
+\[ \frac{d}{dx} \ x^r = \frac{d}{dx} \  e^{\ln(x^r)} \]
+The left-hand side is what we seek.  Just apply the \emph{chain rule} on the right
+\[ \frac{d}{dx} \  e^{\ln(x^r)} = e^{\ln(x^r)} \ \frac{d}{dx} \ \ln(x^r)  \]
+Reversing the original substitution, the right-hand side becomes
+\[ x^r  \ \frac{d}{dx} \ \ln(x^r)  \]
+But
+\[  \ln(x^r)  =  r \ln(x) \]
+Now we've turned the rational exponent into a constant.  We know how to deal with that.
+\[  \frac{d}{dx} \ r \ln(x) = r \frac{d}{dx} \ln(x) = \frac{r}{x} \]
+Putting it all together
+\[ \frac{d}{dx} \  x^r  = x^r  \ \frac{d}{dx} \ \ln(x^r) = x^r  \ \frac{r}{x} = r x^{r-1} \]
+
+\subsection*{a third method}
+
+Yet another way is the following trick that is somewhat advanced but an especially nice piece of mathematics.  It relies on implicit differentiation.  I saw this in David Jerison's Calculus lectures.
+
+\[ y = x^{\frac{m}{n}} \] 
+\[ y^n = x^m \]
+\[ \frac{d}{dx} y^n = \frac{d}{dy} y^n \frac{dy}{dx} = \frac{d}{dx} x^m \]
+\[ ny^{n-1} \frac{dy}{dx} = mx^{m-1} \]
+\[  \frac{dy}{dx} = \frac{m}{n} \ \frac{ x^{m-1}}{y^{n-1}} \]
+Now 
+\[ y^{n-1} = [\ x^{\frac{m}{n}}\ ]^{(n-1)} = x^{\frac{m}{n}(n-1)}\]
+If we write all the powers of x in the numerator we have
+\[ \frac{dy}{dx} = x^{m-1 - \frac{m}{n}(n-1)} = x^{m - 1 - m + \frac{m}{n}} = x^{\frac{m}{n} - 1}\]
+which gives finally
+\[ \frac{dy}{dx} = \frac{m}{n} \  x^{\frac{m}{n} - 1} \]
+We've shown that powers of x with rational exponents obey the power rule.  In fact irrational powers like $f(x) = x^\pi$ also obey the power rule, but we don't need to prove that here.
+
+
+
+\end{document}  

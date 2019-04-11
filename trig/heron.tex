@@ -1,0 +1,138 @@
+\documentclass[11pt, oneside]{article} 
+\usepackage{geometry}
+\geometry{letterpaper} 
+\usepackage{graphicx}
+	
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{parskip}
+\usepackage{color}
+\usepackage{hyperref}
+
+\graphicspath{{/Users/telliott_admin/Dropbox/Tex/png/}}
+% \begin{center} \includegraphics [scale=0.4] {gauss3.png} \end{center}
+
+\title{Heron's Formula}
+\date{}
+
+\begin{document}
+\maketitle
+\Large
+
+Once again, in the triangle below, A, B, and C are the angles, with side lengths a, b, and c.
+\begin{center}
+\includegraphics [scale=0.5] {triangle.png}
+\end{center}
+One other formula we want to prove is called Heron's Formula for the area of a triangle.  This formula does not explicitly include the altitude h or the parts of side c, which are  d and e.
+
+If $s$ is the semi-perimeter
+\[ s = \frac{1}{2}(a + b + c) \]
+\[ A = \sqrt{s + (s-a) + (s-b) + (s-c)} \]
+Start with the well-known formula for area
+\[ A = \frac{1}{2} \ \text{base} \ \times \ \text{height} \ = \frac{1}{2} \ c \ h = \frac{1}{2} \ c b \ \sin A \]
+
+We will come back to this and substitute for the sine of A.  But first, rearrange the equation for the law of cosines
+\[ a^2 = c^2 + b^2 - 2bc \cos A \]
+\[ \cos A = \frac{(c^2 + b^2 - a^2)}{2bc} \]
+\[ \sin A = \sqrt{1 - \cos^2 A} = \sqrt{ 1 - \frac{(c^2 + b^2 - a^2)^2}{(2bc)^2}} \]
+
+So finally we have
+ \[ A = \frac{1}{2}\  c \ b \ \sqrt{ 1 - \frac{(c^2 + b^2 - a^2)^2}{(2bc)^2}} \]
+ \[ A = \frac{1}{4} \sqrt{4b^2c^2 - (c^2 + b^2 - a^2)^2} \]
+
+Now we just need to work on what is under the square root.  It looks like a mess but will simplify quite a bit.
+
+For the next part, we won't write $ A = \frac{1}{4} \sqrt { \ldots }$, but we'll recall that it's there near the end, when we will write it as  $ A = \sqrt {\frac{1}{16} \ldots }$
+
+Look at what's inside
+\[ 4b^2c^2 - (c^2 + b^2 - a^2)^2 \]
+This looks familiar, it is a difference of squares
+\[ (2bc + (c^2 + b^2 - a^2))(2bc - (c^2 + b^2 - a^2)) \]
+In the first term, we can rearrange
+\[ 2bc + c^2 + b^2 - a^2 \]
+\[ (c+b)^2 - a^2) \]
+\[ (c+b+a) (c+b-a) \]
+
+Similarly in the second term
+\[ -(c^2 - 2bc + b^2 - a^2) \]
+\[ -((c-b)^2 - a^2) \]
+\[ -((c-b+a) (c - b - a)) \]
+\[ (c-b+a) (a + b - c) \]
+Putting it all together, we have
+\[ (c + b + a) (c + b - a)(c - b + a) (a + b - c) \]
+
+Recall that the perimeter
+\[ p = a + b + c = 2s \]
+The first term above, $(a + b + c)$, is the perimeter, that is, twice the semi-perimeter or $2s$.  The second term is $p - a - a = 2s - 2a = 2(s-a)$.  The third and fourth terms can be seen to be equal, by the same logic, to $2(s-b)$ and $2(s-c)$.  Recalling the square root, etc. from above, we have finally:
+\[ A =  \sqrt {\frac{1}{16}  \ 2(s) 2(s-a) \ 2(s-b) \ 2(s-c)} \]
+Canceling
+\[ A =  \sqrt { s (s-a) (s-b) (s-c) } \]
+
+$\square$
+
+As a simple example, if we have a right triangle with sides 3,4,5, then the area is one-half of 3 times 4 = 6.  The semi-perimeter is s
+
+\[ s = \frac{(3 + 4 + 5)}{2} = \frac{12}{2} = 6 \]
+We have
+
+\[ A =  \sqrt { 6 (6-5) (6-4) (6-3) } =  \sqrt { 6 (1) (2) (3) } = 6 \]
+
+\subsection*{Lockhart's version}
+\begin{center} \includegraphics [scale=0.5] {triangle2.png} \end{center}
+The triangle is labeled slightly differently than the one above.  The bottom side $c$ is split into $x$ and $y$.  We can write three equations:
+
+\[ x^2 + h^2 = a^2 \]
+\[ y^2 + h^2 = b^2 \]
+\[ x + y = c \]
+
+Lockhart gives us a target:
+\[ 2xc = c^2 + a^2 - b^2 \]
+
+Let's just start manipulating equations to get there.  Subtract the second from the first:
+\[ x^2 - y^2 = a^2 - b^2 \]
+Square the third
+\[ x^2 + 2xy + y^2 = c^2 \]
+
+Add the two new equations
+\[ 2x^2 + 2xy =  c^2 + a^2 - b^2 \]
+
+Substitute for $y$
+\[ 2x^2 + 2x(c-x) =  c^2 + a^2 - b^2 \]
+\[ 2xc = c^2 + a^2 - b^2  \]
+
+Finally a slight rearrangement:
+\[ x = \frac{c}{2} + \frac{a^2-b^2}{2c} = \frac{c^2 + a^2-b^2}{2c}  \]
+
+This says that to find the point where $x$ meets $y$ we move from the center $c/2$ a distance of $(a^2 - b^2)/2c$.
+
+The corresponding equation for $y$ is
+\[ y = \frac{c}{2} - \frac{a^2-b^2}{2c} \]
+which is easily checked by adding together the final two equations, obtaining $x + y = c$.
+
+For the area, we will need $h$ somehow.  It is easier to use $h^2$.
+\[ h^2 = a^2 - x^2 \]
+\[ = a^2 - \frac{(c^2 + a^2-b^2)^2}{(2c)^2}  \]
+
+The area squared is
+\[ A^2 = \frac{1}{4}c^2 h^2 \]
+\[ = \frac{1}{4} c^2 a^2 - \frac{1}{4} c^2 \frac{(c^2 + a^2-b^2)^2}{(2c)^2}  \]
+
+\begin{quote}
+the algebraic form of this measurement is aesthetically unacceptable. First of all, it is not symmetrical; second, it's hideous. I simply refuse to believe that something as natural as the area of a triangle should depend on the sides in such an absurd way. It must be possible to rewrite this ridiculous expression...
+\end{quote}
+
+Here's a start:
+\[ 16A^2 = (2ac)^2 - (c^2 + a^2-b^2)^2 \]
+This is better, and actually, quite like what we had before.  We will now go through two difference of squares manipulations.  First
+
+\[ 16A^2 = \ [ \ 2ac + (c^2 + a^2-b^2) \ ] \ [ \ 2ac - (c^2 + a^2-b^2) \ ]  \]
+\[ = \ [ \ (a + c)^2 -b^2) \ ] \ [ \ b^2 - (a - c)^2 \ ]  \]
+\[ =  (a + c + b)(a + c - b)(b + a - c)(b - a + c) \]
+So
+\[ A = \sqrt{\frac{a + b + c}{2}  \cdot \frac{a + c - b}{2}  \cdot \frac{a + b - c}{2}  \cdot \frac{-a + b + c}{2} } \]
+
+Of course, we recognize the semi-perimeter $s = (a + b + c)/2$ and then we see that each of the other terms is $(s-a)$, and so on
+\[ A = \sqrt{s \cdot (s - a) \cdot (s - b) \cdot (s - c) } \]
+
+
+\end{document}  

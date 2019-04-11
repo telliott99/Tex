@@ -1,0 +1,330 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{parskip}
+\usepackage{url}
+
+\title{Public Key Cryptography}
+%\author{The Author}
+\date{}							% Activate to display a given date or no date
+\graphicspath{{/Users/telliott_admin/Dropbox/Tex/png/}}
+
+\begin{document}
+\maketitle
+%\section{}
+%\subsection{}
+\Large
+This short write-up is an exploration of public-key cryptography.  To use the method, one first generates a pair of keys called the public key and a corresponding private key.  These have a symmetry property, so that if either one is used to encrypt a message, then the other one can be used to decrypt the message.  
+
+Suppose that Alice generates a public/private key pair and then distributes the public key in such a way that Bob is certain that he really knows Alice's public key.
+
+Bob can encrypt a message with the public key and send it to Alice with the knowledge that only Alice can decrypt it using the private key.  Alternatively, Alice can encrypt a message with her private key and send it to Bob.  Successful decryption with Alice's public key proves that the message is from Alice.
+
+The process of encryption and decryption is computationally expensive, and my understanding is that only short messages should be exchanged by this method in any case.  Such a message would typically consist of yet another key which can be used to encode the main message.
+
+We start with two prime numbers, $p$ and $q$.  I obtained mine from a list of primes (near the 50 millionth prime).
+
+\url{http://primes.utm.edu/lists}
+
+The prime numbers for real-world use are much larger than this.
+
+Python code:
+
+\begin{minipage}{4in}\tt
+p = 961748941 \\
+q = 982451653 \\
+n=p*q \\
+\end{minipage}
+
+If you paste the lines above into the Python interpreter, you should be able to query the value of $n$ like this:
+
+\begin{minipage}{4in}\tt
+>>> n \\
+944871836856449473 \\
+>>> len(bin(n)) \\
+62 \\
+>>>
+\end{minipage}
+\vspace{4mm}
+
+(I am showing the plain code to facilitate your copying and pasting into the interpreter to try it out).
+
+I believe this means we can securely encode about 62 bits.  Now compute 
+\[ \phi(n) = (p-1)(q-1) \]
+
+\begin{minipage}{4in}\tt
+phi=(p-1)*(q-1) \\
+\end{minipage}
+
+\begin{minipage}{4in}\tt
+>>> phi \\
+944871834912248880 \\
+>>>
+\end{minipage}
+
+Now choose a number $e$
+
+\[ 1 < e < \phi(n) \]
+
+called the public key exponent,
+with the requirement that $e$ should be coprime to $\phi(n)$ (they should have no common factor other than $1$).  The easiest way to do that is to pick a prime number like
+
+\[ e = 2^{16} + 1 = 65537 \]
+
+I also confirmed that $e$ is on a list of primes:
+
+\url{http://primes.utm.edu/lists/small/10000.txt}
+
+
+Just check that there is a remainder when dividing $\phi(n)$
+
+\begin{minipage}{4in}\tt
+>>> phi \\
+944871834912248880 \\
+>>> e = 2**16 + 1 \\
+>>> e \\
+65537 \\
+>>> phi \% e \\
+42186 \\
+>>> \\
+\end{minipage}
+
+The public key is $(n,e)$.
+
+The private key consists of $n$ plus another number $d$ which is computed from $\phi(n)$ and thus requires knowledge of $p$ and $q$ (below).  That is why the process of breaking this method of encryption is described as being the same as the problem of finding two primes that can factor a large number ($n$, the product of the primes $p$ and $q$).  $n$ is known because it is part of the public key.
+
+\subsection*{encryption}
+
+We also need to generate a number representing our message $m$.  ASCII-encoding is certainly a possible way to do this, though quite wasteful since (especially if we just use lowercase) most bytes do not ever appear in any message.   
+
+In this code sample, we convert the message "hello world" into a binary number using the \texttt{ord} and \texttt{bin} functions.  Because \texttt{bin} doesn't show leading zeroes, we add them back with \texttt{zfill}.
+
+\begin{minipage}{4in}\tt
+\begin{tabbing}
+xxxx\=xxxx\=xxxx\=xxxx\=xxxx\=\kill
+s = "hello world" \\
+L = list() \\
+for c in s: \\
+\> b = bin(ord(c))[2:].zfill(8) \\
+\> L.append(b) \\
+\end{tabbing}
+\end{minipage}
+
+\begin{minipage}{4in}\tt
+>>> b = "".join(L) \\
+>>> int(b,2) \\
+126207244316550804821666916L
+\end{minipage}
+\vspace{4 mm}
+
+A more compact encoding might be achieved like this:
+
+\begin{minipage}{4in}\tt
+from string import lowercase as lc \\
+D = dict(zip(lc,range(1,len(lc)+1)))  \\
+\end{minipage}
+
+Don't forget the space:
+
+\begin{minipage}{4in}\tt
+D[" "] = 0 \\
+\end{minipage}
+
+The \texttt{dict} assigns an integer for each lowercase letter.  Now do:
+
+\begin{minipage}{4in}\tt
+\begin{tabbing}
+xxxx\=xxxx\=xxxx\=xxxx\=xxxx\=\kill
+s = "hello world"\\
+m = 0 \\
+N = 27 \\
+for i,c in enumerate(s): \\
+\> m += D[c] * N**i
+\end{tabbing}
+\end{minipage}
+
+The number $m$ is being formed from the integer values for each character of 'hello world'.  For example, if the message were simply \texttt{"hel"} the value would be
+\[ 8 + (5 \times 27) + (12 \times 27^2) = 8891 \]
+since "h" is the eighth letter, "e" is the fifth letter, and "l" is letter number 12.
+
+The result can be viewed as:
+\vspace{4 mm}
+
+\begin{minipage}{4in}\tt
+>>> m \\
+920321254041092 \\
+>>> \\
+\end{minipage}
+
+The number \emph{is} our message.  To read it, just reverse the process:
+\vspace{4 mm}
+
+\begin{minipage}{4in}\tt
+\begin{tabbing}
+xxxx\=xxxx\=xxxx\=xxxx\=xxxx\=\kill
+N = 27 \\
+m = 920321254041092 \\
+rD = dict(zip(D.values(),D.keys())) \\
+  \\
+while m: \\
+\> print rD[m \% N], \\
+\> m /= N
+\end{tabbing}
+\end{minipage}
+
+Output:
+
+\begin{minipage}{4in}\tt
+h e l l o  \  \ w o r l d \\
+>>> \\
+\end{minipage}
+
+While the above encoding could be viewed as a form of encryption, it is very weak.  The encryption function we will use is
+
+\[ c = m^e \ mod \ n \]
+
+\begin{minipage}{4in}\tt
+m = 920321254041092 \\
+e = 65537 \\
+n = 944871836856449473 \\
+x = m**e \\
+\end{minipage}
+
+\begin{minipage}{4in}\tt
+>>> len(str(x)) \\
+980692 \\
+>>> c = x \% n \\
+>>> c \\
+448344912451359241L \\
+\end{minipage}
+
+The number $c$ is our ciphertext.  (The L on the end signifies a Python long, a type of number).  
+
+$x = m^e$ is a very large number!  
+
+It is much more efficient to do the mod operation at the same time as the exponentiation.  The Python built-in function \texttt{pow} allows that as an option:
+
+\begin{minipage}{4in}\tt
+>>> pow(m,e,n) \\
+448344912451359241L
+\end{minipage}
+
+
+\subsection*{decryption}
+
+There is one more number we need to decode the encrypted text.  We will call this number $d$, and it is referred to as the exponent of the private key.  The private key is ($d$,$n$), although just the $d$ part is actually secret.  Finding $d$ is the only tricky part of the whole operation, but it only needs to be computed once for a given key pair.
+
+$d$ is called the modular multiplicative inverse of $e$ (mod $\phi(n)$).  
+
+What this means is that we want $d$ such that
+
+\[ d \times e = 1 \ (mod \ \phi(n)) \]
+
+Substituting the known values for $e$ and $\phi(n)$
+
+\[ d \times 65537 = 1 \ (mod \ 944871834912248880 ) \]
+
+I found a simple implementation for computing $d$ here:
+
+\url{stackoverflow.com/questions/4798654} \\
+
+\begin{verbatim}
+def egcd(a, b):
+    if a == 0:
+        return (b, 0, 1)
+    else: 
+        g, y, x = egcd(b \% a, a)
+        return (g, x - (b // a) * y, y)
+\end{verbatim}
+        
+\begin{minipage}{4in}\tt
+\begin{tabbing}
+xxxx\=xxxx\=xxxx\=xxxx\=xxxx\=\kill
+def modinv(a, m): \\
+\> g, x, y = egcd(a, m) \\
+\> if g != 1: \\
+\> \> raise Exception("modular inverse does not exist") \\
+\> else: \\
+\> \> return x \% m \\
+\end{tabbing}
+\end{minipage}
+
+I have not figured out how it works, but it is easy to show that it does.  I saved the code in a file \texttt{mod.py}.  Let's try it out:
+\vspace{4mm}
+
+\begin{minipage}{4in}\tt
+from mod import modinv \\
+e = 65537 \\
+phi = 944871834912248880 \\
+d = modinv(e,phi) \\
+\end{minipage}
+\vspace{4mm}
+
+Output:
+\vspace{4mm}
+
+\begin{minipage}{4in}\tt
+\begin{tabbing}
+xxxx\=xxxx\=xxxx\=xxxx\=xxxx\=\kill
+>>> d \\
+8578341116816273 \\
+>>> d*e \% phi \\
+1L \\
+>>> \\
+\end{tabbing}
+\end{minipage}
+
+So now we are finally ready to decrypt:
+\vspace{4mm}
+
+\begin{minipage}{4in}\tt
+c = 448344912451359241 \\
+n = 944871836856449473 \\
+d = 8578341116816273 \\
+p = pow(c,d,n) \\
+\end{minipage}
+
+\begin{minipage}{4in}\tt
+>>> p
+920321254041092L \\
+>>> 
+\end{minipage} \\
+
+Recall 
+\vspace{4mm}
+
+\begin{minipage}{4in}\tt
+>>> m = 920321254041092 \\
+\end{minipage} \\
+We have successfully generated a key pair, and used it to encrypt and decrypt a simple message.  Now we need to show that we can also encrypt with private key, and decrypt with public one:
+\vspace{4mm}
+
+\begin{minipage}{4in}\tt
+m = 920321254041092 \\
+d = 8578341116816273 \\
+n = 944871836856449473 \\
+c = pow(m,d,n) \\
+ \end{minipage} \\
+\begin{minipage}{4in}\tt
+>>> c \\
+461000660869754451L \\
+\end{minipage} \\
+
+\begin{minipage}{4in}\tt
+e = 65537 \\
+p = pow(c,e,n) \\
+\end{minipage} \\
+
+\begin{minipage}{4in}\tt
+>>> p \\
+920321254041092L \\
+\end{minipage} \\
+
+We have again recovered our plaintext message:  \texttt{ p = m}.
+\end{document}  

@@ -1,0 +1,107 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb}
+\usepackage{amsmath}
+\graphicspath{{/Users/telliott_admin/Dropbox/Tex/png/}}
+
+
+\title{Vector basics}
+%\author{The Author}
+\date{}							% Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+%\section{}
+%\subsection{}
+\large
+In this short writeup, I want to emphasize a few useful properties and operations of vectors in two- and three-dimensional space.  I assume that you have already encountered vectors before, so they are not totally new.  A vector is a mathematical object that has both magnitude and direction.  For example, in the standard 2D-coordinate system, the vector $<1,2>$ goes from the origin one unit in the x-direction and two units in the y-direction.
+
+So, a vector has one property of a line, slope, but the fixed magnitude means that a vector does not extend to infinity as a line does.
+
+Also, by convention we allow vectors to move about in space.  We mean that two vectors of the same length, and pointing in the same direction are the same object, regardless of where they are located in space.  (Some physics problems don't allow this, but in math it's the usual case).  So if we have the vector $\mathbf{v} = <1,1>$ starting at the origin $(0,0)$ and ending at the point $(1,1)$, and compare it to a second vector $\mathbf{u}$ that starts from $(2,0)$ and ends at $(3,1)$, that's the same vector.
+
+As you may guess, with two points $(x_1,y_1)$ and $(x_2,y_2)$, the vector that connects them is 
+\[ \mathbf{v} = \ <x_2-x_1,y_2-y_1> \] 
+If we do the subtraction in reverse we have 
+\[ \mathbf{u} = \  <x_1-x_2,y_1-y_2> \]
+\[ \mathbf{u} = - \mathbf{v} \]
+In print, vectors are often marked with bold font ($\mathbf{v}$) or with an arrow overhead to show what kind of object they are.  At the moment I have skipped doing that from here on.
+
+From one point of view, a vector is simply an ordered collection of numbers
+\[ v =  \ <v_1, v_2, \cdots \ a_n> \]
+where $n$ could be very large, even infinite.  However, a lot of work is done in two or three dimensions (officially $\mathbb{R}^2$ and $\mathbb{R}^3$), and the principles developed there carry over nicely into $n$-dimensional space.  So let's start by thinking about a two-dimensional vector
+\[ v =  \ <v_1, v_2> \]
+As I've suggested, the vector $v$ can be thought of as an arrow that goes from the origin to the point $(v_1,v_2)$.  It has both length and direction.  Its length is given (from the Pythagorean Theorem) by
+\[ \left| v \right| = \sqrt{v_1^2 + v_2^2} \]
+and its direction is
+\[ \frac{v_2}{v_1} = tan \ \theta, \ \ \ \  \theta = tan^{-1}(\frac{v_2}{v_1}) \]
+where $\theta$ is the angle the vector makes (going counter-clockwise) from the positive x-axis.
+
+Any vector can be converted into a \emph{unit vector}, a vector of length one, by dividing by its length.  For example if $v=\ <1,2>$ then 
+
+\[ w =  \frac{1}{|v|}\ v = \ <\frac{1}{\sqrt{5}}, \frac{2}{\sqrt{5}}>\]
+is a unit vector pointing in the same direction as $v$.
+
+The line through the origin with slope $m = v_2/v_1$ and equation
+\[ y = m(x) \] can be thought of as being the extension of vector $v$ obtained by multiplying some $t$ times $v$ for all $t \in \mathbb{R}$.  We have stretched the vector to infinity, and beyond!  (Just kidding).
+\subsection*{Dot Product}
+
+The dot product is an extremely useful kind of vector multiplication.  It can be defined for vectors $u =  \ <u_1,u_2>$ and $v= \ <v_1,v_2>$ as
+\[ u \cdot v = u_1v_1 + u_2v_2 \]
+Just compute the product of each individual component for the two, then sum them all up.  The same definition extends to $\mathbb{R}^3$ and beyond.  The result of the dot product is a number (numbers, as opposed to vector quantities, are referred to as "scalars").
+
+To summarize a lot of applications, the dot product is a quick, clean way of computing the angle between two vectors.  It can be used to find a new vector perpendicular to a known vector.  And the dot product also is involved in computing volumes using vectors.
+
+Start by considering an alternative definition of the dot product as
+
+\[ u \cdot v = \left| u \right|  \left| v \right|  cos \theta \]
+\[ cos \theta \ = \frac{u \cdot v}{ \left| u \right|  \left| v \right| } \]
+These two definitions can be shown to be equivalent by using the law of cosines, but I'll skip that demonstration.
+
+Note that if $\theta=90^\circ$, then $cos \ \theta=0$ and the dot product for two perpendicular vectors is zero (and vice-versa).  This is extremely important.  As an example, given vector $v= \ <p,q>$, can you find a perpendicular vector u?  Just switch the components and change the sign for one.  $u= \ <-q,p>$.  Now the sum of the products of components (definition 1), is equal to zero.
+
+\[ (p)(-q) + (q)(p) = 0 \]
+
+In disguise, this is the rule from Algebra I that a perpendicular line has slope that is the negative inverse of m:  $\frac{1}{4}$ has negative inverse $-4$.  If we have the equations for two lines
+\[ y = \frac{p}{q} x + b \]
+\[ y = -\frac{q}{p} x + c \]
+We know these two lines are perpendicular to one another.
+\subsection*{Three dimensions}
+
+Let's make the move into 3D (officially $\mathbb{R}^3$).  Now our vectors have three components.  The vector
+\[ v = \  <v_1, v_2, v_3 > \]
+has a length that can be computed (by two sequential applications of the Pythagorean Theorem) as
+\[ \left| v \right| = \sqrt{v_1^2 + v_2^2 + v_3^2} \]
+For example 
+\[ v =  \ <-2,1,0>, \ \  \left| v \right| = \sqrt{(-4)^2 + 1^2} = \sqrt{5} \]
+The dot product of $u$ with $v$ is just
+\[ u \cdot v = u_1v_1 + u_2v_2 + u_3v_3 \]
+A really nice thing happens here.  The formula
+\[ cos \theta \ = \frac{u \cdot v}{ \left| u \right|  \left| v \right| } \]
+is still valid.  So the dot product can find the angle between vectors in three-dimensional space (or even higher).  Another nice property that follows is that $u \perp v \iff u \cdot v = 0 $.   If and only if $u \perp v$, then $u \cdot v$ = 0.
+
+Here is an application.  Suppose I have a vector $u= \ <1,2,0>$, then I can easily find two vectors that are perpendicular (out of many)
+\[ u= \ <1,2,0> \]
+\[ v =  \ <-2,1,0> \]
+\[ u \cdot v= 0 \] 
+\[ w= \ <0,0,5> \]
+\[ u \cdot w = 0 \]
+
+Now, $v$ and $w$ are not parallel, because if they were parallel then there would have to be a constant $t$ such that
+
+\[ tv=w \]
+
+So their linear combinations $cv + dw$, where $c$ and $d$ are constants, form a plane.  In fact, you may notice that $v \cdot w = 0$ so,  $v \perp w$, and we now see that we have three perpendicular vectors, also referred to as orthogonal vectors.
+
+We often talk of the unit vectors, vectors with unit magnitude in the direction of the x-axis, or the y-axis, or the z-axis.  These are usually called $\hat{i}$ ("i hat"), etc.
+\[ \hat{i} =  \ <1,0,0> \]
+\[ \hat{j} =  \ <0,1,0> \]
+\[ \hat{k} = \  <0,0,1> \]
+Take a minute to confirm that these three vectors are perpendicular, by computing their dot products.
+
+\end{document}  

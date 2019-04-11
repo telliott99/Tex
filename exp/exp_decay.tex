@@ -1,0 +1,108 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb}
+\usepackage{listings}
+
+\title{Exponential Growth and Decay}
+%\author{The Author}
+\date{}							% Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+%\section{}
+%\subsection{}
+\large
+A sample of radioactive phosphate containing the isotope ${}^{32}$P decays with a half-life of just over 14 days (14.29).  If you want to solve a problem with a given amount of the chemical $N_o$ at time-zero ($t=0$), and you are asked for the amount at time $t$, what do you do?  If the time is an even multiple of the half-life, it's easy.  For one half-life, multiply by $\frac{1}{2}$, for two half-lives multiply by $\frac{1}{4}$, for $n$ half-lives multiply by $(\frac{1}{2})^n$.
+
+If the time is not an even multiple of the half-life, you need two equations (where $T$ is the half-life and $k$ is a rate constant)
+\[ kT = \ln 2  = 0.693 \]
+\[ N = N_o \ e^{-kt} \]
+
+I want to show where these equations come from.  When studying the exponential function in calculus, we learn two equivalent definitions.  The first is that $\frac{d}{dx} \ e^x = e^x$.  The second is that $\frac{d}{dx} \ \ln(x) = \frac{1}{x}$, or 
+\[ \int \frac{1}{x} \ dx = \ln(x) \]
+
+In radioactive decay, each atom has a fixed probability of disintegrating in the next short time interval $dt$.  The probability varies for different types of radioactive atom (${}^{3}$H, ${}^{14}$C, ${}^{238}$U, etc.), but for each phosphorus atom in our sample of ${}^{32}$P it is the same.  As a result, the number of atoms $dN$ that will disintegrate or decay in the short time $dt$ is proportional to $N$, the number currently present.  A fixed fraction of all the atoms will be transformed.  We write
+\[ dN = k N dt \]
+Rearrange and integrate
+\[ \int \frac{dN}{N} = \int k \ dt \]
+The answer is just
+\[ \ln(N) = kt + C_0 \]
+Form the exponential on both sides
+\[ N = Ce^kt \]
+($C = e^{C_0}$).  We evaluate the constant $C$ by setting $t=0$ and find that $C = N_o$ so
+\[ N = N_o \ e^{kt} \]
+Finally, for decay problems it is usual to let k be positive and introduce a minus sign
+\[ N = N_o \ e^{-kt} \]
+The other equation given above was
+\[ kT = \ln 2 = 0.693 \]
+
+This is very useful to remember, because frequently we are given a half-life $T$ and asked to compute using the  equation with $e^{-kt}$.  It will save time to convert $T$ to $k$ quickly.  
+
+The derivation is as follows.  By definition, after one half-life has elapsed, when the time $t = T$, $N = \frac{N_o}{2}$.
+\[ \frac{N_o}{2} = N_o \ e^{-kT} \]
+\[ \frac{1}{2} =  \ e^{-kT} \]
+\[ 2 =  \ e^{kT} \]
+\[ \ln 2 =  \ kT \]
+
+Equations for the growth of populations work similarly, with 
+\[ N = N_o \ e^{kt} \]
+and again, if the problem gives you an even number of doublings, or generations, just use that.  For growth equations it is usual to use another symbol like $g$ for the number of generations, where
+\[ N = 2N_o \ e^{kg} \]
+but the same relation holds between $g$ and $k$ (because of the switched minus sign in $e^{kt}$).
+\[ \ln 2 =  \ kg \]
+
+In problems involving money, sometimes interest is compounded "continuously", in which you use the growth equation above, but at other times (say in Algebra I), it is given only at certain intervals, like monthly.  In that case, you reason as follows.  For a period of $t$ years overall, with $n$ intervals per year, and a yearly rate of interest $r$ (as a decimal, not a percentage), then
+
+\[ A = P(1 + \frac{r}{n})^{nt} \]
+
+If the intervals are monthly, then each time the interest is the yearly rate $r$ divided by $12$, and this is repeated a number of times equal to $nt$.
+
+Finally, there are problems like this one.  Suppose you buy a car for N dollars and you borrow all of that sum, with interest at a yearly rate of $i$, for a period of years $y$ (typically 3-5 years) so that $n = 12y$, interest to be compounded monthly.  The amount of the monthly payment is set so that $n$ equal payments will leave a balance due of $0$.  What is the monthly payment?
+
+This problem is harder because the amount of interest due each month changes.  At the beginning of the loan period, a large fraction of each payment is for interest.  Toward the end, it will be nearly all principal.
+
+The equation is
+\[ p = r \frac{(1+r)^n P}{(1+r)^n - 1} \]
+
+Again, $r$ is the monthly interest rate (annual rate divided by $12$).  $P$ is the amount you borrowed, and $n$ is the number of payments ($n=12y$).
+
+As an example, if the yearly interest rate is $6$ percent, then $r = 0.005$.  If the loan is for $5$ years there are $n=60$ payments.  Suppose $P=10000$
+\[ p = 0.005 \times \frac{(1.005)^{60} \times 10000}{1.005)^{60} - 1} \]
+\[ 1.005^{60} = 1.34885 \]
+\[ p = 0.005 \times \frac{1.34885 \times 10000}{1.34885 - 1} \]
+\[ p = 193.33 \]
+The total cost is 
+\[ p \times 60 = 11599.80 \]
+
+I'm sure there is a formula, but I checked with this Python script:
+
+\begin{lstlisting}
+>>> def do_One(P):
+...     i = P*0.005
+...     p = 193.33 - i
+...     return P - p
+... 
+>>> P = 10000
+>>> for i in range(60):
+...     P = do_One(P)
+...     print i + 1, P
+... 
+\end{lstlisting}
+
+The last two lines of the output are
+
+\begin{lstlisting}
+59 192.230375146
+60 -0.138472978695
+\end{lstlisting}
+
+Looks correct to me.
+
+
+
+\end{document}  

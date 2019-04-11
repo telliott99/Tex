@@ -1,0 +1,64 @@
+\documentclass[11pt, oneside]{article} 
+\usepackage{geometry}
+\geometry{letterpaper} 
+\usepackage{graphicx}
+	
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{parskip}
+\usepackage{color}
+\usepackage{hyperref}
+
+\graphicspath{{/Users/telliott_admin/Dropbox/Tex/png/}}
+% \begin{center} \includegraphics [scale=0.4] {gauss3.png} \end{center}
+
+\title{Law of cosines}
+\date{}
+
+\begin{document}
+\maketitle
+\Large
+
+\label{sec:Law_of_cosines}
+
+\section*{Law of cosines}
+
+Designate the lengths of a triangle's sides as $a,b,c$ and the angle between sides $a$ and $b$ as $C$ (because it is opposite side $c$).  The law of cosines says that
+
+\begin{center} \includegraphics [scale=0.5] {cosine_law.png} \end{center}
+
+\[ c^2 = a^2 + b^2 - 2 a b \cos C \]
+
+Lockhart calls this the "generalized" Pythagorean theorem.  We can view the term $-2ab \cos C$ as a correction term which disappears in the case where $\angle C$ is 90 degrees.
+
+\subsection*{derivation}
+The result follows from the Pythagorean Theorem.  (In fact, we can reuse the same diagram that was shown for the algebraic proof of the theorem).
+
+For a triangle with sides $a$, $b$ and $c$ and angles opposite those sides $A$, $B$ and $C$, divide the third side into two lengths $c=d+e$ using the vertical altitude from vertex $C$.
+\begin{center} \includegraphics [scale=0.5] {triangle.png} \end{center}
+\[ a^2 - e^2 = h^2 = b^2 - d^2 \]
+
+So
+\[ a^2 = e^2 + b^2 - d^2 \]
+Since $d = c - e$ and thus $d^2 = c^2 - 2ce + e^2$:
+\[ a^2 = e^2 + b^2 - (c^2 - 2ce + e^2) \]
+\[ = b^2 - c^2 + 2ce  \]
+but $e = a \cos B$ so
+\[ a^2 = b^2 - c^2 + 2ac \cos B  \]
+rearrange to give a more familiar form (this is the law of cosines)
+\[ b^2 = a^2 + c^2 - 2ac \cos B  \]
+Any side of a triangle can be expressed in terms of the other two and the cosine of the angle between them.  Thus, for example
+\[ c^2 = a^2 + b^2 - 2ab \cos C  \]
+\[ a^2 = b^2 + c^2 - 2bc \cos A  \]
+
+\subsection*{Law of sines}
+I'll just mention that there is another law called the law of sines.  In contrast to the law of cosines, it is fairly trivial.
+\begin{center} \includegraphics [scale=0.5] {triangle.png} \end{center}
+\[ \frac{h}{b} = \sin A  \ \ \ \  \frac{h}{a} = \sin B \]
+Therefore
+\[ h = b \sin A = a \sin B \]
+\[ \frac{\sin A}{a} = \frac{\sin B}{b} \]
+We could do the same construction and argument with $A$ and $C$ or $B$ and $C$.  Therefore
+\[ \frac{\sin A}{a} = \frac{\sin B}{b} = \frac{\sin C}{c} \]
+
+\end{document}

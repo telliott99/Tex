@@ -1,0 +1,33 @@
+EM radius
+
+semi-major axis
+3.844e5 km
+
+e = 0.0549
+
+T = 27.322 d
+  = 2360621 sec
+
+C = 
+
+v = 1.022 km/s
+
+G = 6.67e-11
+M = 5.972e24
+
+=====
+
+R = 384400
+d = 1.022
+R' = sqrt(R^2 + d^2)
+   = 384400.0000013586
+
+that's 1.36 mm "fallen" in 1 sec
+
+R of earth = 6371 km
+ratio of R's = 60
+squared = 3600
+
+so falling on earth in 1 sec
+= 3600 x 1.36 mm = 4.9 m
+= 16.07 feet

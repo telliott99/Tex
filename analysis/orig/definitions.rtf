@@ -1,0 +1,138 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fmodern\fcharset0 Courier;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww9720\viewh13360\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\b\fs36 \cf0 sequence
+\b0 \
+A sequence (a_n) is defined by writing 2,4,6... or whatever.\
+A sequence has a first term, and an infinite number of terms.\
+A sequence of random values is a perfectly good sequence, but it would be hard to write down the definition.\
+\
+Ex:  Let (a_n) be defined by a_n = 2n for all n in N\
+\
+
+\b increasing
+\b0 \
+a sequence is increasing \
+iff for every n \\in N, a_\{n+1\} \\le a_n\
+\
+
+\b monotonic\
+
+\b0 either increasing or decreasing
+\b \
+\
+strictly increasing
+\b0 \
+a sequence is increasing \
+iff for every n \\in N, a_\{n+1\} < a_n
+\b \
+\
+bounded above
+\b0 \
+A sequence (a_n) is bounded above \
+iff there exists M \\in R \
+such that for any n \\in N a_n \\le M.\
+\
+
+\b bounded
+\b0 \
+A sequence (a_n) is bounded above \
+iff there exists M > 0\
+such that for any n \\ge 1 |a_n| \\le M.\
+
+\b \
+limit
+\b0 \
+A sequence has a limit if, for 
+\i any
+\i0  e \\in R > 0,\
+there exists N such that for all n \\ge N \
+|a_n - a_N| < e\
+
+\b \
+converges
+\b0 \
+A sequence converges if it has a limit.\
+\
+
+\f1 -------
+\f0 \
+\
+So now consider the following statements and their converses:\
+\
+- every bounded sequence is convergent\
+counter F:  0, 1, 0, 1, ...\
+counter R:  choose M then 2M, -2M, M, -M, ...\
+oops, this is bounded\
+\
+- every monotonic sequence is convergent\
+counter F:  1, 2, 3, \
+counter R:  1, 11, 2, 10, 3 ...\
+\
+- every monotonic sequence is bounded\
+counter F:  1, 2, 3, ...\
+counter R:  sin(x)\
+\
+- every convergent sequence is bounded\
+True.  \
+A sequence cannot contain infinity as a term, it can only tend to infinity.  A convergent sequence tends to its limit.  \
+\
+There is a finite number of terms before it gets within e of that limit.  One of those terms is the max, and that is the bound.\
+\
+- every bounded monotonic sequence is convergent\
+\
+
+\f1 -------\
+
+\f0 \
+
+\f1 |m - n| < e
+\f0 \
+\
+We are interested in the difference or distance between two numbers on the number line.  A distance is always positive.  So we can say the distance from m to n or from n to m and it's the same.\
+\
+We talk about difference as subtraction.  So we could say choose whether m > n or not and then if it isn't, switch them...  or we can just say take the absolute value of the difference, which covers both cases.\
+\
+
+\f1 In any event\
+|m - n| < e\
+iff\
+-e < m - n < e\
+\
+Case 1: if m > n then m - n > 0 and\
+|m - n| = m - n \
+so \
+m - n < e\
+and certainly\
+m - n > -e\
+
+\f0 \
+
+\f1 Case 2: if m = n then\
+|m - n| = |0| = 0 \
+and certainly for e > 0\
+0 < e\
+0 > -e\
+\
+Case 3: if n > m then m - n < 0 and\
+|m - n| = -(m - n) = - m + n = n - m\
+so\
+|m - n| < e\
+means\
+n - m < e\
+and certainly\
+n - m > -e\
+so we're good.\
+\
+Now since\
+-e < m - n < e\
+
+\f0 n - e < m < n + e\
+\
+\
+\
+}

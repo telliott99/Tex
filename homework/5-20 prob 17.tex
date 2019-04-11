@@ -1,0 +1,38 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{parskip}
+
+\title{problem 17}
+%\author{The Author}
+%\section{}
+% \subsection*{R code}
+\date{}							% Activate to display a given date or no date
+
+\graphicspath{{/Users/telliott_admin/Dropbox/Tex/png/}}
+
+\begin{document}
+\maketitle
+\large
+%\noindent
+\[ \int \frac{\ln x}{x^2} \ dx \]
+Let
+\[ u = \ln x \]
+\[ du = \frac{1}{x} \ dx \]
+\[ dv = \frac{1}{x^2} \ dx \]
+\[ v = -\frac{1}{x} \]
+We get 
+\[ \int \frac{\ln x}{x^2} \ dx = -\frac{\ln x}{x} + \int \frac{1}{x^2} \ dx \]
+\[ = -\frac{\ln x}{x} - \frac{1}{x} \]
+\[ = -\frac{1}{x} \ (\ln x + 1) \]
+Evaluate from $x=1 \Rightarrow x=2$:
+\[ =  -\frac{1}{2} \ (\ln 2 + 1) +  1 \]
+Check
+
+\end{document}  

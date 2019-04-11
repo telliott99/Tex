@@ -1,0 +1,72 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb}
+\graphicspath{{/Users/telliott_admin/Dropbox/Tex/png/}}
+
+\title{Water Potential}
+%\author{The Author}
+\date{}							% Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+%\section{}
+%\subsection{}
+\noindent
+\large
+The goal is to predict the direction of water flow between two compartments, like an idealized plant cell and medium surrounding it in a beaker.  The two compartments are separated by a semi-permeable membrane that allows flow of water but not disssolved solutes.
+
+We define the water potential $\psi$ as the sum of the solute potential $s$ and the pressure $p$.
+
+\[ \psi = s + p  \]
+
+The pressure $p$ is usually positive.  $\psi$ has the same units as pressure ($bars$).  Another unit is the megapascal ($MPa$). 
+
+\[ 1 \ bar = 10^5 Pa \]
+\[ 1 \ bar = 0.1 \ MPa \]
+
+To convert from $MPa$ to $bars$
+
+\[ 2 \ MPa \times \frac{1 \ bar}{0.1 \ MPa} = 20 \ bars \]
+
+Notice that the MPa units cancel, as they must.  For reference, 1 $bar$ is about the same as normal atmospheric pressure.
+
+We haven't had confirmation yet from Mr. K, but atmospheric pressure above a beaker should count as a pressure (approximately 1 $bar$).  Pressures within plant cells from the cell wall are about 10 times higher than this.
+
+The other component we need to calculate is the solute potential $s$.
+
+\[ s = -iCRT \]
+
+where $R$ is the gas constant, which in the units that are appropriate for us is
+
+\[ R = 0.0831 \frac{bar \ L}{moles \ deg(Kelvin)} \]
+
+As implied by the definition of $R$, degrees are in Kelvin.  C is the \emph{molar} concentration (moles per liter), as is also implied in the definition of $R$.  In the simple problems you are doing, $i$ is usually $1$ (sucrose, glucose) or $2$ (NaCl).  But watch out, to trick you they might give a solute that dissolves to give three or four separate ions, like sodium phosphate.
+
+Types of problems:  (i) given values of $s$ and $p$, compute $\psi$ and predict the direction of water flow;  (ii) given that no flow occurs (equilibrium), deduce that $\psi$ is equal in both compartments, then calculate $s$ or $p$ given the value for one;  (iii) starting at equilibrium change $s$ or $p$ and predict in which direction flow will occur.
+
+These problems can be made a little trickier by giving the amount of solute in grams and the volume of solution in liters.  One can plug the appropriate values into the equation above (see the units of $R$), but I think it's better to handle the conversion to and from molar concentration separately.
+
+Once again, for these equations, make sure your units cancel!  For example, 90 g of glucose (MW = 180 g/mol) in 0.2 L
+
+\[ 90 \ g \times \frac{mol}{180 \ g} \times \frac{1}{0.2 \ L} = 2.5 \ \frac{mol}{L} \]
+
+Notice that the grams cancel to give the correct units for the answer.
+
+How many grams of glucose to give 500 mL of 0.1 M solution?
+
+\[ 0.1 \ \frac{mol}{L} \times 0.5 \ L\ \times 180 \ \frac{g}{mol} = 9 \ g \]
+
+Notice that the moles and liters cancel to give the correct units for the answer.
+
+\section*{}
+There are two more points to make about water potential in biology.  First, a difference in pressure (and therefore water potential) explains the rise of water through the xylem of a plant.
+
+Second, if the pressure is high enough, water will flow from a solution (like sea water) across a membrane to give pure water.  This process is used to purify water, it is called reverse osmosis. 
+
+
+\end{document}  

@@ -1,0 +1,91 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex	
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{parskip}
+\usepackage{color}
+
+\title{Chain rule:  proof}
+%\author{The Author}
+\date{}							% Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+%\section{}
+%\subsection{} 
+\Large
+\noindent
+Given two functions $f$ and $g$ we are interested in the composite function $f(g(x))$, often written as $f \circ g$, and in particular, we wish to derive an expression for the derivative
+\[ \frac{d}{dx} \ (f \circ g) = \lim_{h \rightarrow 0} \frac{f(g(x+h)) - f(g(x))}{h} \]
+Naturally, we insist that $g$ is differentiable at $x$ and $f$ is differentiable at $g(x)$.
+
+The chain rule is the formula:
+\[ \frac{d}{dx} \ (f \circ g) = f'(g(x)) \cdot g'(x) \]
+which is more easily remembered as
+\[ \frac{df}{dx} = \frac{df}{dg} \ \frac{dg}{dx} \]
+
+As an example, if we write
+\[ y = g(x) = x^2 \]
+\[ z = f(y) = y^2 \]
+\[ z' = 2y \cdot 2x = 2(x^2) 2 x = 4 x^3 \]
+which is easily checked by recognizing that $z = x^4$.
+\subsection*{proof}
+The proof is a little tedious, but here goes.  Again, we want to compute:
+\[ \lim_{h \rightarrow 0} \frac{f(g(x+h)) - f(g(x))}{h} \]
+Since $g(x)$ is differentiable at $x$
+\[ g'(x) = \lim_{h \rightarrow 0} \frac{g(x+h) - g(x)}{h} \]
+Rearrange and define a new variable $v$
+\[ v = \frac{g(x+h) - g(x)}{h} - g'(x) \]
+$v$ depends on $h$ and $v \rightarrow 0$ as $h \rightarrow 0$.  We can set up a similar expression involving $f$, namely:
+\[ w = \frac{f(y+k) - f(y)}{k} - f'(y) \]
+$w$ depends on $k$ and $w \rightarrow 0$ as $k \rightarrow 0$.
+
+Rearrange some more:
+\[ g(x+h) = g(x) + [ \ g'(x) + v \ ] \ h \]
+\[ f(y+k) = f(y) + [ \ f'(y) + w \ ] \ k \]
+
+So now we want to rewrite $f(g(x+h))$.  Using the first equation
+\[ f(g(x+h)) = f( g(x) + h \ [ \ g'(x) + v \ ] \ ) \]
+
+Now, pick a particular $k = \ [ \ g'(x) + v \ ] \ h$, So that is (using the second equation and $g(y) = g(x+h)$):
+\[ f(g(x+h)) = f(g(x)) + [ \ f'(g(x)) + w \ ] \ k  \]
+and substituting for $k$:
+\[ f(g(x+h)) = \]
+\[ = f(g(x)) + \ [ \ f'(g(x)) + w \ ] \ \ [ \ g'(x) + v \ ] \ h \]
+
+Go back to the difference quotient:
+\[ \frac{f(g(x+h)) - f(g(x))} { h }  \]
+Now that we have extracted $f(g(x))$ from the first term we can put everything together and see some cancellations:
+
+\[  \frac{f(g(x+h)) - f(g(x))} { h }  = \]
+\[ = \frac{f(g(x)) + \ [ \ f'(g(x)) + w \ ] \ \ [ \ g'(x) + v \ ] \ h \ ] \ - f(g(x))}{h} \]
+Cancel the first and last term in the numerator
+\[ = \frac{[ \ f'(g(x)) + w \ ] \ \ [ \ g'(x) + v \ ] \ h \ ]}{h} \]
+Cancel the $h$
+\[ = [ \ f'(g(x)) + w \ ] \ \ [ \ g'(x) + v \ ] \]
+
+So now, we just need to put in the limit:
+\[ = \lim_{h \rightarrow 0} \ [ \ f'(g(x)) + w \ ] \ \ [ \ g'(x) + v \ ] \]
+\[ = \ [  \ \lim_{h \rightarrow 0} f'(g(x)) +  \lim_{h \rightarrow 0} w \ ] \ [ \  \lim_{h \rightarrow 0} g'(x) +  \lim_{h \rightarrow 0} v \ ] \]
+
+But, as $h \rightarrow 0$, so $k \rightarrow 0$, and as $k \rightarrow 0$, so $v \rightarrow 0$ and $w \rightarrow 0$, and we just have:
+\[ = \ [  \ \lim_{h \rightarrow 0} f'(g(x))  ] \ [ \  \lim_{h \rightarrow 0} g'(x) \ ] \]
+which is the chain rule.
+
+According to my source, the often-seen proof involves multiplying by the inverse of $g'(x)$:
+\[ (f \circ g)'(x) = \lim_{h \rightarrow 0} \frac{f(g(x+h)) - f(g(x))}{h} \]
+\[ (f \circ g)'(x) \ (\frac{1}{g'(x)} = \lim_{h \rightarrow 0} \frac{f(g(x+h)) - f(g(x))}{h} \ \frac{h}{g(x+h)-g(x)} \]
+
+whereupon we cancel the solitary $h$
+\[ = \lim_{h \rightarrow 0} \frac{f(g(x+h)) - f(g(x))}{g(x+h)-g(x)} \]
+\[ = f'(g(x)) \]
+Hence
+\[ (f \circ g)'(x) =  f'(g(x)) g'(x) \]
+But this proof is "technically incorrect".
+
+\end{document}  

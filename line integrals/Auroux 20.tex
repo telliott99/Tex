@@ -1,0 +1,93 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb}
+\graphicspath{{/Users/telliott_admin/Dropbox/Tex/png/}}
+
+\title{Auroux 20, FTC}
+%\author{The Author}
+\date{}							% Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+%\section{}
+%\subsection{}
+\large
+At the end, we'll get to the fundamental theorem of calculus for line integrals, which is that
+\[  \int_{P1}^{P2} \nabla \mathbf{F} \cdot d\mathbf{r} = f_{P2} - f_{P1} \iff \mathbf{F} = \nabla f \] 
+\[ \int_{P1}^{P2} f_x \ dx + f_y \ dy = f(P2) - f(P1) \]
+
+Example 1.
+We usually have $x$ and $y$ as functions of a parameter $t$.  Also we will have a vector field $F$ where
+\[ F = \ <M,N> \]
+\[ F = \ <P,Q,R> \]
+and we are interested in the integral along the curve
+\[ \int_C F \cdot dr = \int_C F \cdot T ds = \int_C P dx + Q dy + R dz \]
+Suppose
+\[ F = \ <x,y,z> \]
+and we have equations for $x(t), y(t), z(t)$
+\[ x = t, \ \ \ \ y = t, \ \ \ \ z = 2t^2 \]
+\[\frac{dr}{dt} = \ <\frac{dx}{dt},\frac{dy}{dt},\frac{dz}{dt}> = \ <1,1,4t> \]
+\[ \int_C F \cdot dr = \int_C <t,t,2t^2> \  \cdot <1,1,4t> dt = \int_C (2t + 8t^3) dt = t^2 + 2t^4 \]
+Evaluate from say, $t=0$ to $t=1$
+\[  t^2 + 2t^4 = 3 \]
+\vspace{2 mm}
+
+Example 2.
+Suppose F is $<y,x>$ and C is a sector of the unit circle between $0 <= \theta <= \frac{\pi}{4}$, so that we start at the origin and go out along the radius, along the circle, and then come back to the origin.  Break the curve up into three parts.
+\[ \int_{C1} = \int_0^1 M dx + N dy  = \int_0^1 y dx + x dy  = 0 \]
+Notice that both $y=0$ and $dy = 0$, since we're going out along y = 0.  Also, notice that F is $<0,x>$, so that $F \perp dr$ and so $F \cdot dr = 0$.
+For C2 we are on the unit circle going from $(0,1)$ to $(\frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}})$.
+\[  \int_C y dx + x dy \]
+The natural thing to do here is to change variables
+\[x = cos \ \theta , \ \ \ \ y = sin \ \theta \]
+\[dx = -sin\ \theta, \ \ \ \ dy = cos \ \theta \]
+\[  \int_{C2} y dx + x dy = \int_{C2} (-sin^2\ \theta + cos^2\ \theta) \  d\theta \]
+Perhaps you can recognize the double-angle formula?
+\[  \int_{C2} cos \ 2\theta \ d\theta = \frac{1}{2} sin \ 2 \theta\]
+\[ [ \ \frac{1}{2} sin \ 2 \theta \ ] \bigg |_0^{\pi/4} =  \frac{1}{2} \]
+For C3 we are moving back along the radius from $(\frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}})$ to $(0,0)$
+\[  \int_C y dx + x dy \]
+Notice that we are moving along the line $y=x$ so $dy = dx$ and 
+\[  \int_C y dx + x dy =  2  \int_C x dx = x^2 \  \bigg |_\frac{1}{\sqrt{2}}^0 = -\frac{1}{2}  \]
+The total integral is the sum which is $ 0 + \frac{1}{2} - \frac{1}{2} = 0$.  The reason for this special result is that F is the gradient of a potential function.  We are just going to guess what that function is
+\[ f(x,y) = xy \]
+The gradient of f is
+\[ \nabla f  = \ <f_x,f_y> \ = \  <y,x> \]
+The fundamental theorem of calculus for line integrals with a conservative vector field is
+\[ \int_C F \cdot dr = f(P_1) - f(P_2) \]
+The example is a closed curve $ (P_1 = P_2)$ so the difference is just 0.
+
+The question you might ask is how do we know that $f(x,y) = xy$ is a potential function?  Answer:  a conservative vector field has zero curl:  $N_x = M_y$.
+
+To restate
+\[  \int_{P1}^{P2} \nabla \mathbf{F} \cdot d\mathbf{r} = f_{P2} - f_{P1} \iff \mathbf{F} = \nabla f \] 
+Here's a proof
+\[  \int_C \nabla \mathbf{F} \cdot d\mathbf{r} = \int_C f_x \ dx + f_y \ dy \] 
+\[ x = x(t), \ \ dx = x'(t) \ dt \]
+\[ y = y(t), \ \ dy = y'(t) \ dt \]
+\[ \int_{t_0}^{t_1} (f_x \ \frac{dx}{dt} + f_y \ \frac{dy}{dt}) \ dt = \int_{t_0}^{t_1} \frac{df}{dt} \ dt = \int_{t_0}^{t_1} df = f(t_1) = f(t_0) \]
+
+Remember the field in example 2:  $<y,x>$.  Can we think of a function $f$ whose $df/dx = y$ and $df/dy = x$?  How about $f=xy$!
+Repeat:
+\vspace{2 mm}
+
+\noindent Section 1:  
+\[ P_0 = (0,0); \ \  P_1 = (1,0); \ \  f(P_1) - f(P_0) = 0 - 0 = 0 \]
+Section 2:  
+\[ P_0 = (1,0); \ \  P_1 = (\frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}}); \ \  f(P_1) - f(P_0) = \frac{1}{2} - 0 = \frac{1}{2} \]
+Section 3:  
+\[ P_0 = (\frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}}); \ \  P_1 = (0,0); \ \  f(P_1) - f(P_0) = 0 - \frac{1}{2} = - \frac{1}{2} \]
+And the sum is, of course, 0.
+
+Consider $F = <-y,x>$.  $F$ is not the gradient of some function, because $N_x \ne M_y$.
+Very important:  Curl$(F) = N_x - M_y$.  For a conservative vector field, the curl is zero.
+\vspace{2 mm}
+
+\noindent  (1) if $F$ is conservative, $\int_C F \cdot dr = 0$ for all closed paths;  (2) $\int_C F \cdot dr$ is path-independent;  (3) $F=\nabla f$ and (4) $M \ dx + N \ dy$ is an \emph{exact} differential:  $df = f_x \ dx + f_y \ dy$.
+
+\end{document}  

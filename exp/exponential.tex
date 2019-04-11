@@ -1,0 +1,121 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb}
+\usepackage{parskip}
+
+\title{The exponential function}
+%\author{The Author}
+\date{}							% Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+%\section{}
+%\subsection{}
+\large
+In Algebra, you probably met this equation for principal and interest
+\[ A = P (1 + \frac{r}{n})^{nt} \]
+where $n$ is the number of periods in a year, $t$ is the number of years, and $r$ is the interest rate per year.  This equation has been known for a long time, and people started playing around with this variant
+\[ (1 + \frac{1}{n})^{n} \]
+and they wondered what happens as $n$ gets very large.  What is
+\[ \lim_{n \to \infty} (1 + \frac{1}{n})^{n} \ \stackrel{?}{=} \]
+
+\subsection*{method 1}
+
+I saw an interesting approach to this in the book \emph{Mooculus}.  We will use L'Hospital's Rule.  With their notation, we're looking for
+
+\[ \lim_{x \rightarrow \infty} \ (1 + \frac{1}{x})^x \]
+
+the first thing is to rewrite this as the exponential
+
+\[ = \lim_{x \rightarrow \infty} \ e^{x \ln(1 + 1/x)} \]
+
+To evaluate the limit, we need to evaluate the limit of the exponent
+
+\[ \lim_{x \rightarrow \infty} x   \ln (1 + \frac{1}{x})  \]
+
+It doesn't look like we can use the rule (there is no quotient), but there is a standard trick for these situations.  Just rearrange like so
+
+\[ = \lim_{x \rightarrow \infty} \frac{ \ln (1 + \frac{1}{x})}{\frac{1}{x}}  \]
+
+Both the top and the bottom limits are easily evaluated to be equal to $0$.  So we will differentiate.  The derivative of the numerator is (by the chain rule)
+
+\[ f'(x) = \frac{-x^{-2}}{1 + 1/x} \]
+
+while the denominator is just
+
+\[ g'(x) = -x^{-2} \]
+
+So we need to evaluate
+
+\[ = \lim_{x \rightarrow \infty} \frac{f'(x)}{g'(x)} \]
+
+The factor of $-x^{-2}$ cancels from both top and bottom, leaving us with
+
+\[ = \lim_{x \rightarrow \infty} \frac{1}{1 + 1/x} = 1  \]
+
+Substituting back, we see that
+
+\[ \lim_{x \rightarrow \infty} \ (1 + \frac{1}{x})^x = e^1 = e \]
+
+
+\subsection*{method 2}
+
+If we use the standard binomial expansion
+\[ \frac{1}{0!}a^n + \frac{n}{1!}a^{n-1}b^1 + \frac{n(n-1)}{2!}a^{n-2}b^2 + \frac{n(n-1)(n-2)}{3!}a^{n-3}b^3\ + \cdots \]
+with a = 1
+\[ \frac{1}{0!} + \frac{n}{1!}b^1 + \frac{n(n-1)}{2!}b^2 + \frac{n(n-1)(n-2)}{3!}b^3\ + \cdots \]
+plug in for b = 1/n
+\[ \frac{1}{0!}({\frac{1}{n}})^0 + + \frac{n}{1!}({\frac{1}{n}})^1 + \frac{n(n-1)}{2!}({\frac{1}{n}})^2 + \frac{n(n-1)(n-2)}{3!}({\frac{1}{n}})^3 + \cdots  \]
+Now, in the limit, $n$ and $n-1$ are nearly equal, and so are $n$ and $n-2$, and all the terms $n$, $(n-1)$, $(n-2)$ find just the right number of $n$'s in the denominator to cancel and we get
+\[ \frac{1}{0!} + \frac{1}{1!} + \frac{1}{2!} + \frac{1}{3!} + \cdots  \]
+which is one of several equivalent definitions for $e$.  The first three terms are $1 + 1 + 1/2$, which is reasonably close. After six terms, we have $e = 2.718$.  The series converges rapidly because the inverse factorials get small very quickly.
+
+So $e$ is just a number.  We can define the exponential function, which means we raise $e$ to the power $x$, that is $f(x) = e^x$.  We have
+\[ e = \lim_{n \to \infty} (1 + \frac{1}{n})^{n} \]
+We want 
+\[ e^x = \lim_{n \to \infty} (1 + \frac{1}{n})^{nx} \]
+It turns out this is exactly the same as
+\[ e^x = \lim_{n \to \infty} (1 + \frac{x}{n})^{n} \]
+That's because
+\[ (1+b)^{mn} = (1+bm)^n \]
+To confirm this, look at the binomial expansion for these two expressions.  Remember that the terms $n(n-1)(n-2)$ etc. come from this formula
+\[ \frac{n!}{(n-k)!k!} \]
+so for example, with $k=2$ we have
+\[ \frac{n(n-1)(n-2)(n-3)!}{(n-3)!2!} = \frac{n(n-1)(n-2)}{2!} \]
+With $nx$ as the exponent
+\[ \frac{(nx)!}{((nx)-k)!k!} \]
+for example with $k=2$
+\[ \frac{nx(nx-1)(nx-2)}{2!} = x^3 \frac{n(n-1)(n-2)}{2!}\]
+Thus, in the first one
+\[ e^x = \lim_{n \to \infty} (1 + \frac{1}{n})^{nx} \]
+we get a power of $x$ coming in for each term in $n(n-1)(n-2)$, so that's
+\[ x^0 \frac{1}{0!} + + x^1 \frac{n}{1!}({\frac{1}{n}}) + x^2 \frac{n(n-1)}{2!})({\frac{1}{n}})^2 + x^3 \frac{n(n-1)(n-2}{3!}({\frac{1}{n}})^3 + \cdots  \]
+while the second one is
+\[ \frac{1}{0!}(\frac{x}{n})^0 + + \frac{n}{1!}({\frac{x}{n}})^1 + \frac{n(n-1)}{2!}({\frac{x}{n}})^2 + \frac{n(n-1)(n-2)}{3!}({\frac{x}{n}})^3 + \cdots  \]
+In both of these, the $n$'s cancel as before and we have
+\[ e^x = \frac{x^0}{0!} + \frac{x^1}{1!} + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots  \]
+\subsection*{The exponential is its own derivative}
+
+A most important fact about the exponential function $f(x) = e^x$ is that this function is its own derivative.  To see that, take $\frac{d}{dx}$ of the last series.
+\[ \frac{d}{dx} \ e^x = 0 + (1)\frac{x^{1-1}}{1!} + (2)\frac{x^{2-1}}{2!} + (3)\frac{x^{3-1}}{3!} + \cdots  \]
+\[ \frac{d}{dx} \ e^x = 0 + \frac{x^{0}}{0!} + \frac{x^{1}}{1!} + \frac{x^{2}}{2!} + \cdots  = e^x \]
+Each exponent $n$ that comes down through the power rule, finds an $n$ in $n!$ to cancel, leaving $n-1$ in the exponent as well as $(n-1)!$.
+
+We can find the derivative of a generic exponential using the standard method with the difference quotient.  Let $b$ be the base, then $f(x) = b^x$ and
+\[ \lim_{h \to 0}    \ \frac{b^{x+h} - b^x}{h}   \]
+But
+\[  b^{x+h} = b^x b^h  \]
+so this is just
+\[ \lim_{h \to 0}    \ \frac{b^xb^h - b^h}{h} = \lim_{h \to 0}    \ \frac{b^x(b^h - 1)}{h} = b^x  \lim_{h \to 0}\ \frac{(b^h - 1)}{h} = cb^x \]
+At this point we don't know what the value of c is, but it is just a number which depends on b, but \emph{not on x}, so we know it's a constant.  It turns out that if $b = e$, then $c=1$.  You can see that by looking at
+\[ \lim_{h \to 0}\ \frac{(e^h - 1)}{h} \]
+For small $h$ we can approximate $e^h = 1 + h$ (see the series above), then
+\[ \lim_{h \to 0}\ \frac{(1 + h - 1)}{h} = \frac{h}{h} = 1 \]
+
+
+\end{document}  

@@ -1,0 +1,29 @@
+radius
+E
+M
+S
+
+circumference
+E
+M
+S
+
+distance
+EM
+ES
+
+
+ES distance = 23,000 times earth's radius
+max is 152.1 million km
+min is 147.1
+
+E radius is 6353-6384 km
+S radius is 695500 km = 0.7 million km
+
+
+measured value of theta was 1/50 of a circle
+Alexandria - Syene (Aswan) distance was 5000 stadia
+modern terms 
+925 km x 50 = 46250
+actual circumference is 2 pi times 6350
+39900 km
