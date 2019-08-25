@@ -1,0 +1,34 @@
+\documentclass[12pt, oneside]{report}
+
+\usepackage{geometry}
+\geometry{letterpaper}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{parskip}
+\usepackage{color}
+%\usepackage{hyperref}
+\usepackage{tocloft}
+\setlength{\cftchapnumwidth}{2.5em}
+
+\PassOptionsToPackage{hyphens}{url}
+\usepackage[hidelinks, 
+colorlinks=true, 
+linkcolor=blue, 
+urlcolor=red]{hyperref}
+
+%\usepackage[hidelinks]{hyperref}
+
+%\setcounter{tocdepth}{0}
+
+\graphicspath{{/Users/telliott_admin/Dropbox/Tex/png/}}
+
+\title{Kepler's Laws}
+\author{Tom Elliott}
+\date{\today}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\large

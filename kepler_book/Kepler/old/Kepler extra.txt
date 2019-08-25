@@ -1,0 +1,81 @@
+
+---------
+
+A second change is to use dot notation
+
+\[ \dot{\mathbf{r}} = \frac{d}{dt} \ \mathbf{r} = \mathbf{v} \]
+
+so in looking at what is inside the brackets above, the expression is
+
+\[ \dot{\mathbf{r}} \times \mathbf{r} \]
+
+An aside about this, recall that the momentum $\mathbf{p} = m \mathbf{v}$ and that the angular momentum $\mathbf{L}$ is related to what we're working with since
+
+\[ \mathbf{L} = \mathbf{r} \times \mathbf{p} =  \mathbf{r} \times m \mathbf{v} = m(\mathbf{r} \times \mathbf{v}) =  m(\mathbf{r} \times \dot{\mathbf{r}}) =  -m(\dot{\mathbf{r}} \times \mathbf{r}) \]
+
+And in Feynman's presentation of this which I wrote up elsewhere he shows that
+
+\[  \frac{d}{dt} ( \mathbf{r} \times \dot{\mathbf{r}})  = \dot{\mathbf{r}} \times \dot{\mathbf{r}} +  \mathbf{r} \times  \ddot{\mathbf{r}} = 0 \]
+
+The first term is zero because any vector's cross-product with itself is zero.  The second term is also zero by the hypothesis that the force is centripetal, toward the sun, and since, using Newton's second law that means the acceleration (which is $\ddot{\mathbf{r}}$) is also toward the sun and thus in the same direction as $-\mathbf{r}$. 
+
+So if 
+
+\[  \frac{d}{dt} ( \mathbf{r} \times \dot{\mathbf{r}}) = 0 \]
+
+then let's introduce a symbol for this cross-product
+
+\[  \mathbf{r} \times \dot{\mathbf{r}} = \mathbf{H} \]
+
+where $\mathbf{H}$ is a constant since $d \mathbf{H}/dt = 0$ (and looking back we see that $\mathbf{L} = m \mathbf{H}$.  This is just the conservation of angular momentum.
+
+Back to the diagram
+
+
+
+
+
+
+Start by substituting into the left-hand side
+
+\[ \mathbf{a} \times \mathbf{c} =  \mathbf{a} \times (\mathbf{r} \times \mathbf{v} ) \]
+
+A standard vector identity is that
+
+\[ \mathbf{a} \times (\mathbf{b} \times \mathbf{c} ) = (  \mathbf{a} \cdot \mathbf{c}) \mathbf{b} - (  \mathbf{a} \cdot \mathbf{b}) \mathbf{c} \]
+so
+\[ \mathbf{a} \times (\mathbf{r} \times \mathbf{v} ) = (  \mathbf{a} \cdot \mathbf{v}) \mathbf{r} - (  \mathbf{a} \cdot \mathbf{r}) \mathbf{v} \]
+
+Recall that
+
+\[ \mathbf{a} = - \frac{GM}{r^2} \mathbf{u} \]
+\[ \mathbf{r} = r \mathbf{u} \]
+\[ \mathbf{v} = \dot{\mathbf{r}} = \frac{d}{dt} \ r \mathbf{u} = \frac{dr}{dt} \mathbf{u} + r \dot{\mathbf{u}} \]
+
+So let's work through it.  The first term is
+
+\[ \mathbf{a} \cdot \mathbf{v} = - \frac{GM}{r^2} \mathbf{u} \cdot ( \frac{dr}{dt} \mathbf{u} + r \dot{\mathbf{u}}) \]
+\[ = - \frac{GM}{r^2} \ \frac{dr}{dt} - \frac{GM}{r} \ \mathbf{u} \cdot \dot{\mathbf{u}} \]
+
+and that all multiplies $\mathbf{r} = r \mathbf{u}$ 
+
+\[ = - \frac{GM}{r} \ \frac{dr}{dt}  \mathbf{u}- GM \ (\mathbf{u} \cdot \dot{\mathbf{u}}) \mathbf{u} \]
+
+The second term is
+
+\[ \mathbf{a} \cdot \mathbf{r} = - \frac{GM}{r^2} \mathbf{u} \cdot r \mathbf{u} \]
+\[ = - \frac{GM}{r} \]
+
+which multiplies $\mathbf{v}$
+
+\[ - \frac{GM}{r} (\frac{dr}{dt} \mathbf{u} + r \dot{\mathbf{u}}) \]
+\[ = - \frac{GM}{r} \frac{dr}{dt} \mathbf{u} - GM \dot{\mathbf{u}}) \]
+
+Now we subtract the second term from the first, so we have a cancellation and what is left is
+
+\[  GM \dot{\mathbf{u}} - GM \ (\mathbf{u} \cdot \dot{\mathbf{u}}) \mathbf{u} \]
+
+So somehow we need to show that 
+
+\[ \mathbf{u} \cdot \dot{\mathbf{u}} = 0 \]
+

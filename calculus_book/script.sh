@@ -1,6 +1,6 @@
 #! /bin/bash
 arg=$1
-path="/Users/telliott_admin/Dropbox/Tex/calculus_book"
+path="/Users/telliott_admin/Tex/calculus_book"
 
 cd /Users/telliott_admin/Desktop
 
@@ -22,6 +22,6 @@ rm $path/files/*.out $path/files/*.gz 2>/dev/null
 rm $path/files/*.pdf 2>/dev/null
 rm stdclsdv.sty 2>/dev/null
 
-open -a Preview /Users/telliott_admin/Dropbox/Tex/calculus_book/Best\ of\ Calculus.pdf
+open -a Preview /Users/telliott_admin/Tex/calculus_book/Best\ of\ Calculus.pdf
 
 

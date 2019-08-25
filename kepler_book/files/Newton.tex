@@ -1,0 +1,44 @@
+\documentclass[11pt, oneside]{article} 
+\usepackage{geometry}
+\geometry{letterpaper} 
+\usepackage{graphicx}
+	
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{parskip}
+\usepackage{color}
+\usepackage{hyperref}
+
+\graphicspath{{/Users/telliott_admin/Dropbox/Tex/png/}}
+% \begin{center} \includegraphics [scale=0.4] {gauss3.png} \end{center}
+
+\title{Newton}
+\date{}
+
+\begin{document}
+\maketitle
+\Large
+
+
+Here, we look at the geometric proof of K2 used by Newton.
+\begin{center} \includegraphics [scale=0.4] {newton_area.png} \end{center}
+
+Diagram the sun $S$ and a planet at $A$.  
+
+Imagine that the force toward the sun is applied discretely.  That is, during a small interval $\Delta t$, the planet travels from $A$ to $B$ at constant velocity and if undisturbed, would travel to $C$ in the next unit of time.
+
+In the absence of a force, the velocity would be constant and the length of $AB$ the same as that of $BC$, and then since $AB$ is on the same line as $BC$, the area of $\triangle ABS$ is equal to the area of $\triangle BCS$.  
+
+Proof:  draw the vertical line from $S$ to the line containing $ABC$.  The area of either triangle is one-half the length of that altitude times the distance, either $AB$ or $BC$.  The principle is illustrated in the next figure.
+\begin{center} \includegraphics [scale=0.5] {triangles_parallel.png} \end{center}
+Given two parallel lines separated by a distance $h$, pick two points on one line separated by a distance $d$ and \emph{any} point on the other line.  The triangles drawn using those points will all have equal area, namely $(1/2)dh$.
+
+Now, suppose the force is applied at $B$ \emph{toward the sun} along $EBS$.  
+\begin{center} \includegraphics [scale=0.4] {newton_area.png} \end{center}
+
+As a result, the trajectory $BC$ is modified by the change in velocity resulting from application of the force toward the sun. The new path is the additional velocity times $\Delta t$.  Call the length $CD$ and add it to $BC$ to give the actual trajectory, $BD$.  
+
+$CD$ is parallel to $SBE$.  Therefore, every point on $CD$ has an altitude with respect to $SBE$ of the same length.  So any point on $CD$ can be used to draw a triangle with the same base $SB$ and the result will have the equal area no matter which point is chosen.
+
+In particular, the area of $\triangle BDS$ is equal to the area of $\triangle BCS$, which was found earlier to be equal to the area of $\triangle ABS$.  Since the two triangles from the actual motion have the same area, the area is constant.
+\end{document}  
