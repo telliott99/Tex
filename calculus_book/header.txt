@@ -9,9 +9,10 @@
 \usepackage{color}
 %\usepackage{hyperref}
 \usepackage{tocloft}
+\usepackage{url}
 \setlength{\cftchapnumwidth}{2.5em}
 
-\PassOptionsToPackage{hyphens}{url}
+%\PassOptionsToPackage{hyphens}{url}
 \usepackage[hidelinks, 
 colorlinks=true, 
 linkcolor=blue, 
@@ -21,7 +22,7 @@ urlcolor=red]{hyperref}
 
 %\setcounter{tocdepth}{0}
 
-\graphicspath{{/Users/telliott_admin/Tex/png/}}
+\graphicspath{{/Users/telliott/Tex/png/}}
 
 \title{The Best of Calculus}
 \author{Tom Elliott}
