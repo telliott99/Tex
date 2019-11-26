@@ -1,13 +1,13 @@
 # python combine.py > full.tex
-# python /Users/telliott/Tex/calculus_book/combine.py > full.tex
+# python /Users/telliott_admin/Tex/calculus_book/combine.py > full.tex
 
 # debug:
-# python /Users/telliott/Tex/calculus_book/combine.py
+# python /Users/telliott_admin/Tex/calculus_book/combine.py
 
 # need typeset 2x to get toc filled out!
 import sys
 
-path = '/Users/telliott/Tex/calculus_book/'
+path = '/Users/telliott_admin/Tex/calculus_book/'
 
 def load(fn):
     FH = open(path + fn, 'r')

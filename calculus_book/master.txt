@@ -3,7 +3,8 @@
 Archimedes
 Introduction
 Archimedes and the sphere
-Circle and cone
+Area of a circle
+Volume of a cone
 
 Some elements of classical geometry
 Euclid
