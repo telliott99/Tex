@@ -9,7 +9,7 @@
 \usepackage{color}
 \usepackage{hyperref}
 
-\graphicspath{{/Users/telliott_admin/Tex/png/}}
+\graphicspath{{/Users/telliott/Github/figures/}}
 % \begin{center} \includegraphics [scale=0.4] {gauss3.png} \end{center}
 
 \title{Triangle inequality}
@@ -19,13 +19,11 @@
 \maketitle
 \Large
 
-\section{Introduction}
-
-Here we prove the theorem known as the \textbf{triangle inequality}, which is used in proving numerous other theorems in analysis.  It involves the concept of absolute value.
+Here we prove the theorem known as the \textbf{triangle inequality}, which is then used in proving numerous additional theorems in analysis.  It is connected to the idea of absolute value.
 
 \subsection*{Absolute value}
 
-The absolute value function is typeset as $|x|$ and defined as follows:
+The absolute value function (abs in Python) is typeset as $|x|$ and defined as follows:
 \[
 f(x) = |x| = 
 \begin{cases}
@@ -35,10 +33,11 @@ f(x) = |x| =
 \end{cases}
 \]
 
-The definition can be simplified by combining the first two cases into one statement:  $|x| = x$ for $x \ge 0$.  But in what follows we will usually consider the three cases separately.
+This could be simplified by combining the first two cases into one statement:  $|x| = x$ for $x \ge 0$.  But in what follows we will usually consider the three cases separately.
 
-\subsection*{theorem}
-We will prove that 
+\subsection*{triangle inequality}
+
+We will prove this theorem 
 \[ |x + y| \le |x| + |y| \] 
 
 This inequality holds regardless of the signs of $x$ and $y$.
@@ -50,25 +49,110 @@ When considering the lengths of the sides of a triangle (or the distances betwee
 
 \begin{center} \includegraphics [scale=0.3] {triangle_inequality.png} \end{center}
 
-Euclid teaches us that the shortest distance between any two points is a straight line (in this figure from the web, $\mathbf{x + y}$ refers to the \emph{vector sum} of $\mathbf{x}$ and $\mathbf{y}$).
+Euclid claims that the shortest distance between any two points is a straight line (in this figure from the web, $\mathbf{x + y}$ refers to the \emph{vector sum} of $\mathbf{x}$ and $\mathbf{y}$).
 
-For the real number line, consider any set of three points.  The largest distance is equal to the other two added together
-\begin{center} \includegraphics [scale=0.4] {3points.png} \end{center}
-\[ d(x,y) = d(x,z) + d(z,y) \]
-Any other single distance is less than the sum of the remaining two.
+For the real number line, consider any two values $a$ and $b$.  
+\begin{center} \includegraphics [scale=0.4] {triangle_inequality_2.png} \end{center}
 
-For points in $R^1$ the absolute value gives the distance between them.  For vectors in $R^2$ the absolute value gives the length (which is also the distance between vertices).
+These are \emph{signed} values so there are a number of cases, namely $a > 0$, $a = 0$ and $a < 0$, and the same for $b$.  That's a total of six.  
+
+The length of an arrow is a separate concept, where length is \emph{always non-negative}.  The absolute value function is a way of talking about length.
+
+So, quite clearly, if $a$ and $b$ are both non-zero and have the same sign (left panel), the length of their sum $|a + b|$ is equal to the sum of the lengths $|a| + |b|$.  This is also true if one or both is equal to zero.
+\[ |a + b| = |a| + |b| \]
+
+However, when the signs are different (both lengths non-zero), then the length of the sum is always smaller than the larger length, and certainly
+\[ |a + b| < |a| + |b| \]
+
+These cases are combined to form the inequality:
+\[ |a + b| \le |a| + |b| \]
+
+\subsection*{theorem}
 
 One way to prove the theorem
 \[ |x + y| \le |x| + |y| \] 
+is to go through cases.  
 
-is to go through cases.  It turns out that if $x$ and $y$ are both positive or both negative, the above relationship is an equality, equivalent to what we said above about the largest distance is equal to the other two added together.
+It seems like it should be pretty straightforward, but one can quickly get tied up in knots.
 
-It is only when the terms have opposite signs that the result is $<$.  
+In the statement (and the definition of $|x|$), we allow $x < 0$, and in that case the definition says $|x| = - x$.  This becomes confusing because $- x$ is greater than zero, so we need to be explicit.  The first cases, where one or both of $x$ and $y$ is zero, are trivial.
 
-For a formal approach (especially helpful for the case of different signs), we follow Apostol.  We consider a preliminary theorem first, which is another result frequently used in analysis.
+One is positive and one is zero.  Without loss of generality:
+
+$\bullet$ \ $x > 0, y = 0$
+
+By the definition, $|x| + |y| = x + 0 = x$ and since $x + y > 0$,  $|x + y| = x + y = x + 0 = x$.  We have equality:  $|x| + |y| = |x + y|$.
+
+One is negative and one is zero.  Without loss of generality:
+
+$\bullet$ \ $x < 0, y = 0$
+
+Then $|x| + |y| = -x + 0 = -x $ and since $x + y < 0$,  $|x + y| = -(x + y)  = -(x + 0) = - x$.  Equality again.
+
+Both are zero:
+
+$\bullet$ \ $x = 0, y = 0$
+
+Then $|x| + |y| = 0 + 0 = 0 = |x + y|$.
+
+Now for all the non-zero cases:
+
+$\bullet$ \ $x > 0, y > 0$
+
+We have that $x + y > 0$ so by the definition:
+\[ x + y = |x + y| \]
+and since individually $x > 0, y > 0$
+\[ x + y = |x| + |y| \]
+
+$\bullet$ \ $x < 0, y < 0$
+
+We have that $x + y < 0$ so by the definition:
+\[ |x + y| = - (x + y) \]
+and individually
+\[ |x| + |y| = - x - y = - (x + y) \]
+
+Inequality comes when the values are non-zero and different.  This is the part that's a little bit tricky.
+
+$\bullet$ \ $x > 0, y < 0$ and neither is equal to zero.  So by this main premise:  $|x| = x$ and $|y| = - y$.  Break this up into sub-cases.  Remember that for a non-zero value $x$, always $|x| > 0$.
+
+$\circ$ \ $|x| > |y|$
+
+By the sub-premise, we have that $x > -y$ so $x + y > 0$, and then, by the definition:
+\[ |x + y| = x + y \]
+Starting with $y < 0$, we add a positive quantity $x > 0$ to both sides:
+\[ x + y < x \]
+but
+\[ x = |x| < |x| + |y| \]
+so
+\[ |x + y| <  |x| + |y| \]
+
+$\circ$ \ $|x| = |y|$
+
+By the sub-premise, and $|x| = x$ and $|y| = - y$, we have that $x + y = 0$ so
+\[ |x + y| = 0 \]
+And then
+\[ x + y = 0 < x = |x| < |x| + |y| \]
+so
+\[ |x + y| <  |x| + |y| \]
+
+$\circ$ \ $|x| < |y|$
+
+By the sub-premise, we have that $x + y < 0$ so
+\[ |x + y| = -(x + y) = - x - y \]
+Now, $x > 0$ and $y < 0$ so
+\[ |x| = x > -x \]
+\[ |y| = -y \]
+Plugging in
+\[ |x + y| = -(x + y) = - x - y < |x| + |y| \]
+
+Therefore, in every case
+\[ |x + y| \le |x| + |y| \]
+
+Almost three pages for the simple proof!
 
 \section{Interval with midpoint}
+
+For a formal approach (especially helpful for the case of different signs), we follow Apostol.  We consider a preliminary theorem first, which is another result frequently used in analysis.
 
 Consider an open interval whose endpoints are equidistant from a central point $p$, where the distance to the boundary is $a$ (as a \emph{distance}, certainly $a > 0$), and  $x$ is contained somewhere in the open interval $(p-a,p+a)$
 
@@ -101,6 +185,8 @@ We just do this one by cases.
 $\circ$   If $x \ge 0$ then $x = |x|$ and $-|x| < 0$ so $x \ge -|x|$.
 
 $\circ$   If $x < 0$, then $|x|=-x$ and $x = -|x|$ and also $|x| \ge 0$ so $x < |x|$.
+
+$\circ$   If $x = 0$ we have equality.
 
 \subsection*{preliminary theorem}
 
@@ -213,51 +299,6 @@ This proves the triangle inequality.
 
 $\square$
 
-\subsection*{alternative proof (by examining cases)}
-
-Let $m > n > 0$.  If $n > m$, just switch $x$ and $y$.  We deal with the case $m=n$ and $x,y$ of different signs in the last part.
-
-$\bullet$  $x$ and $y$ with the same sign
-
-$\circ$  $x = m, y = n$
-\[ |x + y| = |m + n| = m + n \]
-\[ m + n = |m| + |n| = |x| + |y| \]
-$\circ$  $x = -m, y = -n$
-\[ |x + y| = |-m - n| = |-(m + n)| = m + n \]
-\[ m + n = |-m| + |-n| = |x| + |y| \]
-
-$\bullet$  one of $x,y$ is equal to zero
-
-$\circ$  $x = m, y = 0$
-\[ |x + y| = |m + 0| = |m| = m \]
-\[ m = m + 0 = |m| + |0| = |x| + |y| \]
-$\circ$  $x = -m, y = 0$
-\[ |x + y| = |-m + 0| = |-m| = m \]
-\[ m = m + 0 = |-m| + |0| = |x| + |y| \]
-
-$\bullet$  one of $x,y$ is less than zero
-
-Here we see the inequality.  Let $p = m - n$ (we assume $m > n$ so $p > 0$).
-\[ p = m - n \]
-\[ p < p + 2n \]
-\[ p < m + n \]
-
-$\circ$  $x = -m, y = n$
-\[ |x + y| = |-m + n| = |-p| = p < m + n \]
-\[ m + n = |-m| + |n| = |x| + |y| \]
-so
-\[ |x + y| < |x| + |y| \]
-
-$\circ$  $x = m, y = -n$
-\[ |x + y| = |m - n| = |p| = p < m + n \]
-\[ m + n = |m| + |-n| = |x| + |y| \]
-so
-\[ |x + y| < |x| + |y| \]
-
-$\circ$  Finally, suppose that $m=n$.  Then $x = m, y = -m$.
-\[ |x + y| = |m + -m| = 0 < |m| + |-m| = |x| + |y| \]
-
-$\square$
 
 We next consider a related theorem and some corollaries:
 \[ |x - y| \ge |x| + |y| \]
